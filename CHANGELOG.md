@@ -2,6 +2,45 @@
 
 All notable changes to this module are documented here.
 
+## [Unreleased]
+
+### Added
+
+- Canonical `TemplateAddress` parsing and formatting with additive
+  `kind,locale,role,path,selector,digest,snapshot` qualifiers.
+- Caller-supplied `TemplateContract` and strict input definitions for string,
+  integer, number, boolean, enum, defaults, examples, ranges, patterns,
+  localized guidance, and sensitivity.
+- Optional `Inspector`, `Validator`, `Renderer`, and `Previewer` capabilities;
+  the existing `Client` interface remains unchanged.
+- Optional `ContractResolver` plus built-in file, Git/GitHub, and S3 companion
+  readers for Registry-authored template contracts, with explicit
+  `snapshot_pinned` or `content_bound` consistency; the
+  existing source `Adapter` method set remains unchanged.
+- Provider-free in-memory rendering and preview metadata with rendered digest,
+  byte/rune counts, and body-safe JSON/YAML serialization.
+- Invalid UTF-8 is sanitized before Unicode search normalization, preserving
+  the Go 1.24 compatibility floor while closing GO-2026-5970's input path.
+- Contract license projections require canonical safe SPDX-style text, and
+  permissions require canonical identifiers, so inspect/preview output cannot
+  carry control text or URLs.
+
+### Compatibility
+
+- Planned release version: `v0.3.0`.
+- Existing `Ref`, `Client`, catalog, state, receipt, source profile, and digest
+  contracts are unchanged; no state migration is required.
+- Selectors remain inspect-only and fail closed with `SELECTOR_UNSUPPORTED`
+  during preview until a conformance-tested selector engine is available.
+
+### Release gate
+
+- Do not publish or advertise `v0.3.0` as installable until the maintainer has
+  created the immutable public tag and anonymous
+  `GOWORK=off go mod download github.com/yeisme/promptrepo@v0.3.0` succeeds.
+- After publication, rerun the Sonora/Eikona/Scaena consumer canaries without a
+  filesystem replace or private module credential.
+
 ## [0.2.0] - 2026-08-23
 
 ### Changed

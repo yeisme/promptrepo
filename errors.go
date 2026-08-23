@@ -15,6 +15,15 @@ const (
 	CodeStateSchemaTooNew       = "STATE_SCHEMA_TOO_NEW"
 	CodeIncompatible            = "INCOMPATIBLE"
 	CodeRightsBlocked           = "RIGHTS_BLOCKED"
+	CodeAddressMismatch         = "ADDRESS_MISMATCH"
+	CodeInputRequired           = "INPUT_REQUIRED"
+	CodeInputUnknown            = "INPUT_UNKNOWN"
+	CodeInputType               = "INPUT_TYPE"
+	CodeInputEnum               = "INPUT_ENUM"
+	CodeInputConstraint         = "INPUT_CONSTRAINT"
+	CodeTemplatePlaceholder     = "TEMPLATE_PLACEHOLDER_UNDECLARED"
+	CodeTemplateSyntax          = "TEMPLATE_SYNTAX_INVALID"
+	CodeSelectorUnsupported     = "SELECTOR_UNSUPPORTED"
 )
 
 // Error is the stable public SDK error projection. Message is safe for logs;

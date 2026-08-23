@@ -114,6 +114,49 @@ func (adapter S3Adapter) ReadTemplate(ctx context.Context, profile promptrepo.Re
 	return payload, nil
 }
 
+func (adapter S3Adapter) ReadCompanion(ctx context.Context, profile promptrepo.RepositoryProfile, _ promptrepo.SnapshotMetadata, companionPath string, _ string) ([]byte, error) {
+	if strings.TrimSpace(profile.CredentialRef) != "" {
+		return nil, promptrepo.NewError(promptrepo.CodeAuthRequired, "S3 credential reference requires a credential-aware source adapter", false, nil)
+	}
+	objectURL, err := s3ObjectURL(profile.Source, companionPath)
+	if err != nil {
+		return nil, err
+	}
+	request, err := http.NewRequestWithContext(ctx, http.MethodGet, objectURL, nil)
+	if err != nil {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "invalid S3 template contract companion request", false, err)
+	}
+	client := adapter.HTTPClient
+	if client == nil {
+		client = http.DefaultClient
+	}
+	response, err := client.Do(request)
+	if err != nil {
+		return nil, promptrepo.NewError(promptrepo.CodeSourceFetchFailed, "S3 template contract companion fetch failed", true, err)
+	}
+	defer response.Body.Close()
+	if response.StatusCode == http.StatusUnauthorized || response.StatusCode == http.StatusForbidden {
+		return nil, promptrepo.NewError(promptrepo.CodeAuthRequired, "S3 template contract companion authorization failed", false, nil)
+	}
+	if response.StatusCode == http.StatusNotFound {
+		return nil, promptrepo.NewError(promptrepo.CodeNotFound, "template contract companion is not present in the S3 prefix", false, nil)
+	}
+	if response.StatusCode < 200 || response.StatusCode >= 300 {
+		return nil, promptrepo.NewError(promptrepo.CodeSourceFetchFailed, fmt.Sprintf("S3 template contract companion fetch returned HTTP %d", response.StatusCode), response.StatusCode >= 500, nil)
+	}
+	if response.ContentLength > maxCompanionBytes {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "template contract companion exceeds size limit", false, nil)
+	}
+	payload, err := io.ReadAll(io.LimitReader(response.Body, maxCompanionBytes+1))
+	if err != nil {
+		return nil, promptrepo.NewError(promptrepo.CodeSourceFetchFailed, "S3 template contract companion read failed", true, err)
+	}
+	if len(payload) > maxCompanionBytes {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "template contract companion exceeds size limit", false, nil)
+	}
+	return payload, nil
+}
+
 func s3ObjectURL(raw, objectPath string) (string, error) {
 	if !safeObjectPath(objectPath) {
 		return "", promptrepo.NewError(promptrepo.CodeInvalidRequest, "S3 object path must stay inside the repository prefix", false, nil)

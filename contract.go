@@ -1,6 +1,9 @@
 package promptrepo
 
-import "time"
+import (
+	"context"
+	"time"
+)
 
 const (
 	StateSchemaVersion   = "promptrepo.state.v0.1"
@@ -218,4 +221,108 @@ type StageReceipt struct {
 	Compatibility    string    `json:"compatibility"`
 	State            string    `json:"state"`
 	ProviderCalls    string    `json:"provider_calls"`
+}
+
+// Inspector is an optional read-only capability. Client remains intentionally
+// unchanged so existing consumers do not need to implement a new method.
+type Inspector interface {
+	Inspect(context.Context, InspectRequest) (InspectResult, error)
+}
+
+// Previewer is an optional, non-executing in-memory rendering capability.
+type Previewer interface {
+	Preview(context.Context, PreviewRequest) (PreviewResult, error)
+}
+
+// Renderer is an optional provider-free in-memory rendering capability.
+type Renderer interface {
+	Render(context.Context, RenderRequest) (RenderResult, error)
+}
+
+// Validator is an optional input-readiness capability for a template role.
+type Validator interface {
+	Validate(context.Context, ValidateRequest) (InputValidation, error)
+}
+
+type InspectRequest struct {
+	Ref      string           `json:"ref" yaml:"ref"`
+	Locale   string           `json:"locale,omitempty" yaml:"locale,omitempty"`
+	Role     string           `json:"role,omitempty" yaml:"role,omitempty"`
+	Values   map[string]any   `json:"-" yaml:"-"`
+	Selector string           `json:"selector,omitempty" yaml:"selector,omitempty"`
+	Contract TemplateContract `json:"contract,omitempty" yaml:"contract,omitempty"`
+}
+
+type ValidateRequest struct {
+	Ref      string           `json:"ref" yaml:"ref"`
+	Locale   string           `json:"locale,omitempty" yaml:"locale,omitempty"`
+	Role     string           `json:"role,omitempty" yaml:"role,omitempty"`
+	Values   map[string]any   `json:"-" yaml:"-"`
+	Contract TemplateContract `json:"contract,omitempty" yaml:"contract,omitempty"`
+}
+
+type PreviewRequest struct {
+	Ref      string           `json:"ref" yaml:"ref"`
+	Locale   string           `json:"locale,omitempty" yaml:"locale,omitempty"`
+	Role     string           `json:"role,omitempty" yaml:"role,omitempty"`
+	Values   map[string]any   `json:"-" yaml:"-"`
+	Selector string           `json:"selector,omitempty" yaml:"selector,omitempty"`
+	Contract TemplateContract `json:"contract,omitempty" yaml:"contract,omitempty"`
+}
+
+type NextAction struct {
+	Kind           string   `json:"kind" yaml:"kind"`
+	RequiredInputs []string `json:"required_inputs,omitempty" yaml:"required_inputs,omitempty"`
+}
+
+type InspectResult struct {
+	Origin         string           `json:"origin" yaml:"origin"`
+	Ref            string           `json:"ref" yaml:"ref"`
+	Address        string           `json:"address" yaml:"address"`
+	Version        string           `json:"version" yaml:"version"`
+	Digest         string           `json:"digest" yaml:"digest"`
+	SolutionDigest string           `json:"solution_digest" yaml:"solution_digest"`
+	SnapshotDigest string           `json:"snapshot_digest" yaml:"snapshot_digest"`
+	Locale         string           `json:"locale" yaml:"locale"`
+	Role           string           `json:"role" yaml:"role"`
+	Rights         string           `json:"rights" yaml:"rights"`
+	Trust          string           `json:"trust" yaml:"trust"`
+	Maturity       string           `json:"maturity" yaml:"maturity"`
+	Tags           []string         `json:"tags,omitempty" yaml:"tags,omitempty"`
+	Capabilities   []string         `json:"capabilities,omitempty" yaml:"capabilities,omitempty"`
+	Title          string           `json:"title" yaml:"title"`
+	Summary        string           `json:"summary" yaml:"summary"`
+	Usage          string           `json:"usage,omitempty" yaml:"usage,omitempty"`
+	Inputs         []InputStatus    `json:"inputs,omitempty" yaml:"inputs,omitempty"`
+	Contract       TemplateContract `json:"contract,omitempty" yaml:"contract,omitempty"`
+	Ready          bool             `json:"ready" yaml:"ready"`
+	Issues         []InputIssue     `json:"issues,omitempty" yaml:"issues,omitempty"`
+	NextAction     NextAction       `json:"next_action" yaml:"next_action"`
+}
+
+type PreviewResult struct {
+	InspectResult
+	RenderedDigest string `json:"rendered_digest,omitempty" yaml:"rendered_digest,omitempty"`
+	RenderedBytes  int    `json:"rendered_bytes" yaml:"rendered_bytes"`
+	RenderedRunes  int    `json:"rendered_runes" yaml:"rendered_runes"`
+	ProviderCalls  bool   `json:"provider_calls" yaml:"provider_calls"`
+	StateWrites    bool   `json:"state_writes" yaml:"state_writes"`
+	UsageRecorded  bool   `json:"usage_recorded" yaml:"usage_recorded"`
+	RenderedBody   string `json:"-" yaml:"-"`
+}
+
+type RenderRequest struct {
+	Template string            `json:"-" yaml:"-"`
+	Inputs   []InputDefinition `json:"inputs" yaml:"inputs"`
+	Values   map[string]any    `json:"-" yaml:"-"`
+}
+
+type RenderResult struct {
+	Inputs         []InputStatus `json:"inputs,omitempty" yaml:"inputs,omitempty"`
+	Ready          bool          `json:"ready" yaml:"ready"`
+	Issues         []InputIssue  `json:"issues,omitempty" yaml:"issues,omitempty"`
+	RenderedDigest string        `json:"rendered_digest,omitempty" yaml:"rendered_digest,omitempty"`
+	RenderedBytes  int           `json:"rendered_bytes" yaml:"rendered_bytes"`
+	RenderedRunes  int           `json:"rendered_runes" yaml:"rendered_runes"`
+	RenderedBody   string        `json:"-" yaml:"-"`
 }

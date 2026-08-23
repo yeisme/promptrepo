@@ -1,6 +1,7 @@
 package source
 
 import (
+	"bytes"
 	"context"
 	"crypto/sha256"
 	"encoding/hex"
@@ -77,6 +78,10 @@ func TestGitAdapterPinsExactCommit(t *testing.T) {
 	if err != nil || string(payload) != testTemplateBody {
 		t.Fatalf("template: %q, %v", payload, err)
 	}
+	companionPayload, err := (GitAdapter{}).ReadCompanion(context.Background(), profile, promptrepo.SnapshotMetadata{Revision: result.Revision}, "contracts/main.zh-CN.json", cacheRoot)
+	if err != nil || len(companionPayload) == 0 {
+		t.Fatalf("companion: %q, %v", companionPayload, err)
+	}
 }
 
 func TestS3AdapterReadsPathStyleCatalog(t *testing.T) {
@@ -89,6 +94,8 @@ func TestS3AdapterReadsPathStyleCatalog(t *testing.T) {
 			_, _ = writer.Write(payload)
 		case "/prompt-bucket/catalog/prompts/main.zh-CN.md":
 			_, _ = writer.Write([]byte(testTemplateBody))
+		case "/prompt-bucket/catalog/contracts/main.zh-CN.json":
+			_, _ = writer.Write([]byte(`{"schema_version":"promptrepo.template-contract.v0.1"}`))
 		default:
 			t.Fatalf("path: %s", request.URL.Path)
 		}
@@ -106,6 +113,66 @@ func TestS3AdapterReadsPathStyleCatalog(t *testing.T) {
 	if err != nil || string(templatePayload) != testTemplateBody {
 		t.Fatalf("template: %q, %v", templatePayload, err)
 	}
+	companionPayload, err := (S3Adapter{HTTPClient: server.Client()}).ReadCompanion(context.Background(), promptrepo.RepositoryProfile{Source: sourceURI}, promptrepo.SnapshotMetadata{Revision: result.Revision}, "contracts/main.zh-CN.json", "")
+	if err != nil || len(companionPayload) == 0 {
+		t.Fatalf("companion: %q, %v", companionPayload, err)
+	}
+}
+
+func TestCompanionReadersFailClosed(t *testing.T) {
+	root := t.TempDir()
+	profile := promptrepo.RepositoryProfile{Source: (&url.URL{Scheme: "file", Path: root}).String()}
+	if _, err := (LocalAdapter{}).ReadCompanion(context.Background(), profile, promptrepo.SnapshotMetadata{}, "../private.json", ""); promptrepo.ErrorCode(err) != promptrepo.CodeInvalidRequest {
+		t.Fatalf("local traversal error: %v", err)
+	}
+	contracts := filepath.Join(root, "contracts")
+	if err := os.MkdirAll(contracts, 0o700); err != nil {
+		t.Fatal(err)
+	}
+	outside := filepath.Join(t.TempDir(), "private.json")
+	if err := os.WriteFile(outside, []byte(`{"private":true}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Symlink(outside, filepath.Join(contracts, "main.zh-CN.json")); err != nil {
+		t.Skipf("symlink not supported: %v", err)
+	}
+	if _, err := (LocalAdapter{}).ReadCompanion(context.Background(), profile, promptrepo.SnapshotMetadata{}, "contracts/main.zh-CN.json", ""); promptrepo.ErrorCode(err) != promptrepo.CodeNotFound {
+		t.Fatalf("local symlink error: %v", err)
+	}
+
+	if _, err := (GitAdapter{}).ReadCompanion(context.Background(), promptrepo.RepositoryProfile{}, promptrepo.SnapshotMetadata{Revision: "main"}, "contracts/main.zh-CN.json", t.TempDir()); promptrepo.ErrorCode(err) != promptrepo.CodeInvalidRequest {
+		t.Fatalf("git mutable snapshot error: %v", err)
+	}
+
+	s3Profile := promptrepo.RepositoryProfile{Source: "s3://prompt-bucket/catalog", CredentialRef: "yeisme-credential://prompt/s3"}
+	if _, err := (S3Adapter{}).ReadCompanion(context.Background(), s3Profile, promptrepo.SnapshotMetadata{}, "contracts/main.zh-CN.json", ""); promptrepo.ErrorCode(err) != promptrepo.CodeAuthRequired {
+		t.Fatalf("s3 credential boundary error: %v", err)
+	}
+}
+
+func TestGitCompanionChecksBlobSizeBeforeRead(t *testing.T) {
+	if _, err := exec.LookPath("git"); err != nil {
+		t.Skip("git is not available")
+	}
+	repositoryRoot := t.TempDir()
+	writeTestCatalog(t, repositoryRoot)
+	if err := os.WriteFile(filepath.Join(repositoryRoot, "contracts", "main.zh-CN.json"), bytes.Repeat([]byte{'x'}, maxCompanionBytes+1), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	runTestGit(t, repositoryRoot, "init", "-b", "main")
+	runTestGit(t, repositoryRoot, "config", "user.name", "Prompt Repo Test")
+	runTestGit(t, repositoryRoot, "config", "user.email", "promptrepo@example.invalid")
+	runTestGit(t, repositoryRoot, "add", ".")
+	runTestGit(t, repositoryRoot, "commit", "-m", "oversized companion fixture")
+	cacheRoot := t.TempDir()
+	profile := promptrepo.RepositoryProfile{Source: "git+" + (&url.URL{Scheme: "file", Path: repositoryRoot}).String(), Revision: "main"}
+	result, err := (GitAdapter{}).Sync(context.Background(), profile, cacheRoot)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err := (GitAdapter{}).ReadCompanion(context.Background(), profile, promptrepo.SnapshotMetadata{Revision: result.Revision}, "contracts/main.zh-CN.json", cacheRoot); promptrepo.ErrorCode(err) != promptrepo.CodeInvalidRequest {
+		t.Fatalf("oversized Git companion error: %v", err)
+	}
 }
 
 func writeTestCatalog(t *testing.T, root string) {
@@ -115,6 +182,12 @@ func writeTestCatalog(t *testing.T, root string) {
 		t.Fatal(err)
 	}
 	if err := os.WriteFile(filepath.Join(root, "prompts", "main.zh-CN.md"), []byte(testTemplateBody), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.MkdirAll(filepath.Join(root, "contracts"), 0o700); err != nil {
+		t.Fatal(err)
+	}
+	if err := os.WriteFile(filepath.Join(root, "contracts", "main.zh-CN.json"), []byte(`{"schema_version":"promptrepo.template-contract.v0.1"}`), 0o600); err != nil {
 		t.Fatal(err)
 	}
 	payload, _ := json.Marshal(catalog)

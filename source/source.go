@@ -21,6 +21,13 @@ type Adapter interface {
 	ReadTemplate(context.Context, promptrepo.RepositoryProfile, promptrepo.SnapshotMetadata, promptrepo.TemplateRole, string) ([]byte, error)
 }
 
+// CompanionReader is optional so third-party Adapter implementations remain
+// source compatible. Built-in adapters implement it for bounded metadata
+// sidecars; callers must not use it to expose prompt bodies.
+type CompanionReader interface {
+	ReadCompanion(context.Context, promptrepo.RepositoryProfile, promptrepo.SnapshotMetadata, string, string) ([]byte, error)
+}
+
 type Registry struct {
 	adapters map[string]Adapter
 }

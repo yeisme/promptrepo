@@ -637,6 +637,10 @@ func searchScore(query string, display promptrepo.LocalizedText, solution prompt
 }
 
 func normalizeSearch(value string) string {
+	// x/text/norm versions that still support Go 1.24 can loop on invalid
+	// UTF-8. Keep the public Go 1.24 compatibility floor while making the
+	// normalization boundary safe before passing caller/catalog text to NFKC.
+	value = strings.ToValidUTF8(value, "\uFFFD")
 	value = norm.NFKC.String(strings.ToLower(strings.TrimSpace(value)))
 	var builder strings.Builder
 	space := false

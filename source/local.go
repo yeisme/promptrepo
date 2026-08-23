@@ -17,6 +17,7 @@ import (
 
 const maxCatalogBytes = 8 << 20
 const maxTemplateBytes = 2 << 20
+const maxCompanionBytes = 4 << 20
 
 type LocalAdapter struct{}
 
@@ -87,6 +88,38 @@ func (LocalAdapter) ReadTemplate(_ context.Context, profile promptrepo.Repositor
 	}
 	if err := verifyTemplateDigest(payload, template.Digest); err != nil {
 		return nil, err
+	}
+	return payload, nil
+}
+
+func (LocalAdapter) ReadCompanion(_ context.Context, profile promptrepo.RepositoryProfile, _ promptrepo.SnapshotMetadata, companionPath string, _ string) ([]byte, error) {
+	parsed, err := url.Parse(profile.Source)
+	if err != nil || parsed.Scheme != "file" {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "invalid file repository URI", false, err)
+	}
+	rootPath, err := url.PathUnescape(parsed.Path)
+	if err != nil || !filepath.IsAbs(rootPath) {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "file repository path must be absolute", false, err)
+	}
+	root, err := filepath.EvalSymlinks(filepath.Clean(rootPath))
+	if err != nil {
+		return nil, promptrepo.NewError(promptrepo.CodeNotFound, "repository directory is not available", false, err)
+	}
+	if !safeObjectPath(companionPath) {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "invalid template contract companion path", false, nil)
+	}
+	contentPath := filepath.Join(root, filepath.FromSlash(companionPath))
+	info, err := os.Lstat(contentPath)
+	if err != nil || info.Mode()&os.ModeSymlink != 0 || !info.Mode().IsRegular() || info.Size() > maxCompanionBytes {
+		return nil, promptrepo.NewError(promptrepo.CodeNotFound, "template contract companion is not an available bounded regular file", false, err)
+	}
+	resolved, err := filepath.EvalSymlinks(contentPath)
+	if err != nil || !withinRoot(root, resolved) {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "template contract companion path escapes repository root", false, err)
+	}
+	payload, err := os.ReadFile(resolved)
+	if err != nil {
+		return nil, promptrepo.NewError(promptrepo.CodeSourceFetchFailed, "failed to read template contract companion", true, err)
 	}
 	return payload, nil
 }

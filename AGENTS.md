@@ -38,3 +38,9 @@ openspec validate promptrepo-public-sdk-extraction-v1 --strict --no-interactive
 Commit, tag, publish, and release remain root-maintainer actions. They are
 allowed only when the current user explicitly authorizes the exact repository
 and release operation; implementation workers must never perform them.
+
+## Skill routing
+
+- Use `yeisme-prompt-repository-router` to distinguish public SDK/contract work here from official content in `data/yeisme-prompt-templates`, Registry service state in `backend-server/template-registry`, and domain execution in consuming products.
+- Use `yeisme-evolutionary-change-policy` for exact refs, template address, digests, schema, error codes, interfaces, or compatibility windows.
+- Use `backend-system-workflow` for embedded engine, source adapters, locking, atomic writes, and bounded Git/S3 behavior; use `cso` for credential, path, prompt-body, and trust-boundary review.

@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 
 	"github.com/yeisme/promptrepo"
@@ -61,7 +62,15 @@ func (GitAdapter) Sync(ctx context.Context, profile promptrepo.RepositoryProfile
 	if !regexp.MustCompile(`^[a-f0-9]{40,64}$`).MatchString(commit) {
 		return SyncResult{}, promptrepo.NewError(promptrepo.CodeSourceFetchFailed, "Git source did not resolve to an exact commit", false, nil)
 	}
-	payload, err := runGit(ctx, "--git-dir", repositoryPath, "show", commit+":catalog.json")
+	catalogObject := commit + ":catalog.json"
+	size, err := gitObjectSize(ctx, repositoryPath, catalogObject)
+	if err != nil {
+		return SyncResult{}, promptrepo.NewError(promptrepo.CodeNotFound, "catalog.json is not present at the resolved Git commit", false, err)
+	}
+	if size > maxCatalogBytes {
+		return SyncResult{}, promptrepo.NewError(promptrepo.CodeInvalidRequest, "catalog exceeds size limit", false, nil)
+	}
+	payload, err := runGit(ctx, "--git-dir", repositoryPath, "show", catalogObject)
 	if err != nil {
 		return SyncResult{}, promptrepo.NewError(promptrepo.CodeNotFound, "catalog.json is not present at the resolved Git commit", false, err)
 	}
@@ -81,7 +90,15 @@ func (GitAdapter) ReadTemplate(ctx context.Context, profile promptrepo.Repositor
 	}
 	sum := sha256.Sum256([]byte(profile.Source))
 	repositoryPath := filepath.Join(cacheRoot, "git", hex.EncodeToString(sum[:12])+".git")
-	payload, err := runGit(ctx, "--git-dir", repositoryPath, "show", snapshot.Revision+":"+template.Path)
+	templateObject := snapshot.Revision + ":" + template.Path
+	size, err := gitObjectSize(ctx, repositoryPath, templateObject)
+	if err != nil {
+		return nil, promptrepo.NewError(promptrepo.CodeNotFound, "prompt template is not present at the resolved Git commit", false, err)
+	}
+	if size > maxTemplateBytes {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "prompt template exceeds size limit", false, nil)
+	}
+	payload, err := runGit(ctx, "--git-dir", repositoryPath, "show", templateObject)
 	if err != nil {
 		return nil, promptrepo.NewError(promptrepo.CodeNotFound, "prompt template is not present at the resolved Git commit", false, err)
 	}
@@ -90,6 +107,33 @@ func (GitAdapter) ReadTemplate(ctx context.Context, profile promptrepo.Repositor
 		return nil, err
 	}
 	return content, nil
+}
+
+func (GitAdapter) ReadCompanion(ctx context.Context, profile promptrepo.RepositoryProfile, snapshot promptrepo.SnapshotMetadata, companionPath string, cacheRoot string) ([]byte, error) {
+	if !regexp.MustCompile(`^[a-f0-9]{40,64}$`).MatchString(snapshot.Revision) {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "Git snapshot revision is not an exact commit", false, nil)
+	}
+	if !safeObjectPath(companionPath) {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "invalid Git template contract companion path", false, nil)
+	}
+	sum := sha256.Sum256([]byte(profile.Source))
+	repositoryPath := filepath.Join(cacheRoot, "git", hex.EncodeToString(sum[:12])+".git")
+	companionObject := snapshot.Revision + ":" + companionPath
+	size, err := gitObjectSize(ctx, repositoryPath, companionObject)
+	if err != nil {
+		return nil, promptrepo.NewError(promptrepo.CodeNotFound, "template contract companion is not present at the resolved Git commit", false, err)
+	}
+	if size > maxCompanionBytes {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "template contract companion exceeds size limit", false, nil)
+	}
+	payload, err := runGit(ctx, "--git-dir", repositoryPath, "show", companionObject)
+	if err != nil {
+		return nil, promptrepo.NewError(promptrepo.CodeNotFound, "template contract companion is not present at the resolved Git commit", false, err)
+	}
+	if len(payload) > maxCompanionBytes {
+		return nil, promptrepo.NewError(promptrepo.CodeInvalidRequest, "template contract companion exceeds size limit", false, nil)
+	}
+	return []byte(payload), nil
 }
 
 func normalizeGitRemote(raw string) (string, error) {
@@ -117,6 +161,18 @@ func runGit(ctx context.Context, args ...string) (string, error) {
 	command.Env = append(os.Environ(), "GIT_TERMINAL_PROMPT=0", "GIT_CONFIG_NOSYSTEM=1")
 	payload, err := command.CombinedOutput()
 	return string(payload), err
+}
+
+func gitObjectSize(ctx context.Context, repositoryPath, object string) (int64, error) {
+	raw, err := runGit(ctx, "--git-dir", repositoryPath, "cat-file", "-s", object)
+	if err != nil {
+		return 0, err
+	}
+	size, err := strconv.ParseInt(strings.TrimSpace(raw), 10, 64)
+	if err != nil || size < 0 {
+		return 0, fmt.Errorf("Git object size is invalid")
+	}
+	return size, nil
 }
 
 func classifyGitError(profile promptrepo.RepositoryProfile, output string, cause error) error {
