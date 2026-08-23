@@ -81,3 +81,16 @@ required.
 When the public module raises its compatibility floor to Go 1.25 or newer, it
 must upgrade `golang.org/x/text` to v0.39.0 or later and remove this temporary
 guard-based vulnerability exception after re-running the compatibility suite.
+
+## v0.3.0 release evidence
+
+Before tagging `v0.3.0`, the maintainer ran `GOWORK=off go mod verify`,
+`GOWORK=off go test ./...`, `GOWORK=off go vet ./...`, CGO-disabled tests and
+builds on the Go 1.24 floor, strict OpenSpec validation across all changes,
+and a secret scan over the release tree; all passed. The release is an
+additive public-contract change: `Client`, `Ref`, catalog/state/receipt DTOs,
+source profiles, persisted state, and existing deterministic digests stay
+compatible with `v0.2.0`. The tag is published only after anonymous
+`GOWORK=off go mod download github.com/yeisme/promptrepo@v0.3.0` succeeds; the
+first consumer canary is Pinax, which pins the public tag without a filesystem
+replace or private module credential.

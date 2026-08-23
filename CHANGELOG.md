@@ -2,7 +2,7 @@
 
 All notable changes to this module are documented here.
 
-## [Unreleased]
+## [0.3.0] - 2026-08-23
 
 ### Added
 
@@ -27,7 +27,7 @@ All notable changes to this module are documented here.
 
 ### Compatibility
 
-- Planned release version: `v0.3.0`.
+- Released as `v0.3.0`, an additive public-contract release.
 - Existing `Ref`, `Client`, catalog, state, receipt, source profile, and digest
   contracts are unchanged; no state migration is required.
 - Selectors remain inspect-only and fail closed with `SELECTOR_UNSUPPORTED`
@@ -35,10 +35,16 @@ All notable changes to this module are documented here.
 
 ### Release gate
 
-- Do not publish or advertise `v0.3.0` as installable until the maintainer has
-  created the immutable public tag and anonymous
-  `GOWORK=off go mod download github.com/yeisme/promptrepo@v0.3.0` succeeds.
-- After publication, rerun the Sonora/Eikona/Scaena consumer canaries without a
+- Before tagging, the maintainer verified `GOWORK=off go mod verify`,
+  `GOWORK=off go test ./...`, `GOWORK=off go vet ./...`, CGO-disabled
+  test/build on the Go 1.24 floor, strict OpenSpec validation, and a secret
+  scan of the release tree.
+- `v0.3.0` is published only as an immutable annotated tag; anonymous
+  `GOWORK=off go mod download github.com/yeisme/promptrepo@v0.3.0` must
+  succeed before consumers pin it.
+- Consumers on `v0.2.0` (Sonora, Eikona, Scaena) are unaffected; the first
+  `v0.3.0` consumer canary is Pinax (`cli/pinax`
+  `pinax-prompt-repository-import-v1`), which pins the public tag without a
   filesystem replace or private module credential.
 
 ## [0.2.0] - 2026-08-23
