@@ -15,3 +15,9 @@
 - [x] 3.1 Add a local v0.1.0 fixture compatibility test with no private-network dependency.
 - [x] 3.2 Run module, test, vet, and CGO-disabled validation.
 - [x] 3.3 Run strict OpenSpec validation, normalized source diff review, and secret scan.
+
+## 4. Stable release
+
+- [x] 4.1 Publish `v0.2.0-rc.1` and verify anonymous resolution through the public Go proxy.
+- [x] 4.2 Validate the RC in Template Registry, Sonora, and the official prompt catalog without contract or digest drift.
+- [ ] 4.3 Publish annotated `v0.2.0` after public CI passes on the stable release commit.

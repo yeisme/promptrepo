@@ -37,3 +37,10 @@ the immutable private v0.1.0 tag. If the public RC fails compatibility gates,
 do not tag stable; fix forward in a new RC or revert consumer migration. The
 private baseline is deprecated only after public stable cutover and remains
 read-only for rollback reference.
+
+## Stable release evidence
+
+The `v0.2.0-rc.1` candidate passed public Go 1.24 CI, Template Registry tests,
+Sonora's full local quality gate, a credential-free Sonora GitHub Actions run,
+and the official prompt catalog deterministic rebuild. Stable `v0.2.0` keeps
+the RC contract and persisted-state behavior unchanged.
