@@ -20,4 +20,4 @@
 
 - [x] 4.1 Publish `v0.2.0-rc.1` and verify anonymous resolution through the public Go proxy.
 - [x] 4.2 Validate the RC in Template Registry, Sonora, and the official prompt catalog without contract or digest drift.
-- [ ] 4.3 Publish annotated `v0.2.0` after public CI passes on the stable release commit.
+- [x] 4.3 Publish annotated `v0.2.0` from commit `d456d72` after public CI run `32617782555` passed; verify anonymous `proxy.golang.org` resolution.
