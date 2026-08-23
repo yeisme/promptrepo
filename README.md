@@ -14,7 +14,7 @@ depend on Template Registry server/internal packages.
 ## 安装 / Install
 
 ```bash
-go get github.com/yeisme/promptrepo@v0.2.0-rc.1
+go get github.com/yeisme/promptrepo@v0.2.0
 ```
 
 模块要求 Go 1.24 或更高版本；常规构建和测试支持 `CGO_ENABLED=0`。
@@ -63,8 +63,8 @@ references only, never credential values. See [docs/architecture.md](docs/archit
 
 ## 私有 v0.1.0 迁移 / private v0.1.0 migration
 
-This repository is the canonical public home for the SDK beginning with
-`v0.2.0-rc.1`. It was extracted without behavioral change from private tag
+This repository is the canonical public home for the SDK. Stable `v0.2.0` was
+promoted from `v0.2.0-rc.1` after consumer canaries. It was extracted without behavioral change from private tag
 `sdk/go/promptrepo/v0.1.0` at commit
 `e59e5a060b98125e55197cb9f5ed9179cdacc46a`.
 
