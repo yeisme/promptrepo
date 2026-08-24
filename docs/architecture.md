@@ -36,7 +36,8 @@ Template Address         -> role/path/selector/digest/snapshot projection
 已有 `ParseRef`/`FormatRef` 原封不动地保留 solution ref 语法。加性的
 `ParseTemplateAddress`/`FormatTemplateAddress` 只接受 `kind=template`，并以
 `kind,locale,role,path,selector,digest,snapshot` 固定顺序生成 query。相对 path
-禁止 traversal；selector 只能是 `heading:`、`json-pointer:` 或 `yaml-pointer:`；
+禁止 traversal；selector 只能是 `heading:`、`json-pointer:`、`yaml-pointer:` 或
+`jsonl-id:`；
 digest/snapshot 只能是 sha256。source URI 绝不作为 Address 解析，也不从 Address
 取得任何网络或凭据能力。
 
@@ -55,8 +56,68 @@ sidecar，并核对 schema、identity、template path/digest 与 contract digest
 digest 校验后读取正文并调用 Render。Preview 不进入 state write path、不创建 run、
 不调用 provider、不记录 usage，且 Render/Preview 的 `RenderedBody` 均标记为
 `json:"-" yaml:"-"`。selector grammar 是预留语法；Inspect 可显示 selector metadata，
-但 Preview 对任何非空 selector 返回 `SELECTOR_UNSUPPORTED`，直到 selector engine 具备
-独立 conformance 测试。
+但 Preview 对任何非空 selector 继续返回 `SELECTOR_UNSUPPORTED`。新的结构化定位走
+独立 `DocumentSelector`，不改变 v0.3 Preview 的正文渲染语义。
+
+## 结构化文档边界
+
+结构化能力是旧模板读取旁边的一条 additive 路径：
+
+```text
+catalog TemplateRole
+    + exact snapshot
+    + contracts/documents/<role>.<locale>.document.json
+    -> descriptor binding
+    -> bounded source read
+    -> strict JSON/YAML/JSONL parser
+    -> source digest + canonical digest
+    -> optional deterministic selector
+```
+
+`DocumentResolver` 只解析并绑定 descriptor；`DocumentLoader` 读取完整文档；
+`DocumentSelector` 才消费 selector。带 selector 的地址传给 `LoadDocument` 会失败关闭，
+避免调用者误以为已经完成局部选择。三个接口都由 `engine.Manager` 加性实现，旧
+`Client` 和 `source.Adapter` 方法集不变；built-in source 继续通过可选
+`source.CompanionReader` 从同一 file、exact Git commit 或 S3 object 读取 descriptor。
+
+JSON/YAML canonical digest 使用 RFC 8785 JCS。YAML 先以 AST 检查并拒绝 alias、
+anchor、merge key、显式 tag、非字符串 map key、重复键与非有限数值，再转换到 JSON
+数据模型。JSONL 在受限 source bytes 上逐行解析、校验唯一 record ID 并增量计算 segment
+digest；加载结果不物化整个 JSONL parsed-node 数组，按 ID 选择时才解析目标记录。
+
+`LoadedDocument.Body`、`LoadedDocument.Value`、`SelectedDocument.Body` 和
+`SelectedDocument.Value` 是 body-bearing 内存字段，均排除 JSON/YAML serialization。
+descriptor 中的 Schema 与 compiler profile 只作为 exact ref/digest lineage 返回；
+Promptrepo 不联网解析 Schema、不执行 repository supplied compiler，也不持久化正文、
+parsed node 或选择结果。
+
+## RepositorySet 与 policy 边界
+
+统一管理是调用时投影，不是新的 durable store：
+
+```text
+embedded user state -----------+
+Registry organization input ---+
+domain project binding --------+--> RepositorySet --> PolicyDecision
+session exact override --------+
+```
+
+`RepositorySetReader` 与 `PolicyEvaluator` 是独立 optional interfaces，不进入旧
+`Client`。embedded Manager 只注入现有 user profile/health；caller-supplied user
+candidate 不得覆盖相同 ID 的 canonical metadata。organization、project、session
+binding 只在请求内存在，计算不会触发 `withWriteState`。
+
+排序固定为 `session exact > project pin > user preference > organization default >
+official fallback`，但排序结果不包含授权。准入由 `EvaluateRepositoryPolicy` 对每个
+policy constraint 求交；organization deny 不能被 project allow 扩宽，exact/pin 也不能
+绕过 health、operation、trust、rights 或 capability blocker。
+
+三个安全 schema 分别为 `promptrepo.repository-set.v0.1`、
+`promptrepo.policy-decision.v0.1` 和 `promptrepo.management-projection.v0.1`。
+RepositorySet 输出把 raw `scope_ref` 单向摘要为 `scope_ref_digest`；ManagementProjection
+没有 source URL/path、credential、body、rendered body、input values 或 provider payload
+字段。embedded/service renderer 必须从这一投影生成 human/agent/JSON/YAML/events，不能
+各自重算 readiness。
 
 ## Compatibility invariants
 
@@ -68,9 +129,13 @@ digest 校验后读取正文并调用 Render。Preview 不进入 state write pat
   compatible with private v0.1.0.
 - State uses a cross-process lock and atomic rename; unsupported future state
   schemas fail closed.
-- 模板 Address 和 inspect/validate/render/preview 均为未来 v0.3.0 的加性
-  surface；没有 state migration。发现回归时还原该 v0.3.0 change 并继续使用
-  v0.2.0，state 无需回滚。
+- 模板 Address 和 inspect/validate/render/preview 已在 v0.3.0 additive 发布；没有
+  state migration，v0.2.0 仍可作为模块级回滚版本。
+- structured document DTO/interfaces、错误码和 descriptor path 是下一 additive
+  minor 的开发中表面；未引入 state migration。回滚时 consumer 停用这些可选接口，
+  旧 `ReadTemplate`/`Render`/`Preview` 路径不需要数据迁移。
+- RepositorySet、PolicyDecision 和 ManagementProjection 是同一后续 additive minor
+  的开发中表面；只读调用不改变 state bytes，旧 consumer 无需 type-assert 新接口。
 
 The `compatibility_v010_test.go` test executes a frozen v0.1.0-shaped fixture
 without private-network access and pins the observable result.

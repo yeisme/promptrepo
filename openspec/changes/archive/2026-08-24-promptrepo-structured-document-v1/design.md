@@ -26,10 +26,10 @@ descriptor schema 为 `promptrepo.template-document.v0.1`，content repo 约定�
 
 ### 2. 新公共接口 additive 发布
 
-新增独立请求/响应，不向 `TemplateRole` 或 `TemplateContent` 添加改变调用假设的字段。建议的接口职责为：
+新增独立请求/响应，不向 `TemplateRole` 或 `TemplateContent` 添加改变调用假设的字段。实际接口职责为：
 
 ```text
-DocumentResolver.ResolveDescriptor
+DocumentResolver.ResolveDocumentDescriptor
 DocumentLoader.LoadDocument
 DocumentSelector.SelectDocument
 ```
@@ -40,7 +40,7 @@ DocumentSelector.SelectDocument
 
 - JSON：duplicate-key rejection、bounded depth/size、UTF-8 only。
 - YAML：1.2 JSON-compatible subset；拒绝 alias、anchor、merge key、tag、non-string map key 和非 JSON 数值。
-- JSONL：UTF-8、LF、每行独立 object、最终 newline、stable record ID、bounded line/segment。
+- JSONL：UTF-8、LF、每行独立 object、最终 newline、stable record ID、bounded line/segment；加载时只保留 ID 到 source offset 的索引，不物化完整 parsed-node 数组。
 - JSON/YAML 使用 RFC 8785 JCS 计算 canonical digest。
 - JSONL 每条记录 JCS 后加单个 LF；segment digest 对完整 canonical bytes 计算。
 - Markdown/Text 保持 raw UTF-8 digest，不对正文做语义规范化。
@@ -64,7 +64,13 @@ Promptrepo 校验 compiler ref/digest 和 declared capability，但只把它交�
 
 ### 6. Error code additive
 
-新增错误分类建议：`DOCUMENT_DESCRIPTOR_MISSING`、`DOCUMENT_FORMAT_MISMATCH`、`DOCUMENT_DUPLICATE_KEY`、`DOCUMENT_PARSE_FAILED`、`DOCUMENT_SCHEMA_INVALID`、`DOCUMENT_CANONICALIZE_FAILED`、`DOCUMENT_TOO_LARGE`、`SELECTOR_NOT_FOUND`、`JSONL_RECORD_DUPLICATE`、`JSONL_RECORD_TOO_LARGE`。旧错误码及 retryable 语义保持不变。
+新增错误分类：`DOCUMENT_DESCRIPTOR_MISSING`、`DOCUMENT_DESCRIPTOR_INVALID`、`DOCUMENT_FORMAT_MISMATCH`、`DOCUMENT_DUPLICATE_KEY`、`DOCUMENT_PARSE_FAILED`、`DOCUMENT_SCHEMA_INVALID`、`DOCUMENT_CANONICALIZE_FAILED`、`DOCUMENT_TOO_LARGE`、`SELECTOR_NOT_FOUND`、`SELECTOR_AMBIGUOUS`、`JSONL_RECORD_DUPLICATE`、`JSONL_RECORD_TOO_LARGE` 和 `JSONL_RECORD_ID_INVALID`。旧错误码及 retryable 语义保持不变。
+
+### 7. 实现依赖保持纯 Go
+
+- YAML AST 使用 `gopkg.in/yaml.v3`，先检查节点再转换，不直接 loose decode。
+- RFC 8785 使用 `github.com/gowebpki/jcs` 的纯 Go 实现。
+- 两个依赖均不改变 `CGO_ENABLED=0` 构建要求；Promptrepo 不引入 Schema 网络解析器或 executable compiler loader。
 
 ## Risks / Trade-offs
 

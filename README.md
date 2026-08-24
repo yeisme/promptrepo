@@ -11,9 +11,9 @@ search, exact `promptrepo://` references, digest-verified template reads, and
 staged installation receipts. It does not execute prompts, call models, or
 depend on Template Registry server/internal packages.
 
-## 模板寻址、检查与预览（计划 v0.3.0）
+## 模板寻址、检查与预览（v0.3.0）
 
-在未来的 v0.3.0 加性版本中，旧 solution ref 保持不变：
+从 v0.3.0 起，旧 solution ref 保持不变：
 
 ```text
 promptrepo://official/audio/podcast-narration@1.0.0?locale=zh-CN
@@ -61,10 +61,66 @@ JSON/YAML 结果不含模板或渲染正文。若某个 CLI 需要把内容写�
 Address 的 selector grammar 已预留用于后续 conformance-tested selector engine；本
 v0.3 preview 对非空 selector 以 `SELECTOR_UNSUPPORTED` fail closed。
 
+## 结构化模板文档（下一 additive minor，尚未发布）
+
+当前开发分支新增独立的 `DocumentResolver`、`DocumentLoader` 和
+`DocumentSelector` 可选接口；现有 `Client`、`TemplateRole`、`TemplateContent`、
+`ReadTemplate`、`Render` 和 `Preview` 均不加字段、不改变行为。Template Registry
+生成的 `promptrepo.template-document.v0.1` descriptor 位于：
+
+```text
+<solution>/contracts/documents/<role>.<locale>.document.json
+```
+
+descriptor 必须与 package、solution、version、role、locale、template path 和原始
+source digest 完全一致。它显式声明 `markdown`、`text`、`json`、`yaml` 或 `jsonl`
+格式、media type、大小/深度上限、selector、Schema ref/digest 与 compiler profile
+ref/digest；扩展名只用于交叉校验，不能单独决定格式。
+
+JSON/YAML 被严格归一化到 JSON 数据模型，并以 RFC 8785 JCS 计算 canonical digest；
+YAML 只接受无 anchor、alias、merge key、自定义 tag、重复键和非 JSON 数值的安全子集。
+JSONL 要求每行是带唯一稳定 ID 的 object、使用 LF、以换行结束，并按记录流式校验，
+首版只支持 `jsonl-id:<record-id>` 精确定位。结构化 selector 还包括
+`heading:<text>`、`json-pointer:/path` 和 `yaml-pointer:/path`。
+
+`LoadedDocument` / `SelectedDocument` 的 `Body` 和 `Value` 仅存在于调用进程内存，
+带有 `json:"-" yaml:"-"`，普通 machine projection 只输出 refs、digests、格式、
+Schema/compiler lineage、大小和 readiness。Promptrepo 只校验这些声明及来源绑定；它
+不执行 repository supplied compiler，也不实现 Scaena 的角色连续性规则或领域 Schema
+语义。旧 Preview 仍不消费 selector；结构化定位必须显式调用 `SelectDocument`。
+
+## 统一仓库集合与策略判定（开发中，尚未发布）
+
+当前开发分支新增 additive `RepositorySetReader` 与 `PolicyEvaluator`，既有 `Client`
+保持不变。`EffectiveRepositorySet` 将四层调用时输入组合为安全投影：
+
+```text
+session exact > project pin > user preference > organization default > official fallback
+```
+
+这一顺序只决定候选位置，不授予权限。`EvaluateRepositoryPolicy` 独立求 source health、
+organization/project/domain policy、operation permission、minimum trust、rights 和 required
+capability 的交集；任意 deny、quarantine 或 blocker 都返回稳定 reason code，exact ref
+不能绕过。
+
+embedded `engine.Manager` 只从既有 state 读取 canonical user profile；organization、
+project 和 session binding 由调用方提供且不会被 SDK 持久化。输出只含 repository ID、
+scope ref digest、health、trust、policy/snapshot digest、readiness 和 registered action，
+不含 raw scope ref、source URL、credential、模板正文或输入值。首版 schema 为：
+
+```text
+promptrepo.repository-set.v0.1
+promptrepo.policy-decision.v0.1
+promptrepo.management-projection.v0.1
+```
+
+跨项目 automation 使用 `promptrepo.repository.sync`、`promptrepo.catalog.search`、
+`promptrepo.template.inspect` 等 stable `operation_id`；每个领域 CLI 仍保留自己的命令树。
+
 ## 安装 / Install
 
 ```bash
-go get github.com/yeisme/promptrepo@v0.2.0
+go get github.com/yeisme/promptrepo@v0.3.0
 ```
 
 模块要求 Go 1.24 或更高版本；常规构建和测试支持 `CGO_ENABLED=0`。
@@ -140,6 +196,8 @@ CGO_ENABLED=0 go test ./...
 CGO_ENABLED=0 go build ./...
 openspec validate promptrepo-public-sdk-extraction-v1 --strict --no-interactive
 openspec validate promptrepo-template-address-inspect-preview-v1 --strict --no-interactive
+openspec validate promptrepo-structured-document-v1 --strict --no-interactive
+openspec validate promptrepo-unified-management-v1 --strict --no-interactive
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and
