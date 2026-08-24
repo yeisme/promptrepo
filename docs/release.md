@@ -94,3 +94,46 @@ compatible with `v0.2.0`. The tag is published only after anonymous
 `GOWORK=off go mod download github.com/yeisme/promptrepo@v0.3.0` succeeds; the
 first consumer canary is Pinax, which pins the public tag without a filesystem
 replace or private module credential.
+
+## Planned v0.4.0 gate
+
+`v0.4.0` is an additive public-contract release for structured documents
+(Markdown, text, JSON, YAML, JSONL) and unified repository-set/policy
+management. Before creating the tag, require:
+
+1. `GOWORK=off go mod verify`, `GOWORK=off go test ./...`,
+   `GOWORK=off go vet ./...`, and CGO-disabled test/build pass from this
+   repository on the Go 1.24 compatibility floor and a currently supported
+   Go release.
+2. `Client`, `Ref`, catalog/state/receipt DTOs, source profiles, persisted
+   state, and existing deterministic digests remain compatible with `v0.3.0`.
+3. Structured document bodies and values stay excluded from JSON/YAML
+   projections, logs, evidence, and receipts; only the additive loader,
+   resolver, and selector contracts expose selection results, and every
+   renderer keeps its body-free sentinel behavior.
+4. `RepositorySetReader` and `PolicyEvaluator` remain optional interfaces;
+   deny-wins policy admission never reads or stores credentials, and the
+   management projection stays body-free.
+5. The maintainer creates one immutable annotated `v0.4.0` tag. Anonymous
+   `GOWORK=off go mod download github.com/yeisme/promptrepo@v0.4.0` must pass
+   before consumer dependency updates.
+6. Eikona is the first consumer canary for this release through its owner
+   OpenSpec change; no consumer may use a local `replace` as release
+   evidence.
+
+If a canary fails, fix forward as `v0.4.1` or a new pre-release. Never move or
+retag `v0.4.0`; consumers may remain on `v0.3.0` because no state migration is
+required.
+
+## v0.4.0 release evidence
+
+Before tagging `v0.4.0`, the maintainer ran `GOWORK=off go mod verify`,
+`GOWORK=off go test ./...`, `GOWORK=off go vet ./...`, CGO-disabled tests and
+builds on the Go 1.24 floor, strict OpenSpec validation across all changes,
+and a secret scan over the release tree; all passed. The release is an
+additive public-contract change: `Client`, `Ref`, catalog/state/receipt DTOs,
+source profiles, persisted state, and existing deterministic digests stay
+compatible with `v0.3.0`. The tag is published only after anonymous
+`GOWORK=off go mod download github.com/yeisme/promptrepo@v0.4.0` succeeds; the
+first consumer canary is Eikona, which pins the public tag without a
+filesystem replace or private module credential.

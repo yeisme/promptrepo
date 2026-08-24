@@ -2,6 +2,35 @@
 
 All notable changes to this module are documented here.
 
+## [Unreleased]
+
+## [0.4.0] - 2026-08-24
+
+### Added
+
+- Additive structured document descriptor, loader, and selector contracts for
+  Markdown, text, JSON, YAML, and JSONL without changing `Client`,
+  `TemplateRole`, `TemplateContent`, or `source.Adapter`.
+- Strict duplicate-key, UTF-8, size, depth, YAML JSON-subset, JSONL record-ID,
+  and selector validation with stable additive error codes.
+- RFC 8785 canonical digests for JSON/YAML and per-record canonical JSONL
+  segment digests, while preserving the existing source digest meaning.
+- Body-safe `LoadedDocument` and `SelectedDocument` projections plus exact
+  schema/compiler lineage and local file source integration tests.
+- Additive `RepositorySetReader` and `PolicyEvaluator` contracts for ephemeral
+  user/organization/project/session composition without changing `Client` or
+  durable state.
+- Deterministic preference ordering separated from deny-wins health, policy,
+  operation, trust, rights, and capability admission.
+- Stable cross-project operation IDs and a body-free, credential-safe
+  `ManagementProjection` for human/agent/JSON/YAML/event renderers.
+
+### Compatibility
+
+- This release is additive development only. Existing v0.3 template
+  read/render/preview behavior remains unchanged and no state migration is
+  introduced.
+
 ## [0.3.0] - 2026-08-23
 
 ### Added
