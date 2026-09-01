@@ -137,3 +137,32 @@ compatible with `v0.3.0`. The tag is published only after anonymous
 `GOWORK=off go mod download github.com/yeisme/promptrepo@v0.4.0` succeeds; the
 first consumer canary is Eikona, which pins the public tag without a
 filesystem replace or private module credential.
+
+## Unreleased ui-template gate
+
+受限 UI template 合同是 additive minor candidate，不授权在本 change 中创建 tag、push
+或发布。进入 consumer canary 前要求：
+
+1. `GOWORK=off go mod verify`、`GOWORK=off go test ./...`、
+   `GOWORK=off go test -race ./...`、`GOWORK=off go vet ./...`、
+   `CGO_ENABLED=0 GOWORK=off go test ./...` 与
+   `CGO_ENABLED=0 GOWORK=off go build ./...` 全部通过。
+2. `ParseRef`、`TemplateAddress`、`TemplateRole`、structured document、catalog digest、
+   `Client` 和 durable state compatibility tests 保持原结果。
+3. HTML/CSS dangerous corpus、comment/escape bypass、size/UTF-8、slot、digest/snapshot、
+   explicit tag balance、duplicate attribute、namespace、symlink/path containment 和
+   body-redaction tests 全部通过。
+4. machine projection 与错误不得包含 HTML/CSS、consumer values、credential、provider
+   payload 或私有绝对路径。
+5. Template Registry 是首个 contract consumer，随后由 Scaena exact-ref fixture/canary
+   复验；两者不得复制或放宽 Promptrepo validator。
+6. bundle ceiling 只表达单个 artifact 的安全边界，不得被解释为全局资产数量 quota。
+7. `openspec validate promptrepo-ui-template-contract-v1 --strict --no-interactive`
+   通过后，仍需 maintainer 另行决定版本号、tag 与发布。
+8. 使用已修复标准库漏洞的 supported Go toolchain 执行 `GOWORK=off govulncheck ./...`；
+   UI template 路径不得产生额外 reachable finding。Go 1.24 兼容线允许的唯一已知例外仍是
+   `GO-2026-5970`：只有 focused invalid-UTF-8 guard regression 通过且扫描无其他 reachable
+   module issue 时才可接受。UI template validator 不得重新引入 `golang.org/x/net/html`。
+
+回滚不需要 state/catalog migration：consumer 停止解析和加载 `kind=ui-template` 即可；
+既有 `kind=template` 与 structured document 路径保持可用。

@@ -1,0 +1,5392 @@
+{
+  "version": "1.0.0",
+  "gitCommitHash": "caa3c6de6d8b13a167c336844c048b63ac364ab5",
+  "generatedAt": "2026-08-25T16:05:08.533Z",
+  "files": {
+    "address.go": {
+      "filePath": "address.go",
+      "contentHash": "9ea11f39b947a1354382eae95f2320426b15c0d682d4235e8b846f23c0fc0b4b",
+      "functions": [
+        {
+          "name": "Ref",
+          "params": [],
+          "returnType": "Ref",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ParseTemplateAddress",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(TemplateAddress, error)",
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "FormatTemplateAddress",
+          "params": [
+            "address"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "safeTemplateAddressPath",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "validTemplateSelector",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 15
+        }
+      ],
+      "classes": [
+        {
+          "name": "TemplateAddress",
+          "methods": [
+            "Ref"
+          ],
+          "properties": [
+            "RepositoryID",
+            "PackageID",
+            "SolutionID",
+            "Version",
+            "Kind",
+            "Locale",
+            "Role",
+            "Path",
+            "Selector",
+            "Digest",
+            "Snapshot"
+          ],
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "imports": [
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "TemplateAddress",
+        "Ref",
+        "ParseTemplateAddress",
+        "FormatTemplateAddress"
+      ],
+      "totalLines": 116,
+      "hasStructuralAnalysis": true
+    },
+    "catalog_test.go": {
+      "filePath": "catalog_test.go",
+      "contentHash": "5fc970901b3f10d090146d8c82851eac2599a4e701909cdddfe986aa91f22bc6",
+      "functions": [
+        {
+          "name": "TestCatalogDigestIsFrozenWithoutOptionalFields",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "TestTemplateInputDefinitionValidation",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "TestTemplateContractDigestValidation",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "TestManagerStillImplementsExistingClient",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "TestReleasedCatalogStructsKeepUnkeyedCompositeCompatibility",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "TestRenderTemplateOmitsBodyFromJSON",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "TestRenderTemplateRejectsMalformedBraceRuns",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "reflect",
+          "specifiers": [
+            "reflect"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/conformance",
+          "specifiers": [
+            "conformance"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/engine",
+          "specifiers": [
+            "engine"
+          ]
+        }
+      ],
+      "exports": [
+        "TestCatalogDigestIsFrozenWithoutOptionalFields",
+        "TestTemplateInputDefinitionValidation",
+        "TestTemplateContractDigestValidation",
+        "TestManagerStillImplementsExistingClient",
+        "TestReleasedCatalogStructsKeepUnkeyedCompositeCompatibility",
+        "TestRenderTemplateOmitsBodyFromJSON",
+        "TestRenderTemplateRejectsMalformedBraceRuns"
+      ],
+      "totalLines": 130,
+      "hasStructuralAnalysis": true
+    },
+    "catalog.go": {
+      "filePath": "catalog.go",
+      "contentHash": "ad996f6c582d019d34d3c33acaa21d94d66087f552f9b618f71ae9f77231033b",
+      "functions": [
+        {
+          "name": "ValidateCatalog",
+          "params": [
+            "catalog"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "CanonicalCatalogDigest",
+          "params": [
+            "catalog"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 18
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        }
+      ],
+      "exports": [
+        "ValidateCatalog",
+        "CanonicalCatalogDigest"
+      ],
+      "totalLines": 64,
+      "hasStructuralAnalysis": true
+    },
+    "client.go": {
+      "filePath": "client.go",
+      "contentHash": "0493d0a2a5add57f4520353199ef88d754cf0021316ca64a0178f59947d76710",
+      "functions": [],
+      "classes": [
+        {
+          "name": "Client",
+          "methods": [
+            "AddRepository",
+            "ListRepositories",
+            "ShowRepository",
+            "RemoveRepository",
+            "SetRepositoryEnabled",
+            "SyncRepositories",
+            "Search",
+            "Resolve",
+            "ReadTemplate",
+            "Stage"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 12
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        }
+      ],
+      "exports": [
+        "Client"
+      ],
+      "totalLines": 17,
+      "hasStructuralAnalysis": true
+    },
+    "companion_test.go": {
+      "filePath": "companion_test.go",
+      "contentHash": "986927c4ad88873a1772931f27e678e3e9edfc608aa6dc7b9a28b96dc4563623",
+      "functions": [
+        {
+          "name": "TestTemplateContractCompanionPath",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "TestTemplateContractDocumentDigestAndUnknownField",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "TestTemplateContractDocumentRejectsOversizeAndInvalidUTF8",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        }
+      ],
+      "exports": [
+        "TestTemplateContractCompanionPath",
+        "TestTemplateContractDocumentDigestAndUnknownField",
+        "TestTemplateContractDocumentRejectsOversizeAndInvalidUTF8"
+      ],
+      "totalLines": 64,
+      "hasStructuralAnalysis": true
+    },
+    "companion.go": {
+      "filePath": "companion.go",
+      "contentHash": "144f38b16ead46ee373a1e69de3b70028cbf272dd20a3916e6719f3c6910a0de",
+      "functions": [
+        {
+          "name": "DecodeTemplateContractDocument",
+          "params": [
+            "payload"
+          ],
+          "returnType": "(TemplateContractDocument, error)",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "ValidateTemplateContractDocument",
+          "params": [
+            "document"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 39
+        },
+        {
+          "name": "CanonicalTemplateContractDigest",
+          "params": [
+            "document"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "TemplateContractCompanionPath",
+          "params": [
+            "template"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "TemplateContract",
+          "params": [],
+          "returnType": "TemplateContract",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "safeCompanionPath",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "canonicalStrings",
+          "params": [
+            "values"
+          ],
+          "returnType": "[]string",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "equalStringSlices",
+          "params": [
+            "left",
+            "right"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [
+        {
+          "name": "ContractResolver",
+          "methods": [
+            "ResolveTemplateContract"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ResolveTemplateContractRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "Role"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "TemplateContractDocument",
+          "methods": [
+            "TemplateContract"
+          ],
+          "properties": [
+            "SchemaVersion",
+            "PackageID",
+            "SolutionID",
+            "Version",
+            "Role",
+            "Locale",
+            "TemplatePath",
+            "TemplateDigest",
+            "Digest",
+            "License",
+            "Permissions",
+            "Inputs"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "ResolvedTemplateContract",
+          "methods": [],
+          "properties": [
+            "Path",
+            "Consistency",
+            "Document",
+            "Contract",
+            "Snapshot"
+          ],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "path",
+          "specifiers": [
+            "path"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "unicode/utf8",
+          "specifiers": [
+            "utf8"
+          ]
+        }
+      ],
+      "exports": [
+        "ContractResolver",
+        "ResolveTemplateContractRequest",
+        "TemplateContractDocument",
+        "ResolvedTemplateContract",
+        "DecodeTemplateContractDocument",
+        "ValidateTemplateContractDocument",
+        "CanonicalTemplateContractDigest",
+        "TemplateContractCompanionPath",
+        "TemplateContract"
+      ],
+      "totalLines": 212,
+      "hasStructuralAnalysis": true
+    },
+    "compatibility_v010_test.go": {
+      "filePath": "compatibility_v010_test.go",
+      "contentHash": "ac1cb98e862ec025f2a09e5fd9c6fe87a90de83cbb4363b638fdee1e42155f51",
+      "functions": [
+        {
+          "name": "TestPrivateV010FixtureCompatibility",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 72
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/conformance",
+          "specifiers": [
+            "conformance"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/engine",
+          "specifiers": [
+            "engine"
+          ]
+        }
+      ],
+      "exports": [
+        "TestPrivateV010FixtureCompatibility"
+      ],
+      "totalLines": 92,
+      "hasStructuralAnalysis": true
+    },
+    "conformance/conformance.go": {
+      "filePath": "conformance/conformance.go",
+      "contentHash": "5fe744347013e848fee90e55a53d553d35aa3e65742b073d986887a20c3133c0",
+      "functions": [
+        {
+          "name": "MinimalCatalog",
+          "params": [],
+          "returnType": "promptrepo.Catalog",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "WriteCatalog",
+          "params": [
+            "t",
+            "root",
+            "catalog"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 31
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "MinimalCatalog",
+        "WriteCatalog"
+      ],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
+    "conformance/management.go": {
+      "filePath": "conformance/management.go",
+      "contentHash": "bf95e2e0620b10c5b1bc465ce6ef043be5aeace0aec0442d879e0bb23cea852e",
+      "functions": [
+        {
+          "name": "MinimalRepositorySetRequest",
+          "params": [],
+          "returnType": "promptrepo.EffectiveRepositorySetRequest",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "MinimalPolicyRequest",
+          "params": [
+            "repository"
+          ],
+          "returnType": "promptrepo.EvaluatePolicyRequest",
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "MinimalRepositorySetRequest",
+        "MinimalPolicyRequest"
+      ],
+      "totalLines": 33,
+      "hasStructuralAnalysis": true
+    },
+    "contract.go": {
+      "filePath": "contract.go",
+      "contentHash": "f8ddd9cddb9a54f98b90cfb516bc6d477336f666ec4c959527b52838c22f0ce4",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RepositoryProfile",
+          "methods": [],
+          "properties": [
+            "ID",
+            "Source",
+            "SourceKind",
+            "Scope",
+            "Trust",
+            "Enabled",
+            "Revision",
+            "Channel",
+            "PreferredLocales",
+            "CredentialRef",
+            "CreatedAt",
+            "UpdatedAt"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "RepositoryHealth",
+          "methods": [],
+          "properties": [
+            "State",
+            "Code",
+            "Message",
+            "CheckedAt",
+            "SnapshotAt"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RepositoryView",
+          "methods": [],
+          "properties": [
+            "Profile",
+            "Health",
+            "Snapshot"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "RepositoryMetadata",
+          "methods": [],
+          "properties": [
+            "ID",
+            "Name",
+            "DefaultLocale",
+            "TaxonomyVersion"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "LocalizedText",
+          "methods": [],
+          "properties": [
+            "Title",
+            "Summary",
+            "Usage",
+            "Aliases"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "TemplateRole",
+          "methods": [],
+          "properties": [
+            "Role",
+            "Locale",
+            "Path",
+            "Digest"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "Solution",
+          "methods": [],
+          "properties": [
+            "RepositoryID",
+            "PackageID",
+            "ID",
+            "Version",
+            "Digest",
+            "Category",
+            "Tags",
+            "Capabilities",
+            "Rights",
+            "Maturity",
+            "Locales",
+            "Templates"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "Catalog",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Repository",
+            "GeneratedAt",
+            "Digest",
+            "Solutions"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "Snapshot",
+          "methods": [],
+          "properties": [
+            "RepositoryID",
+            "Revision",
+            "Digest",
+            "FetchedAt",
+            "Catalog"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "SnapshotMetadata",
+          "methods": [],
+          "properties": [
+            "RepositoryID",
+            "Revision",
+            "Digest",
+            "FetchedAt"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "AddRepositoryRequest",
+          "methods": [],
+          "properties": [
+            "Profile"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ListRepositoriesRequest",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "RepositoryPage",
+          "methods": [],
+          "properties": [
+            "Repositories"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "SyncRequest",
+          "methods": [],
+          "properties": [
+            "RepositoryIDs",
+            "All"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "RepositorySyncResult",
+          "methods": [],
+          "properties": [
+            "RepositoryID",
+            "State",
+            "Revision",
+            "Digest",
+            "SolutionCount",
+            "ErrorCode",
+            "Message"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "SyncReceipt",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "StartedAt",
+            "FinishedAt",
+            "Results"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "SearchRequest",
+          "methods": [],
+          "properties": [
+            "Query",
+            "Locale",
+            "Tags",
+            "RequiredCapabilities",
+            "IncludeIncompatible"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "SolutionCard",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Title",
+            "Summary",
+            "Locale",
+            "Category",
+            "Tags",
+            "Capabilities",
+            "Rights",
+            "Maturity",
+            "Trust",
+            "Health",
+            "Compatible",
+            "Missing",
+            "MatchReasons",
+            "Score",
+            "SnapshotDigest",
+            "SolutionDigest"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "SearchResult",
+          "methods": [],
+          "properties": [
+            "RankingProfile",
+            "RequestedLocale",
+            "Results"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "ResolveRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "RequiredCapabilities"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "ResolvedSolution",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Solution",
+            "Locale",
+            "Display",
+            "Snapshot",
+            "Trust",
+            "Health",
+            "Compatible",
+            "Missing"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "StageRequest",
+          "methods": [],
+          "properties": [
+            "ResolveRequest",
+            "Consumer"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "ReadTemplateRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "Role"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "TemplateContent",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Role",
+            "Locale",
+            "Path",
+            "Digest",
+            "Body",
+            "Snapshot"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "StageReceipt",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "ID",
+            "CreatedAt",
+            "Consumer",
+            "Ref",
+            "RepositoryID",
+            "SnapshotRevision",
+            "SnapshotDigest",
+            "SolutionDigest",
+            "Locale",
+            "Rights",
+            "Trust",
+            "Compatibility",
+            "State",
+            "ProviderCalls"
+          ],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "Inspector",
+          "methods": [
+            "Inspect"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Previewer",
+          "methods": [
+            "Preview"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Renderer",
+          "methods": [
+            "Render"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Validator",
+          "methods": [
+            "Validate"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "InspectRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "Role",
+            "Values",
+            "Selector",
+            "Contract"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "ValidateRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "Role",
+            "Values",
+            "Contract"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "PreviewRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "Role",
+            "Values",
+            "Selector",
+            "Contract"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "NextAction",
+          "methods": [],
+          "properties": [
+            "Kind",
+            "RequiredInputs"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "InspectResult",
+          "methods": [],
+          "properties": [
+            "Origin",
+            "Ref",
+            "Address",
+            "Version",
+            "Digest",
+            "SolutionDigest",
+            "SnapshotDigest",
+            "Locale",
+            "Role",
+            "Rights",
+            "Trust",
+            "Maturity",
+            "Tags",
+            "Capabilities",
+            "Title",
+            "Summary",
+            "Usage",
+            "Inputs",
+            "Contract",
+            "Ready",
+            "Issues",
+            "NextAction"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "PreviewResult",
+          "methods": [],
+          "properties": [
+            "RenderedDigest",
+            "RenderedBytes",
+            "RenderedRunes",
+            "ProviderCalls",
+            "StateWrites",
+            "UsageRecorded",
+            "RenderedBody"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "RenderRequest",
+          "methods": [],
+          "properties": [
+            "Template",
+            "Inputs",
+            "Values"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "RenderResult",
+          "methods": [],
+          "properties": [
+            "Inputs",
+            "Ready",
+            "Issues",
+            "RenderedDigest",
+            "RenderedBytes",
+            "RenderedRunes",
+            "RenderedBody"
+          ],
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        }
+      ],
+      "exports": [
+        "RepositoryProfile",
+        "RepositoryHealth",
+        "RepositoryView",
+        "RepositoryMetadata",
+        "LocalizedText",
+        "TemplateRole",
+        "Solution",
+        "Catalog",
+        "Snapshot",
+        "SnapshotMetadata",
+        "AddRepositoryRequest",
+        "ListRepositoriesRequest",
+        "RepositoryPage",
+        "SyncRequest",
+        "RepositorySyncResult",
+        "SyncReceipt",
+        "SearchRequest",
+        "SolutionCard",
+        "SearchResult",
+        "ResolveRequest",
+        "ResolvedSolution",
+        "StageRequest",
+        "ReadTemplateRequest",
+        "TemplateContent",
+        "StageReceipt",
+        "Inspector",
+        "Previewer",
+        "Renderer",
+        "Validator",
+        "InspectRequest",
+        "ValidateRequest",
+        "PreviewRequest",
+        "NextAction",
+        "InspectResult",
+        "PreviewResult",
+        "RenderRequest",
+        "RenderResult"
+      ],
+      "totalLines": 329,
+      "hasStructuralAnalysis": true
+    },
+    "document_parse.go": {
+      "filePath": "document_parse.go",
+      "contentHash": "91e24e42fb9513dfcc728f5098de9225b643efa92110b3294ab163971463f6cc",
+      "functions": [
+        {
+          "name": "DecodeDocument",
+          "params": [
+            "document",
+            "payload"
+          ],
+          "returnType": "(LoadedDocument, error)",
+          "exported": true,
+          "lineCount": 65
+        },
+        {
+          "name": "decodeStrictJSON",
+          "params": [
+            "payload",
+            "maxDepth"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "readJSONValue",
+          "params": [
+            "decoder",
+            "depth",
+            "maxDepth"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 59
+        },
+        {
+          "name": "decodeStrictYAML",
+          "params": [
+            "payload",
+            "maxDepth"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "yamlNodeToJSON",
+          "params": [
+            "node",
+            "depth",
+            "maxDepth"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 65
+        },
+        {
+          "name": "decodeStrictJSONL",
+          "params": [
+            "payload",
+            "document"
+          ],
+          "returnType": "(map[string]jsonlRecord, string, int, int, error)",
+          "exported": false,
+          "lineCount": 56
+        },
+        {
+          "name": "canonicalizeValue",
+          "params": [
+            "value"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "canonicalJSON",
+          "params": [
+            "payload"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "classes": [
+        {
+          "name": "jsonlRecord",
+          "methods": [],
+          "properties": [
+            "id",
+            "start",
+            "end"
+          ],
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "bufio",
+          "specifiers": [
+            "bufio"
+          ]
+        },
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "errors",
+          "specifiers": [
+            "errors"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "math",
+          "specifiers": [
+            "math"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strconv",
+          "specifiers": [
+            "strconv"
+          ]
+        },
+        {
+          "source": "unicode/utf8",
+          "specifiers": [
+            "utf8"
+          ]
+        },
+        {
+          "source": "github.com/gowebpki/jcs",
+          "specifiers": [
+            "jcs"
+          ]
+        },
+        {
+          "source": "gopkg.in/yaml.v3",
+          "specifiers": [
+            "yaml.v3"
+          ]
+        }
+      ],
+      "exports": [
+        "DecodeDocument"
+      ],
+      "totalLines": 326,
+      "hasStructuralAnalysis": true
+    },
+    "document_selector.go": {
+      "filePath": "document_selector.go",
+      "contentHash": "d1b2378582ec4a8c16783b88f88647d01e39531b5a92403594e87901f1c175ee",
+      "functions": [
+        {
+          "name": "SelectLoadedDocument",
+          "params": [
+            "document",
+            "selector"
+          ],
+          "returnType": "(SelectedDocument, error)",
+          "exported": true,
+          "lineCount": 83
+        },
+        {
+          "name": "validateLoadedDocumentForSelection",
+          "params": [
+            "document"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "parseDocumentSelector",
+          "params": [
+            "selector"
+          ],
+          "returnType": "(string, string, error)",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "selectJSONPointer",
+          "params": [
+            "root",
+            "pointer"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "decodeJSONPointerToken",
+          "params": [
+            "value"
+          ],
+          "returnType": "(string, bool)",
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "selectMarkdownHeading",
+          "params": [
+            "payload",
+            "heading"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": false,
+          "lineCount": 42
+        },
+        {
+          "name": "parseMarkdownHeading",
+          "params": [
+            "line"
+          ],
+          "returnType": "(int, string, bool)",
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "containsStringValue",
+          "params": [
+            "values",
+            "expected"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "strconv",
+          "specifiers": [
+            "strconv"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "SelectLoadedDocument"
+      ],
+      "totalLines": 261,
+      "hasStructuralAnalysis": true
+    },
+    "document_test.go": {
+      "filePath": "document_test.go",
+      "contentHash": "d988c364defb94b3e6d2a160e5c4b5556fc60739d7fe631b787d7ca0ee8b62d4",
+      "functions": [
+        {
+          "name": "TestTemplateDocumentDescriptorPathAndBinding",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "TestDecodeTemplateDocumentDescriptorRejectsUnknownAndDuplicateFields",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "TestStructuredDocumentJSONAndYAMLCanonicalDigestMatch",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "TestStructuredDocumentRejectsDuplicateKeysAndUnsafeYAML",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "TestDocumentFormatMismatchDepthAndUnicodeViolations",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "TestJSONLLoadAndSelectors",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "TestDocumentSelectorPointerHeadingAndDocumentProjectionBodyLeak",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 61
+        },
+        {
+          "name": "TestTemplateAddressAcceptsJSONLIDSelector",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "testDocumentDescriptor",
+          "params": [
+            "t",
+            "format",
+            "templatePath",
+            "body"
+          ],
+          "returnType": "TemplateDocumentDescriptor",
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "resignDocumentDescriptor",
+          "params": [
+            "t",
+            "document"
+          ],
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "gopkg.in/yaml.v3",
+          "specifiers": [
+            "yaml.v3"
+          ]
+        }
+      ],
+      "exports": [
+        "TestTemplateDocumentDescriptorPathAndBinding",
+        "TestDecodeTemplateDocumentDescriptorRejectsUnknownAndDuplicateFields",
+        "TestStructuredDocumentJSONAndYAMLCanonicalDigestMatch",
+        "TestStructuredDocumentRejectsDuplicateKeysAndUnsafeYAML",
+        "TestDocumentFormatMismatchDepthAndUnicodeViolations",
+        "TestJSONLLoadAndSelectors",
+        "TestDocumentSelectorPointerHeadingAndDocumentProjectionBodyLeak",
+        "TestTemplateAddressAcceptsJSONLIDSelector"
+      ],
+      "totalLines": 254,
+      "hasStructuralAnalysis": true
+    },
+    "document.go": {
+      "filePath": "document.go",
+      "contentHash": "540556f9052bc6c0bd4d6302ddd7d0684f05410e35798925ac8f2e72d18c397e",
+      "functions": [
+        {
+          "name": "DecodeTemplateDocumentDescriptor",
+          "params": [
+            "payload"
+          ],
+          "returnType": "(TemplateDocumentDescriptor, error)",
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "ValidateTemplateDocumentDescriptor",
+          "params": [
+            "document"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 57
+        },
+        {
+          "name": "CanonicalTemplateDocumentDescriptorDigest",
+          "params": [
+            "document"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "ValidateTemplateDocumentDescriptorBinding",
+          "params": [
+            "document",
+            "solution",
+            "template"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "TemplateDocumentDescriptorPath",
+          "params": [
+            "template"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "validateDocumentArtifactRef",
+          "params": [
+            "reference"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "documentFormatContract",
+          "params": [
+            "format"
+          ],
+          "returnType": "(string, string, map[string]struct{}, []string, bool)",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "pathHasAnyExtension",
+          "params": [
+            "value",
+            "extensions"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "digestBytes",
+          "params": [
+            "payload"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [
+        {
+          "name": "DocumentArtifactRef",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Digest"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "DocumentLimits",
+          "methods": [],
+          "properties": [
+            "MaxBytes",
+            "MaxDepth",
+            "MaxRecordBytes",
+            "MaxRecords"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "TemplateDocumentDescriptor",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "PackageID",
+            "SolutionID",
+            "Version",
+            "Role",
+            "Locale",
+            "TemplatePath",
+            "SourceDigest",
+            "Format",
+            "MediaType",
+            "Canonicalization",
+            "Schema",
+            "CompilerProfile",
+            "RequiredCapabilities",
+            "SelectorKinds",
+            "RecordIDField",
+            "Limits",
+            "Digest"
+          ],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "ResolveDocumentDescriptorRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "Role"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "ResolvedDocumentDescriptor",
+          "methods": [],
+          "properties": [
+            "Path",
+            "Consistency",
+            "Document",
+            "Snapshot"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "LoadDocumentRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "Role"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "SelectDocumentRequest",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Locale",
+            "Role",
+            "Selector"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "DocumentFinding",
+          "methods": [],
+          "properties": [
+            "Code",
+            "Message",
+            "Paths"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "LoadedDocument",
+          "methods": [],
+          "properties": [
+            "Ref",
+            "Address",
+            "DescriptorPath",
+            "Consistency",
+            "Descriptor",
+            "SourceDigest",
+            "CanonicalDigest",
+            "SourceBytes",
+            "CanonicalBytes",
+            "RecordCount",
+            "Ready",
+            "Findings",
+            "Snapshot",
+            "Body",
+            "Value",
+            "jsonlRecords"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "SelectedDocument",
+          "methods": [],
+          "properties": [
+            "Document",
+            "Selector",
+            "CanonicalDigest",
+            "SelectedBytes",
+            "RecordID",
+            "Ready",
+            "Findings",
+            "Body",
+            "Value"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "DocumentResolver",
+          "methods": [
+            "ResolveDocumentDescriptor"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "DocumentLoader",
+          "methods": [
+            "LoadDocument"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "DocumentSelector",
+          "methods": [
+            "SelectDocument"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "path",
+          "specifiers": [
+            "path"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "unicode/utf8",
+          "specifiers": [
+            "utf8"
+          ]
+        }
+      ],
+      "exports": [
+        "DocumentArtifactRef",
+        "DocumentLimits",
+        "TemplateDocumentDescriptor",
+        "ResolveDocumentDescriptorRequest",
+        "ResolvedDocumentDescriptor",
+        "LoadDocumentRequest",
+        "SelectDocumentRequest",
+        "DocumentFinding",
+        "LoadedDocument",
+        "SelectedDocument",
+        "DocumentResolver",
+        "DocumentLoader",
+        "DocumentSelector",
+        "DecodeTemplateDocumentDescriptor",
+        "ValidateTemplateDocumentDescriptor",
+        "CanonicalTemplateDocumentDescriptorDigest",
+        "ValidateTemplateDocumentDescriptorBinding",
+        "TemplateDocumentDescriptorPath"
+      ],
+      "totalLines": 331,
+      "hasStructuralAnalysis": true
+    },
+    "engine/document_test.go": {
+      "filePath": "engine/document_test.go",
+      "contentHash": "9054b30d9e68a469ced76cbee335516241e637c67c1ad721870ecada3c104deb",
+      "functions": [
+        {
+          "name": "TestManagerLoadsAndSelectsStructuredDocument",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 51
+        },
+        {
+          "name": "TestManagerRejectsMissingAndStaleDocumentDescriptor",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "newStructuredDocumentManager",
+          "params": [
+            "t",
+            "repositoryRoot"
+          ],
+          "returnType": "*Manager",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "writeStructuredDocumentRepository",
+          "params": [
+            "t",
+            "root",
+            "body",
+            "withDescriptor",
+            "descriptorSourceDigest"
+          ],
+          "exported": false,
+          "lineCount": 60
+        },
+        {
+          "name": "digestForTest",
+          "params": [
+            "payload"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "TestManagerLoadsAndSelectsStructuredDocument",
+        "TestManagerRejectsMissingAndStaleDocumentDescriptor"
+      ],
+      "totalLines": 177,
+      "hasStructuralAnalysis": true
+    },
+    "engine/document.go": {
+      "filePath": "engine/document.go",
+      "contentHash": "355830ae923e1e84c58c896b7bdc6cb4e3372ee04ed1b75220642202635fcc54",
+      "functions": [
+        {
+          "name": "ResolveDocumentDescriptor",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.ResolvedDocumentDescriptor, error)",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "LoadDocument",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.LoadedDocument, error)",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "SelectDocument",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.SelectedDocument, error)",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "resolveDocumentDescriptorForDetails",
+          "params": [
+            "ctx",
+            "details"
+          ],
+          "returnType": "(promptrepo.ResolvedDocumentDescriptor, error)",
+          "exported": false,
+          "lineCount": 31
+        },
+        {
+          "name": "loadDocumentForDetails",
+          "params": [
+            "ctx",
+            "details"
+          ],
+          "returnType": "(promptrepo.LoadedDocument, error)",
+          "exported": false,
+          "lineCount": 26
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/source",
+          "specifiers": [
+            "source"
+          ]
+        }
+      ],
+      "exports": [
+        "ResolveDocumentDescriptor",
+        "LoadDocument",
+        "SelectDocument"
+      ],
+      "totalLines": 116,
+      "hasStructuralAnalysis": true
+    },
+    "engine/engine_test.go": {
+      "filePath": "engine/engine_test.go",
+      "contentHash": "8182e034f6cef5bd7746e677986e981488e7413acf0dd624bda83dcacf4388e2",
+      "functions": [
+        {
+          "name": "TestRepositorySearchResolveAndStage",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 48
+        },
+        {
+          "name": "TestFutureStateSchemaFailsClosed",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "TestStaleWriterLockIsRecovered",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "TestInspectAndPreviewAreSafeAndNonExecuting",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 64
+        },
+        {
+          "name": "TestResolveTemplateContractCompanion",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "TestContractConsistencyMatchesSourceGuarantee",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "TestPreviewRejectsUndeclaredPlaceholders",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "TestInspectDoesNotReadTemplateBody",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "TestInspectRightsBlockedDoesNotSuggestSupplyingInputs",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "TestAddressQualifiersAndSelectorsFailClosed",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "TestAddressPathOnlyAndRolePathMismatch",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "TestAddressDuplicateMatchesFailClosed",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "TestSyncStateRemainsV020Shaped",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "TestManagerRejectsMalformedTemplateContractDigest",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "TestNormalizeSearchHandlesInvalidUTF8",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "writeFixtureCatalog",
+          "params": [
+            "t",
+            "root"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "writePreviewCatalog",
+          "params": [
+            "t",
+            "root",
+            "body"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "writePreviewCatalogWithRights",
+          "params": [
+            "t",
+            "root",
+            "body",
+            "rights"
+          ],
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "previewContract",
+          "params": [],
+          "returnType": "promptrepo.TemplateContract",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "writePreviewContractCompanion",
+          "params": [
+            "t",
+            "root",
+            "body"
+          ],
+          "exported": false,
+          "lineCount": 28
+        },
+        {
+          "name": "writeDuplicateTemplateCatalog",
+          "params": [
+            "t",
+            "root"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "containsString",
+          "params": [
+            "value",
+            "part"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "stringContains",
+          "params": [
+            "value",
+            "part"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "TestRepositorySearchResolveAndStage",
+        "TestFutureStateSchemaFailsClosed",
+        "TestStaleWriterLockIsRecovered",
+        "TestInspectAndPreviewAreSafeAndNonExecuting",
+        "TestResolveTemplateContractCompanion",
+        "TestContractConsistencyMatchesSourceGuarantee",
+        "TestPreviewRejectsUndeclaredPlaceholders",
+        "TestInspectDoesNotReadTemplateBody",
+        "TestInspectRightsBlockedDoesNotSuggestSupplyingInputs",
+        "TestAddressQualifiersAndSelectorsFailClosed",
+        "TestAddressPathOnlyAndRolePathMismatch",
+        "TestAddressDuplicateMatchesFailClosed",
+        "TestSyncStateRemainsV020Shaped",
+        "TestManagerRejectsMalformedTemplateContractDigest",
+        "TestNormalizeSearchHandlesInvalidUTF8"
+      ],
+      "totalLines": 556,
+      "hasStructuralAnalysis": true
+    },
+    "engine/engine.go": {
+      "filePath": "engine/engine.go",
+      "contentHash": "06f9ba54509dc7d7a741502bc51a205eeffd6e476d598fe064e0a2a24c8b7cca",
+      "functions": [
+        {
+          "name": "New",
+          "params": [
+            "options"
+          ],
+          "returnType": "(*Manager, error)",
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "AddRepository",
+          "params": [
+            "_",
+            "request"
+          ],
+          "returnType": "(promptrepo.RepositoryView, error)",
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "ListRepositories",
+          "params": [
+            "_",
+            "_"
+          ],
+          "returnType": "(promptrepo.RepositoryPage, error)",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "ShowRepository",
+          "params": [
+            "_",
+            "id"
+          ],
+          "returnType": "(promptrepo.RepositoryView, error)",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "RemoveRepository",
+          "params": [
+            "_",
+            "id"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "SetRepositoryEnabled",
+          "params": [
+            "_",
+            "id",
+            "enabled"
+          ],
+          "returnType": "(promptrepo.RepositoryView, error)",
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "SyncRepositories",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.SyncReceipt, error)",
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "Search",
+          "params": [
+            "_",
+            "request"
+          ],
+          "returnType": "(promptrepo.SearchResult, error)",
+          "exported": true,
+          "lineCount": 53
+        },
+        {
+          "name": "Resolve",
+          "params": [
+            "_",
+            "request"
+          ],
+          "returnType": "(promptrepo.ResolvedSolution, error)",
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "ReadTemplate",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.TemplateContent, error)",
+          "exported": true,
+          "lineCount": 38
+        },
+        {
+          "name": "Stage",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.StageReceipt, error)",
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "recordSyncFailure",
+          "params": [
+            "state",
+            "id",
+            "err"
+          ],
+          "returnType": "promptrepo.RepositorySyncResult",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "statePath",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "lockPath",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 1
+        },
+        {
+          "name": "readState",
+          "params": [],
+          "returnType": "(*stateFile, error)",
+          "exported": false,
+          "lineCount": 18
+        },
+        {
+          "name": "withWriteState",
+          "params": [
+            "update"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "acquireLock",
+          "params": [],
+          "returnType": "(func(), error)",
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "writeState",
+          "params": [
+            "state"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "newState",
+          "params": [],
+          "returnType": "*stateFile",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "ensureStateMaps",
+          "params": [
+            "state"
+          ],
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "viewFor",
+          "params": [
+            "state",
+            "id"
+          ],
+          "returnType": "promptrepo.RepositoryView",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "snapshotMetadata",
+          "params": [
+            "snapshot"
+          ],
+          "returnType": "promptrepo.SnapshotMetadata",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "hasTemplateFor",
+          "params": [
+            "templates",
+            "role",
+            "locale"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "selectedRepositories",
+          "params": [
+            "state",
+            "request"
+          ],
+          "returnType": "([]string, error)",
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "chooseLocale",
+          "params": [
+            "solution",
+            "requested",
+            "fallback"
+          ],
+          "returnType": "(string, promptrepo.LocalizedText)",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "missingCapabilities",
+          "params": [
+            "actual",
+            "required"
+          ],
+          "returnType": "[]string",
+          "exported": false,
+          "lineCount": 18
+        },
+        {
+          "name": "containsAll",
+          "params": [
+            "actual",
+            "required"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "searchScore",
+          "params": [
+            "query",
+            "display",
+            "solution"
+          ],
+          "returnType": "(int, []string)",
+          "exported": false,
+          "lineCount": 30
+        },
+        {
+          "name": "normalizeSearch",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "trustRank",
+          "params": [
+            "value"
+          ],
+          "returnType": "int",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "safeID",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "safeErrorMessage",
+          "params": [
+            "err"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 6
+        }
+      ],
+      "classes": [
+        {
+          "name": "Options",
+          "methods": [],
+          "properties": [
+            "ConfigRoot",
+            "CacheRoot",
+            "LockTimeout",
+            "StaleLockAge",
+            "Now",
+            "Sources"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "Manager",
+          "methods": [
+            "AddRepository",
+            "ListRepositories",
+            "ShowRepository",
+            "RemoveRepository",
+            "SetRepositoryEnabled",
+            "SyncRepositories",
+            "Search",
+            "Resolve",
+            "ReadTemplate",
+            "Stage",
+            "recordSyncFailure",
+            "statePath",
+            "lockPath",
+            "readState",
+            "withWriteState",
+            "acquireLock",
+            "writeState"
+          ],
+          "properties": [
+            "configRoot",
+            "cacheRoot",
+            "lockTimeout",
+            "staleLockAge",
+            "now",
+            "sources"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "stateFile",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Profiles",
+            "Health",
+            "Snapshots",
+            "Receipts"
+          ],
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "errors",
+          "specifiers": [
+            "errors"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "unicode",
+          "specifiers": [
+            "unicode"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/source",
+          "specifiers": [
+            "source"
+          ]
+        },
+        {
+          "source": "golang.org/x/text/unicode/norm",
+          "specifiers": [
+            "norm"
+          ]
+        }
+      ],
+      "exports": [
+        "Options",
+        "Manager",
+        "New",
+        "AddRepository",
+        "ListRepositories",
+        "ShowRepository",
+        "RemoveRepository",
+        "SetRepositoryEnabled",
+        "SyncRepositories",
+        "Search",
+        "Resolve",
+        "ReadTemplate",
+        "Stage"
+      ],
+      "totalLines": 692,
+      "hasStructuralAnalysis": true
+    },
+    "engine/management_test.go": {
+      "filePath": "engine/management_test.go",
+      "contentHash": "eb4086089e676821f11772ad08b09e86b4ebf181aceccf279bdafd26d4e054d6",
+      "functions": [
+        {
+          "name": "TestEffectiveRepositorySetUsesCanonicalUserStateWithoutWrites",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 55
+        },
+        {
+          "name": "TestEvaluatePolicyAdapterIsSideEffectFree",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 22
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "reflect",
+          "specifiers": [
+            "reflect"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/engine",
+          "specifiers": [
+            "engine"
+          ]
+        }
+      ],
+      "exports": [
+        "TestEffectiveRepositorySetUsesCanonicalUserStateWithoutWrites",
+        "TestEvaluatePolicyAdapterIsSideEffectFree"
+      ],
+      "totalLines": 93,
+      "hasStructuralAnalysis": true
+    },
+    "engine/management.go": {
+      "filePath": "engine/management.go",
+      "contentHash": "5a174b7a2c14127cfd2e84620f86fb2a141dc2e81fd1e2947f07593cd995657a",
+      "functions": [
+        {
+          "name": "EffectiveRepositorySet",
+          "params": [
+            "_",
+            "request"
+          ],
+          "returnType": "(promptrepo.RepositorySet, error)",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "EvaluatePolicy",
+          "params": [
+            "_",
+            "request"
+          ],
+          "returnType": "(promptrepo.PolicyDecision, error)",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "EffectiveRepositorySet",
+        "EvaluatePolicy"
+      ],
+      "totalLines": 66,
+      "hasStructuralAnalysis": true
+    },
+    "engine/preview.go": {
+      "filePath": "engine/preview.go",
+      "contentHash": "d73058995ecb04716f4f145439c15d6ba56fa4feaa8ed734232d7a8ec8c3078c",
+      "functions": [
+        {
+          "name": "ResolveTemplateContract",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.ResolvedTemplateContract, error)",
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "contractConsistency",
+          "params": [
+            "sourceKind"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "Validate",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.InputValidation, error)",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "Render",
+          "params": [
+            "_",
+            "request"
+          ],
+          "returnType": "(promptrepo.RenderResult, error)",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Inspect",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.InspectResult, error)",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "Preview",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.PreviewResult, error)",
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "resolveTemplateDetails",
+          "params": [
+            "ctx",
+            "rawRef",
+            "requestedLocale",
+            "requestedRole"
+          ],
+          "returnType": "(templateDetails, error)",
+          "exported": false,
+          "lineCount": 72
+        },
+        {
+          "name": "parseAddressIfPresent",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(promptrepo.TemplateAddress, bool, error)",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "inspectResult",
+          "params": [
+            "details",
+            "contract",
+            "validation"
+          ],
+          "returnType": "promptrepo.InspectResult",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "nextAction",
+          "params": [
+            "inputs",
+            "issues",
+            "ready"
+          ],
+          "returnType": "promptrepo.NextAction",
+          "exported": false,
+          "lineCount": 17
+        }
+      ],
+      "classes": [
+        {
+          "name": "templateDetails",
+          "methods": [],
+          "properties": [
+            "resolved",
+            "template",
+            "profile",
+            "address"
+          ],
+          "exported": false,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/source",
+          "specifiers": [
+            "source"
+          ]
+        }
+      ],
+      "exports": [
+        "ResolveTemplateContract",
+        "Validate",
+        "Render",
+        "Inspect",
+        "Preview"
+      ],
+      "totalLines": 277,
+      "hasStructuralAnalysis": true
+    },
+    "errors.go": {
+      "filePath": "errors.go",
+      "contentHash": "82e2a089993f7199aefbee8de3c16e682480b45889fe987decfc874a27dc2c5f",
+      "functions": [
+        {
+          "name": "Error",
+          "params": [],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "Unwrap",
+          "params": [],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "NewError",
+          "params": [
+            "code",
+            "message",
+            "retryable",
+            "cause"
+          ],
+          "returnType": "*Error",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "ErrorCode",
+          "params": [
+            "err"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [
+        {
+          "name": "Error",
+          "methods": [
+            "Error",
+            "Unwrap"
+          ],
+          "properties": [
+            "Code",
+            "Message",
+            "Retryable",
+            "Cause"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        }
+      ],
+      "exports": [
+        "Error",
+        "Error",
+        "Unwrap",
+        "NewError",
+        "ErrorCode"
+      ],
+      "totalLines": 70,
+      "hasStructuralAnalysis": true
+    },
+    "input.go": {
+      "filePath": "input.go",
+      "contentHash": "ba553bd615f7ea16c0f67f3952a1228d211632b985b24b9d934b88f6b5d797f7",
+      "functions": [
+        {
+          "name": "ValidateTemplateContract",
+          "params": [
+            "contract"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "Value",
+          "params": [
+            "name"
+          ],
+          "returnType": "(any, bool)",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "validTemplateLicense",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "ValidateTemplateInputs",
+          "params": [
+            "inputs"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "ValidateInputValues",
+          "params": [
+            "inputs",
+            "supplied"
+          ],
+          "returnType": "InputValidation",
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "addIssue",
+          "params": [
+            "issue"
+          ],
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "validateInputDefinitionConstraints",
+          "params": [
+            "input"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "validateInputValue",
+          "params": [
+            "input",
+            "value"
+          ],
+          "returnType": "*InputIssue",
+          "exported": false,
+          "lineCount": 39
+        },
+        {
+          "name": "validInputType",
+          "params": [
+            "inputType"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "integerValue",
+          "params": [
+            "value"
+          ],
+          "returnType": "(int64, bool)",
+          "exported": false,
+          "lineCount": 28
+        },
+        {
+          "name": "numberValue",
+          "params": [
+            "value"
+          ],
+          "returnType": "(float64, bool)",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "containsValue",
+          "params": [
+            "values",
+            "want"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "validLocale",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "invalidInputDefinition",
+          "params": [
+            "name",
+            "message"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "InputDefinition",
+          "methods": [],
+          "properties": [
+            "Name",
+            "Type",
+            "Required",
+            "Default",
+            "Examples",
+            "Enum",
+            "Regex",
+            "Min",
+            "Max",
+            "MinLength",
+            "MaxLength",
+            "Labels",
+            "Descriptions",
+            "Sensitivity"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "TemplateContract",
+          "methods": [],
+          "properties": [
+            "Digest",
+            "Inputs",
+            "License",
+            "Permissions"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "InputIssue",
+          "methods": [],
+          "properties": [
+            "Code",
+            "Field",
+            "Message"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "InputStatus",
+          "methods": [],
+          "properties": [
+            "Definition",
+            "Status"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "InputValidation",
+          "methods": [
+            "Value",
+            "addIssue"
+          ],
+          "properties": [
+            "Inputs",
+            "Issues",
+            "Ready",
+            "values"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "math",
+          "specifiers": [
+            "math"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "InputDefinition",
+        "TemplateContract",
+        "ValidateTemplateContract",
+        "InputIssue",
+        "InputStatus",
+        "InputValidation",
+        "Value",
+        "ValidateTemplateInputs",
+        "ValidateInputValues"
+      ],
+      "totalLines": 325,
+      "hasStructuralAnalysis": true
+    },
+    "management_test.go": {
+      "filePath": "management_test.go",
+      "contentHash": "94887c2459578a9cc2af02f5ef2db2ece08480e1a10adc904c5f778266ee5e5d",
+      "functions": [
+        {
+          "name": "TestManagementContractOperationIDs",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "TestManagementConformanceFixtureHasEmbeddedServiceParity",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "TestRepositorySetPreferenceOrderAndDeterminism",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 57
+        },
+        {
+          "name": "TestPolicyDenyWinsOverExactAndProjectAllow",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "TestExactQuarantinedRepositoryRemainsBlocked",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "TestPolicyEvaluatesTrustRightsCapabilityAndOperation",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "TestManagementProjectionIsBodyAndCredentialFree",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 39
+        },
+        {
+          "name": "contains",
+          "params": [
+            "values",
+            "target"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "reflect",
+          "specifiers": [
+            "reflect"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/conformance",
+          "specifiers": [
+            "conformance"
+          ]
+        },
+        {
+          "source": "gopkg.in/yaml.v3",
+          "specifiers": [
+            "yaml.v3"
+          ]
+        }
+      ],
+      "exports": [
+        "TestManagementContractOperationIDs",
+        "TestManagementConformanceFixtureHasEmbeddedServiceParity",
+        "TestRepositorySetPreferenceOrderAndDeterminism",
+        "TestPolicyDenyWinsOverExactAndProjectAllow",
+        "TestExactQuarantinedRepositoryRemainsBlocked",
+        "TestPolicyEvaluatesTrustRightsCapabilityAndOperation",
+        "TestManagementProjectionIsBodyAndCredentialFree"
+      ],
+      "totalLines": 257,
+      "hasStructuralAnalysis": true
+    },
+    "management.go": {
+      "filePath": "management.go",
+      "contentHash": "0a34338b60cb66803c7de0b96538d356897ad1775590c3ad42dade5a3f0e2b45",
+      "functions": [
+        {
+          "name": "ComposeRepositorySet",
+          "params": [
+            "request"
+          ],
+          "returnType": "(RepositorySet, error)",
+          "exported": true,
+          "lineCount": 108
+        },
+        {
+          "name": "EvaluateRepositoryPolicy",
+          "params": [
+            "request"
+          ],
+          "returnType": "(PolicyDecision, error)",
+          "exported": true,
+          "lineCount": 108
+        },
+        {
+          "name": "BuildManagementProjection",
+          "params": [
+            "request"
+          ],
+          "returnType": "(ManagementProjection, error)",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "validRepositoryScope",
+          "params": [
+            "scope"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "repositoryScopeRank",
+          "params": [
+            "scope"
+          ],
+          "returnType": "int",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "selectionSourceForScope",
+          "params": [
+            "scope"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "digestScopeRef",
+          "params": [
+            "scope",
+            "ref"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "combinedDigest",
+          "params": [
+            "values"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "summarizeRepositoryHealth",
+          "params": [
+            "entries"
+          ],
+          "returnType": "RepositorySetHealthSummary",
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "missingManagementCapabilities",
+          "params": [
+            "actual",
+            "required"
+          ],
+          "returnType": "[]string",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "managementTrustRank",
+          "params": [
+            "value"
+          ],
+          "returnType": "int",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "normalizeOrDefault",
+          "params": [
+            "value",
+            "fallback"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "firstNonEmpty",
+          "params": [],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "compactStrings",
+          "params": [
+            "values"
+          ],
+          "returnType": "[]string",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "uniqueStrings",
+          "params": [
+            "values"
+          ],
+          "returnType": "[]string",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "containsFold",
+          "params": [
+            "values",
+            "target"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "sortedKeys",
+          "params": [
+            "values"
+          ],
+          "returnType": "[]string",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [
+        {
+          "name": "RepositorySetReader",
+          "methods": [
+            "EffectiveRepositorySet"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "PolicyEvaluator",
+          "methods": [
+            "EvaluatePolicy"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "RepositoryScopeBinding",
+          "methods": [],
+          "properties": [
+            "Scope",
+            "ScopeRef",
+            "RepositoryIDs",
+            "PolicyRef",
+            "PolicyDigest",
+            "Priority",
+            "Enabled"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "RepositorySetCandidate",
+          "methods": [],
+          "properties": [
+            "RepositoryID",
+            "Scope",
+            "Trust",
+            "Health",
+            "Enabled"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "EffectiveRepositorySetRequest",
+          "methods": [],
+          "properties": [
+            "Consumer",
+            "Mode",
+            "Bindings",
+            "Repositories",
+            "ExactRepositoryID",
+            "OfficialFallbackRepositoryIDs"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "RepositoryScopeLayer",
+          "methods": [],
+          "properties": [
+            "Scope",
+            "ScopeRefDigest",
+            "RepositoryIDs",
+            "PolicyDigest",
+            "Priority"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "RepositorySetEntry",
+          "methods": [],
+          "properties": [
+            "RepositoryID",
+            "Scope",
+            "RepositoryScope",
+            "SelectionSource",
+            "Rank",
+            "ScopeRefDigest",
+            "PolicyDigest",
+            "Trust",
+            "Health",
+            "Enabled"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "RepositorySetHealthSummary",
+          "methods": [],
+          "properties": [
+            "Total",
+            "Ready",
+            "Configured",
+            "Degraded",
+            "Quarantined",
+            "Disabled",
+            "Unknown"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "RepositorySet",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Consumer",
+            "Mode",
+            "Layers",
+            "EffectiveRepositories",
+            "PolicyDigest",
+            "HealthSummary"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "PolicyConstraint",
+          "methods": [],
+          "properties": [
+            "Scope",
+            "Ref",
+            "Digest",
+            "AllowedRepositoryIDs",
+            "DeniedRepositoryIDs",
+            "AllowedOperations",
+            "DeniedOperations",
+            "MinimumTrust",
+            "AllowedRights",
+            "DeniedRights",
+            "RequiredCapabilities"
+          ],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "EvaluatePolicyRequest",
+          "methods": [],
+          "properties": [
+            "Repository",
+            "OperationID",
+            "ResolvedLocale",
+            "Rights",
+            "Capabilities",
+            "RequiredCapabilities",
+            "Policies"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "PolicyDecision",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Allowed",
+            "Readiness",
+            "PolicyDigest",
+            "ReasonCodes",
+            "RequiredActions",
+            "MatchedPolicyRefs",
+            "ResolvedLocale",
+            "MinimumTrust",
+            "RightsResult",
+            "CapabilityResult",
+            "MissingCapabilities"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "ManagementAction",
+          "methods": [],
+          "properties": [
+            "ActionID",
+            "Owner",
+            "Risk",
+            "Writes",
+            "ProviderCalls"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "ManagementProjectionRequest",
+          "methods": [],
+          "properties": [
+            "OperationID",
+            "Command",
+            "Status",
+            "Mode",
+            "Repository",
+            "Decision",
+            "PolicyDigest",
+            "ExactRevisionDigest",
+            "CatalogDigest",
+            "SnapshotDigest",
+            "CacheState",
+            "NextActions",
+            "ProviderCalls",
+            "DurableWrites"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "ManagementProjection",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "OperationID",
+            "Command",
+            "Status",
+            "Scope",
+            "ScopeRefDigest",
+            "Mode",
+            "RepositoryID",
+            "Health",
+            "Trust",
+            "Readiness",
+            "ReasonCodes",
+            "PolicyDigest",
+            "ExactRevisionDigest",
+            "CatalogDigest",
+            "SnapshotDigest",
+            "CacheState",
+            "NextActions",
+            "ProviderCalls",
+            "DurableWrites"
+          ],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "indexedBinding",
+          "methods": [],
+          "properties": [
+            "binding",
+            "index"
+          ],
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "RepositorySetReader",
+        "PolicyEvaluator",
+        "RepositoryScopeBinding",
+        "RepositorySetCandidate",
+        "EffectiveRepositorySetRequest",
+        "RepositoryScopeLayer",
+        "RepositorySetEntry",
+        "RepositorySetHealthSummary",
+        "RepositorySet",
+        "PolicyConstraint",
+        "EvaluatePolicyRequest",
+        "PolicyDecision",
+        "ManagementAction",
+        "ManagementProjectionRequest",
+        "ManagementProjection",
+        "ComposeRepositorySet",
+        "EvaluateRepositoryPolicy",
+        "BuildManagementProjection"
+      ],
+      "totalLines": 667,
+      "hasStructuralAnalysis": true
+    },
+    "ref_test.go": {
+      "filePath": "ref_test.go",
+      "contentHash": "16af21aaf61ee83963ee5981a12ed157315a58edc938c37c6ccf0b84dc9973b8",
+      "functions": [
+        {
+          "name": "TestRefRoundTrip",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "TestRefRequiresExactVersion",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "TestTemplateAddressRoundTripUsesCanonicalOrder",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "TestTemplateAddressRejectsInvalidFields",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        }
+      ],
+      "exports": [
+        "TestRefRoundTrip",
+        "TestRefRequiresExactVersion",
+        "TestTemplateAddressRoundTripUsesCanonicalOrder",
+        "TestTemplateAddressRejectsInvalidFields"
+      ],
+      "totalLines": 58,
+      "hasStructuralAnalysis": true
+    },
+    "ref.go": {
+      "filePath": "ref.go",
+      "contentHash": "bd604b3829baf9937c36b20d65cd42fb66b22132a6b613336ea62fe2eb85bd59",
+      "functions": [
+        {
+          "name": "ParseRef",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(Ref, error)",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "FormatRef",
+          "params": [
+            "ref"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [
+        {
+          "name": "Ref",
+          "methods": [],
+          "properties": [
+            "RepositoryID",
+            "PackageID",
+            "SolutionID",
+            "Version",
+            "Locale"
+          ],
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "imports": [
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "Ref",
+        "ParseRef",
+        "FormatRef"
+      ],
+      "totalLines": 52,
+      "hasStructuralAnalysis": true
+    },
+    "render.go": {
+      "filePath": "render.go",
+      "contentHash": "e198c5dd7721dfb536995feb36d8801b197190b41f5e9d80082e1062879e2d3a",
+      "functions": [
+        {
+          "name": "RenderTemplate",
+          "params": [
+            "request"
+          ],
+          "returnType": "(RenderResult, error)",
+          "exported": true,
+          "lineCount": 48
+        },
+        {
+          "name": "scanTemplatePlaceholders",
+          "params": [
+            "body"
+          ],
+          "returnType": "([]templatePlaceholder, bool)",
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "isPlaceholderNameStart",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "isPlaceholderNamePart",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "templatePlaceholder",
+          "methods": [],
+          "properties": [
+            "start",
+            "end",
+            "name"
+          ],
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "unicode/utf8",
+          "specifiers": [
+            "utf8"
+          ]
+        }
+      ],
+      "exports": [
+        "RenderTemplate"
+      ],
+      "totalLines": 109,
+      "hasStructuralAnalysis": true
+    },
+    "source/git.go": {
+      "filePath": "source/git.go",
+      "contentHash": "d7a431f1111326aa32d67cb5f50cc3a7e98c3efea22472c8f3e37264b0a3f87b",
+      "functions": [
+        {
+          "name": "Kind",
+          "params": [],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Sync",
+          "params": [
+            "ctx",
+            "profile",
+            "cacheRoot"
+          ],
+          "returnType": "(SyncResult, error)",
+          "exported": true,
+          "lineCount": 58
+        },
+        {
+          "name": "ReadTemplate",
+          "params": [
+            "ctx",
+            "profile",
+            "snapshot",
+            "template",
+            "cacheRoot"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "ReadCompanion",
+          "params": [
+            "ctx",
+            "profile",
+            "snapshot",
+            "companionPath",
+            "cacheRoot"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "normalizeGitRemote",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 19
+        },
+        {
+          "name": "runGit",
+          "params": [
+            "ctx"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "gitObjectSize",
+          "params": [
+            "ctx",
+            "repositoryPath",
+            "object"
+          ],
+          "returnType": "(int64, error)",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "classifyGitError",
+          "params": [
+            "profile",
+            "output",
+            "cause"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [
+        {
+          "name": "GitAdapter",
+          "methods": [
+            "Kind",
+            "Sync",
+            "ReadTemplate",
+            "ReadCompanion"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "os/exec",
+          "specifiers": [
+            "exec"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strconv",
+          "specifiers": [
+            "strconv"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "GitAdapter",
+        "Kind",
+        "Sync",
+        "ReadTemplate",
+        "ReadCompanion"
+      ],
+      "totalLines": 189,
+      "hasStructuralAnalysis": true
+    },
+    "source/local.go": {
+      "filePath": "source/local.go",
+      "contentHash": "a0ddc94128256fab5378138dbda44d43ac3474a36a948e90c2f8b0cb63354507",
+      "functions": [
+        {
+          "name": "Kind",
+          "params": [],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Sync",
+          "params": [
+            "_",
+            "profile",
+            "_"
+          ],
+          "returnType": "(SyncResult, error)",
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "ReadTemplate",
+          "params": [
+            "_",
+            "profile",
+            "_",
+            "template",
+            "_"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "ReadCompanion",
+          "params": [
+            "_",
+            "profile",
+            "_",
+            "companionPath",
+            "_"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 31
+        },
+        {
+          "name": "decodeCatalog",
+          "params": [
+            "payload"
+          ],
+          "returnType": "(promptrepo.Catalog, error)",
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "withinRoot",
+          "params": [
+            "root",
+            "path"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "sourceError",
+          "params": [
+            "kind",
+            "err"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "verifyTemplateDigest",
+          "params": [
+            "payload",
+            "expected"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 14
+        }
+      ],
+      "classes": [
+        {
+          "name": "LocalAdapter",
+          "methods": [
+            "Kind",
+            "Sync",
+            "ReadTemplate",
+            "ReadCompanion"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "unicode/utf8",
+          "specifiers": [
+            "utf8"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "LocalAdapter",
+        "Kind",
+        "Sync",
+        "ReadTemplate",
+        "ReadCompanion"
+      ],
+      "totalLines": 174,
+      "hasStructuralAnalysis": true
+    },
+    "source/s3.go": {
+      "filePath": "source/s3.go",
+      "contentHash": "16662e1a74bf43b44b186d95377f155ff1259d9fa83f4c2f7aca3807f9b33daa",
+      "functions": [
+        {
+          "name": "Kind",
+          "params": [],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Sync",
+          "params": [
+            "ctx",
+            "profile",
+            "_"
+          ],
+          "returnType": "(SyncResult, error)",
+          "exported": true,
+          "lineCount": 50
+        },
+        {
+          "name": "ReadTemplate",
+          "params": [
+            "ctx",
+            "profile",
+            "_",
+            "template",
+            "_"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 39
+        },
+        {
+          "name": "ReadCompanion",
+          "params": [
+            "ctx",
+            "profile",
+            "_",
+            "companionPath",
+            "_"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "s3ObjectURL",
+          "params": [
+            "raw",
+            "objectPath"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 42
+        },
+        {
+          "name": "safeObjectPath",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "defaultString",
+          "params": [
+            "value",
+            "fallback"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 6
+        }
+      ],
+      "classes": [
+        {
+          "name": "S3Adapter",
+          "methods": [
+            "Kind",
+            "Sync",
+            "ReadTemplate",
+            "ReadCompanion"
+          ],
+          "properties": [
+            "HTTPClient"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "net/http",
+          "specifiers": [
+            "http"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "path",
+          "specifiers": [
+            "path"
+          ]
+        },
+        {
+          "source": "strconv",
+          "specifiers": [
+            "strconv"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "S3Adapter",
+        "Kind",
+        "Sync",
+        "ReadTemplate",
+        "ReadCompanion"
+      ],
+      "totalLines": 221,
+      "hasStructuralAnalysis": true
+    },
+    "source/source_test.go": {
+      "filePath": "source/source_test.go",
+      "contentHash": "2f71fb01b11a5f6953677d0c85d2dbe1540e774d99b64e3678a57188081dbc7a",
+      "functions": [
+        {
+          "name": "TestLocalAdapterReadsCatalog",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "TestGitHubURIValidation",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "TestGitAdapterPinsExactCommit",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "TestS3AdapterReadsPathStyleCatalog",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "TestCompanionReadersFailClosed",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "TestGitCompanionChecksBlobSizeBeforeRead",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "writeTestCatalog",
+          "params": [
+            "t",
+            "root"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "testCatalog",
+          "params": [
+            "t"
+          ],
+          "returnType": "promptrepo.Catalog",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "runTestGit",
+          "params": [
+            "t",
+            "directory"
+          ],
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "net/http",
+          "specifiers": [
+            "http"
+          ]
+        },
+        {
+          "source": "net/http/httptest",
+          "specifiers": [
+            "httptest"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "os/exec",
+          "specifiers": [
+            "exec"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "TestLocalAdapterReadsCatalog",
+        "TestGitHubURIValidation",
+        "TestGitAdapterPinsExactCommit",
+        "TestS3AdapterReadsPathStyleCatalog",
+        "TestCompanionReadersFailClosed",
+        "TestGitCompanionChecksBlobSizeBeforeRead"
+      ],
+      "totalLines": 226,
+      "hasStructuralAnalysis": true
+    },
+    "source/source.go": {
+      "filePath": "source/source.go",
+      "contentHash": "b736f0f14e7eb5782b664a334e228cb707a01b17740c0f718494918247cc31ea",
+      "functions": [
+        {
+          "name": "NewRegistry",
+          "params": [],
+          "returnType": "*Registry",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "DefaultRegistry",
+          "params": [],
+          "returnType": "*Registry",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "DetectKind",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "Resolve",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(Adapter, error)",
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [
+        {
+          "name": "SyncResult",
+          "methods": [],
+          "properties": [
+            "Revision",
+            "Catalog"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "Adapter",
+          "methods": [
+            "Kind",
+            "Sync",
+            "ReadTemplate"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "CompanionReader",
+          "methods": [
+            "ReadCompanion"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "Registry",
+          "methods": [
+            "Resolve"
+          ],
+          "properties": [
+            "adapters"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "net/http",
+          "specifiers": [
+            "http"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "SyncResult",
+        "Adapter",
+        "CompanionReader",
+        "Registry",
+        "NewRegistry",
+        "DefaultRegistry",
+        "DetectKind",
+        "Resolve"
+      ],
+      "totalLines": 75,
+      "hasStructuralAnalysis": true
+    }
+  }
+}

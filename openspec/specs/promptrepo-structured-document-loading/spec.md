@@ -48,4 +48,3 @@ Structured document 的 machine projection MUST 排除 raw body、parsed node、
 #### Scenario: JSON serialization
 - **WHEN** LoadedDocument 或 inspect result 被编码为 JSON/YAML
 - **THEN** 输出只包含 refs、digests、format、Schema/compiler metadata、size、selector、readiness 和 findings
-

@@ -37,6 +37,13 @@ const (
 	CodeJSONLRecordDuplicate       = "JSONL_RECORD_DUPLICATE"
 	CodeJSONLRecordTooLarge        = "JSONL_RECORD_TOO_LARGE"
 	CodeJSONLRecordIDInvalid       = "JSONL_RECORD_ID_INVALID"
+	CodeUITemplateAddressInvalid   = "UI_TEMPLATE_ADDRESS_INVALID"
+	CodeUITemplateLimitExceeded    = "UI_TEMPLATE_LIMIT_EXCEEDED"
+	CodeUITemplateHTMLForbidden    = "UI_TEMPLATE_HTML_FORBIDDEN"
+	CodeUITemplateCSSForbidden     = "UI_TEMPLATE_CSS_FORBIDDEN"
+	CodeUITemplateSlotInvalid      = "UI_TEMPLATE_SLOT_INVALID"
+	CodeUITemplateDigestMismatch   = "UI_TEMPLATE_DIGEST_MISMATCH"
+	CodeUITemplateSnapshotMismatch = "UI_TEMPLATE_SNAPSHOT_MISMATCH"
 )
 
 // Error is the stable public SDK error projection. Message is safe for logs;

@@ -91,6 +91,43 @@ descriptor 中的 Schema 与 compiler profile 只作为 exact ref/digest lineage
 Promptrepo 不联网解析 Schema、不执行 repository supplied compiler，也不持久化正文、
 parsed node 或选择结果。
 
+## UI template 安全与 owner 边界
+
+UI template 是已有 prompt template/document 路径旁边的 additive artifact family：
+
+```text
+UITemplateAddress (kind=ui-template, exact digest + snapshot)
+    -> body-free .ui-template.json descriptor
+    -> bounded relative HTML/CSS reads
+    -> HTML lexer + explicit structure validation + CSS tokenizer/parser validation
+    -> canonical content digest + snapshot binding
+    -> body-free inspection | in-memory exact load
+```
+
+`ParseUITemplateAddress` 与 `ParseTemplateAddress` 是互斥 parser：前者只接受
+`kind=ui-template`，后者继续只接受 `kind=template`。地址、descriptor 和 inspection
+只能携带相对路径；`uitemplatefs.Loader` 在读取前后检查 root containment、regular file、
+symlink 和大小，且错误消息不回显绝对路径或正文。
+
+HTML 的 slot marker 固定为 `data-promptrepo-slot`。验证器通过有界 lexer 与显式 tag stack
+只接受结构完整、显式闭合的 fragment；只接受已声明且唯一的 marker，required slot 必须
+出现；展示元素与静态属性均使用由 capability spec 固定的 allowlist，禁止 document node、namespace、可执行/外部
+节点与属性、自定义 element、重复属性、framework/template directive、除 slot marker 外的
+任意 `data-*` 和 inline style。CSS 同时经过 tokenizer 与 parser，并补充 delimiter、
+comment 和 escape 检查；校验失败直接拒绝原 bytes，不生成 sanitizer 后的第二份内容。
+Registry 与 Scaena 必须直接复用 Promptrepo validator；新增 element/attribute 需要新的
+security profile，不能原地放宽 `static-review-fragment-v1`。
+
+摘要包含 schema、去除 digest/snapshot 后的 canonical address identity、按 name 排序的
+slot、安全 profile、limits 与原始 HTML/CSS bytes。它不包含 `ContentDigest` 自身，也
+不把 snapshot 混入 content identity。这样 Registry 可以独立固定 repository snapshot，
+consumer 又能判断内容是否被替换。
+
+Promptrepo 不拥有发行目录、CAS、安装状态、浏览器、CSP、Scaena action 或审阅状态。
+Template Registry 消费公共 DTO/validator 生成和发行 machine metadata；Scaena 在运行时
+复验后注入自己的 safe components。每 bundle 的 byte/slot ceiling 是输入安全边界，不是
+全项目资产数量上限。
+
 ## RepositorySet 与 policy 边界
 
 统一管理是调用时投影，不是新的 durable store：
@@ -134,6 +171,9 @@ RepositorySet 输出把 raw `scope_ref` 单向摘要为 `scope_ref_digest`；Man
 - structured document DTO/interfaces、错误码和 descriptor path 是下一 additive
   minor 的开发中表面；未引入 state migration。回滚时 consumer 停用这些可选接口，
   旧 `ReadTemplate`/`Render`/`Preview` 路径不需要数据迁移。
+- `UITemplateAddress`、`UITemplateBundleV1`、validator 与 filesystem fixture loader 是
+  独立 additive 表面；旧 `TemplateAddress`、`TemplateRole`、catalog digest、`Client`
+  和 durable state 均不改变。回滚只需停止消费 `kind=ui-template`。
 - RepositorySet、PolicyDecision 和 ManagementProjection 是同一后续 additive minor
   的开发中表面；只读调用不改变 state bytes，旧 consumer 无需 type-assert 新接口。
 

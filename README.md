@@ -89,6 +89,43 @@ Schema/compiler lineage、大小和 readiness。Promptrepo 只校验这些声明
 不执行 repository supplied compiler，也不实现 Scaena 的角色连续性规则或领域 Schema
 语义。旧 Preview 仍不消费 selector；结构化定位必须显式调用 `SelectDocument`。
 
+## 受限 UI template 合同（下一 additive minor，开发中）
+
+当前开发分支新增独立的 `UITemplateAddress`、`UITemplateBundleV1`、
+`UITemplateInspector` 与 `UITemplateLoader`，不会扩宽已发布的 `TemplateAddress`。
+UI template 使用 `kind=ui-template`，canonical query 顺序固定为
+`kind,locale,role,path,digest,snapshot`：
+
+```text
+promptrepo://official/scaena/storyboard-review@1.0.0?kind=ui-template&locale=zh-CN&role=review&path=ui%2Freview.zh-CN.html&digest=sha256%3A...&snapshot=sha256%3A...
+```
+
+一个 bundle 只包含声明式 HTML fragment、独立 CSS、slots、security profile、limits、
+content digest 与 snapshot。HTML 用 `data-promptrepo-slot="<name>"` 标记注入点；slot
+只声明 name、kind、required 和 cardinality，不包含 callback、endpoint、HTTP method
+或 consumer mutation。`static-review-fragment-v1` profile 只接受明确列出的展示元素和
+静态属性，并 fail closed 地拒绝 script、form controls、iframe/object/embed、SVG/MathML、
+事件/URL/inline-style 属性、framework/template directive、除 slot marker 外的 `data-*`、
+外部 CSS、`url()`、`@import`、`expression()`、危险 at-rule 和 parser error；SDK 不执行
+sanitizer rewrite，也不运行或渲染模板。
+
+V1 的 256 KiB HTML、256 KiB CSS、512 KiB body、64 slots 与 64-byte slot name 是
+**单个 bundle 的安全边界**，不是项目资产数量、镜头数量或衍生资产数量上限。高质量
+AI 电影/短剧可以拥有大量独立资产；具体产品只应给出工作量、复用和打包建议，不由本
+合同实施全局 quota 或 hard cap。
+
+`CanonicalUITemplateDigest` 使用长度分隔的 canonical byte stream，并覆盖 identity、
+normalized slots/security/limits 与原始 HTML/CSS bytes；snapshot 是独立绑定。exact
+load 同时验证 address digest、bundle digest 和 snapshot。`UITemplateBundleV1` 的
+HTML/CSS 字段带 `json:"-" yaml:"-"`；inspect 只返回 metadata、大小和 validation，
+不返回正文、consumer values 或私有绝对路径。`uitemplatefs` 只提供有界、无网络的本地
+fixture loader。
+
+Owner 边界保持明确：Promptrepo 负责地址、DTO、校验和摘要；Template Registry 负责
+CLI-authored metadata、不可变发行、安装、审计和回退；Scaena 负责渲染、slot 注入、
+本地 action、安全会话与审阅领域状态。停用新 optional interface 即可回滚，旧
+template/document/catalog/state 行为不需要迁移。
+
 ## 统一仓库集合与策略判定（开发中，尚未发布）
 
 当前开发分支新增 additive `RepositorySetReader` 与 `PolicyEvaluator`，既有 `Client`
@@ -167,6 +204,27 @@ Built-in sources are `file://`, Git (`git+file`, `git+https`, `git+ssh`,
 `github://`), and anonymous read-only `s3://`. Profiles hold credential
 references only, never credential values. See [docs/architecture.md](docs/architecture.md).
 
+### Graph Kit structured-document conformance
+
+Graph Kit 是现有 structured-document 能力的一种组合约定，不是新的 Promptrepo
+领域 API。调用方继续组合 `DocumentResolver`、`DocumentLoader` 和
+`DocumentSelector`：manifest 与 lens、view、validator 等 child 都使用已有
+`TemplateRole`、descriptor、source digest 和 canonical digest。
+
+对 Git/GitHub source，`SyncRepositories` 先把配置的 branch、tag 或 revision
+解析为 exact commit；closure 中每个文档必须返回与 manifest 相同的
+`SnapshotMetadata`。manifest 缺 child、descriptor/source digest 漂移、可变
+snapshot 被直接用于读取、路径逃逸或 selector 不兼容时均 fail closed。安全的
+JSON/YAML 投影只包含摘要和 snapshot lineage，不包含结构化正文。
+
+仓库内 conformance test 使用本地 `git+file://` fixture，不访问网络，也不包含
+Auctra 或具体小说数据。`github://owner/repository` 仅是 Git HTTPS remote 的规范化
+入口；真实 GitHub canary 与发布仍需要维护者单独授权。
+
+Consumer handoff：Graph Kit 不需要新增 SDK surface；Auctra 与 Registry 可继续精确
+固定已发布的 `github.com/yeisme/promptrepo v0.4.0`。本变更没有创建 tag、发布模块或
+写入远端。
+
 ## 私有 v0.1.0 迁移 / private v0.1.0 migration
 
 This repository is the canonical public home for the SDK. Stable `v0.2.0` was
@@ -198,6 +256,7 @@ openspec validate promptrepo-public-sdk-extraction-v1 --strict --no-interactive
 openspec validate promptrepo-template-address-inspect-preview-v1 --strict --no-interactive
 openspec validate promptrepo-structured-document-v1 --strict --no-interactive
 openspec validate promptrepo-unified-management-v1 --strict --no-interactive
+openspec validate promptrepo-ui-template-contract-v1 --strict --no-interactive
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and

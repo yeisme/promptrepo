@@ -4,6 +4,33 @@ All notable changes to this module are documented here.
 
 ## [Unreleased]
 
+### Added
+
+- Additive `UITemplateAddress` parser/formatter for the independent
+  `kind=ui-template` family without widening released `TemplateAddress`
+  behavior.
+- Body-safe `UITemplateBundleV1`, slot/security/limit DTOs, stable error codes,
+  canonical length-delimited content digests, and exact snapshot binding.
+- Bounded HTML element/attribute allowlists with lexer/explicit-structure
+  validation, plus CSS tokenizer/parser validation that rejects executable,
+  external, malformed, framework-directed, comment-obfuscated, and escaped
+  syntax without sanitizer rewriting.
+- Optional inspector/loader contracts and a pure-Go local filesystem fixture
+  loader with path containment, symlink, tamper, and redaction checks.
+- Graph Kit structured-document conformance tests that prove a manifest and
+  all exact child documents resolve from one immutable Git commit/catalog
+  snapshot, with descriptor, source, canonical digest, and selector lineage.
+- Fail-closed Graph Kit coverage for missing children and digest drift, reusing
+  the existing mutable-revision, path-containment, and body-redaction guards;
+  no graph-specific public API or network protocol was added.
+
+### Compatibility
+
+- Existing `Ref`, `TemplateAddress`, `TemplateRole`, `Client`, catalog/state
+  schemas, structured document contracts, and frozen catalog digests are
+  unchanged. The per-bundle safety ceilings do not impose a global asset-count
+  limit.
+
 ## [0.4.0] - 2026-08-24
 
 ### Added

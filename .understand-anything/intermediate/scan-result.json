@@ -1,0 +1,342 @@
+{
+  "scriptCompleted": true,
+  "files": [
+    {
+      "path": ".github/workflows/ci.yml",
+      "language": "yaml",
+      "sizeLines": 47,
+      "fileCategory": "infra"
+    },
+    {
+      "path": "address.go",
+      "language": "go",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 46,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "catalog_test.go",
+      "language": "go",
+      "sizeLines": 129,
+      "fileCategory": "code"
+    },
+    {
+      "path": "catalog.go",
+      "language": "go",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "language": "markdown",
+      "sizeLines": 122,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "CLAUDE.md",
+      "language": "markdown",
+      "sizeLines": 3,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "client.go",
+      "language": "go",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "companion_test.go",
+      "language": "go",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "companion.go",
+      "language": "go",
+      "sizeLines": 211,
+      "fileCategory": "code"
+    },
+    {
+      "path": "compatibility_v010_test.go",
+      "language": "go",
+      "sizeLines": 91,
+      "fileCategory": "code"
+    },
+    {
+      "path": "conformance/conformance.go",
+      "language": "go",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "conformance/management.go",
+      "language": "go",
+      "sizeLines": 32,
+      "fileCategory": "code"
+    },
+    {
+      "path": "contract.go",
+      "language": "go",
+      "sizeLines": 328,
+      "fileCategory": "code"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "language": "markdown",
+      "sizeLines": 18,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/architecture.md",
+      "language": "markdown",
+      "sizeLines": 141,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/README.md",
+      "language": "markdown",
+      "sizeLines": 12,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/release.md",
+      "language": "markdown",
+      "sizeLines": 139,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "document_parse.go",
+      "language": "go",
+      "sizeLines": 325,
+      "fileCategory": "code"
+    },
+    {
+      "path": "document_selector.go",
+      "language": "go",
+      "sizeLines": 260,
+      "fileCategory": "code"
+    },
+    {
+      "path": "document_test.go",
+      "language": "go",
+      "sizeLines": 253,
+      "fileCategory": "code"
+    },
+    {
+      "path": "document.go",
+      "language": "go",
+      "sizeLines": 330,
+      "fileCategory": "code"
+    },
+    {
+      "path": "engine/document_test.go",
+      "language": "go",
+      "sizeLines": 176,
+      "fileCategory": "code"
+    },
+    {
+      "path": "engine/document.go",
+      "language": "go",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "engine/engine_test.go",
+      "language": "go",
+      "sizeLines": 555,
+      "fileCategory": "code"
+    },
+    {
+      "path": "engine/engine.go",
+      "language": "go",
+      "sizeLines": 691,
+      "fileCategory": "code"
+    },
+    {
+      "path": "engine/management_test.go",
+      "language": "go",
+      "sizeLines": 92,
+      "fileCategory": "code"
+    },
+    {
+      "path": "engine/management.go",
+      "language": "go",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "engine/preview.go",
+      "language": "go",
+      "sizeLines": 276,
+      "fileCategory": "code"
+    },
+    {
+      "path": "errors.go",
+      "language": "go",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "go.mod",
+      "language": "mod",
+      "sizeLines": 9,
+      "fileCategory": "config"
+    },
+    {
+      "path": "go.sum",
+      "language": "sum",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "input.go",
+      "language": "go",
+      "sizeLines": 324,
+      "fileCategory": "code"
+    },
+    {
+      "path": "management_test.go",
+      "language": "go",
+      "sizeLines": 256,
+      "fileCategory": "code"
+    },
+    {
+      "path": "management.go",
+      "language": "go",
+      "sizeLines": 666,
+      "fileCategory": "code"
+    },
+    {
+      "path": "openspec/config.yaml",
+      "language": "yaml",
+      "sizeLines": 20,
+      "fileCategory": "config"
+    },
+    {
+      "path": "openspec/specs/promptrepo-management-projection/spec.md",
+      "language": "markdown",
+      "sizeLines": 21,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "openspec/specs/promptrepo-policy-decision/spec.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "openspec/specs/promptrepo-repository-set/spec.md",
+      "language": "markdown",
+      "sizeLines": 29,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "openspec/specs/promptrepo-structured-document-loading/spec.md",
+      "language": "markdown",
+      "sizeLines": 51,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "openspec/specs/public-sdk-extraction/spec.md",
+      "language": "markdown",
+      "sizeLines": 38,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "openspec/specs/public-sdk-release-governance/spec.md",
+      "language": "markdown",
+      "sizeLines": 39,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "openspec/specs/template-address-inspect-preview/spec.md",
+      "language": "markdown",
+      "sizeLines": 55,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 204,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "ref_test.go",
+      "language": "go",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "ref.go",
+      "language": "go",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "render.go",
+      "language": "go",
+      "sizeLines": 108,
+      "fileCategory": "code"
+    },
+    {
+      "path": "SECURITY.md",
+      "language": "markdown",
+      "sizeLines": 17,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "source/git.go",
+      "language": "go",
+      "sizeLines": 188,
+      "fileCategory": "code"
+    },
+    {
+      "path": "source/local.go",
+      "language": "go",
+      "sizeLines": 173,
+      "fileCategory": "code"
+    },
+    {
+      "path": "source/s3.go",
+      "language": "go",
+      "sizeLines": 220,
+      "fileCategory": "code"
+    },
+    {
+      "path": "source/source_test.go",
+      "language": "go",
+      "sizeLines": 225,
+      "fileCategory": "code"
+    },
+    {
+      "path": "source/source.go",
+      "language": "go",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 53,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "large",
+  "stats": {
+    "filesScanned": 53,
+    "byCategory": {
+      "infra": 1,
+      "code": 33,
+      "docs": 16,
+      "config": 3
+    },
+    "byLanguage": {
+      "yaml": 2,
+      "go": 33,
+      "markdown": 16,
+      "mod": 1,
+      "sum": 1
+    }
+  }
+}
