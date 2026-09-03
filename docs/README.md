@@ -15,3 +15,7 @@
   future v0.3.0 template Address, input schema, inspect, and preview contract.
 - [UI template OpenSpec](../openspec/changes/promptrepo-ui-template-contract-v1/):
   additive `kind=ui-template` public contract and verification record.
+
+## CI/CD
+
+- [模块化、分级 CI/CD](delivery/ci-cd.md)：quick、full、integration、release 的触发场景、真实命令和权限边界。
