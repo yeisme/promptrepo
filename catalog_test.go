@@ -114,6 +114,38 @@ func TestRenderTemplateOmitsBodyFromJSON(t *testing.T) {
 	}
 }
 
+func TestRenderTemplateRendersMissingOptionalPlaceholderAsEmpty(t *testing.T) {
+	result, err := promptrepo.RenderTemplate(promptrepo.RenderRequest{
+		Template: "Subject {{subject}} ref={{character_ref}} ending={{ending}}",
+		Inputs: []promptrepo.InputDefinition{
+			{Name: "subject", Type: promptrepo.InputTypeString, Required: true},
+			{Name: "character_ref", Type: promptrepo.InputTypeString, Regex: `^@[A-Za-z0-9]+$`},
+			{Name: "ending", Type: promptrepo.InputTypeString},
+		},
+		Values: map[string]any{"subject": "Ada"},
+	})
+	if err != nil || !result.Ready {
+		t.Fatalf("optional placeholders should render: ready=%t err=%v issues=%+v", result.Ready, err, result.Issues)
+	}
+	if result.RenderedBody != "Subject Ada ref= ending=" {
+		t.Fatalf("optional placeholders were not empty: %q", result.RenderedBody)
+	}
+	if len(result.Inputs) != 3 || result.Inputs[1].Status != "missing" || result.Inputs[2].Status != "missing" {
+		t.Fatalf("optional input status changed: %+v", result.Inputs)
+	}
+}
+
+func TestRenderTemplateStillRejectsUndeclaredPlaceholder(t *testing.T) {
+	result, err := promptrepo.RenderTemplate(promptrepo.RenderRequest{
+		Template: "Hello {{undeclared}}",
+		Inputs:   []promptrepo.InputDefinition{},
+		Values:   map[string]any{},
+	})
+	if err != nil || result.Ready || len(result.Issues) != 1 || result.Issues[0].Code != promptrepo.CodeTemplatePlaceholder {
+		t.Fatalf("undeclared placeholder must fail closed: ready=%t err=%v issues=%+v", result.Ready, err, result.Issues)
+	}
+}
+
 func TestRenderTemplateRejectsMalformedBraceRuns(t *testing.T) {
 	inputs := []promptrepo.InputDefinition{{Name: "name", Type: promptrepo.InputTypeString, Required: true}}
 	for _, body := range []string{"{{{name}}}", "{{name}}}", "prefix }} suffix", "{{name}"} {
