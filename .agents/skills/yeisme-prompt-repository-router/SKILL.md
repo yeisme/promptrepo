@@ -14,6 +14,7 @@ Route prompt-template work to the narrowest canonical owner. This skill does not
 | Chinese-first solution text, examples, taxonomy, tags, locale adaptation, rights, maturity | `data/yeisme-prompt-templates` |
 | Public Go contracts, exact `promptrepo://` refs, template address, inspect/validate/render/preview DTOs, embedded engine, source adapters, conformance fixtures | `shared/promptrepo` |
 | Team Registry service, immutable releases, CAS/object copies, Git mirror, install/audit state, backup and recovery | `backend-server/template-registry` |
+| Approved generic agent consumption: local sessions, source import/analysis adapters, confirmation, prompt-package compilation/export, CLI and embedded stdio MCP | `backend-server/template-registry` |
 | Domain compatibility, stage/accept/promote, provider execution, cost, evidence, and asset lifecycle | The consuming owner such as Sonora, Eikona, Scaena, Auctra, or Pinax |
 
 ## Routing Workflow
@@ -24,6 +25,7 @@ Route prompt-template work to the narrowest canonical owner. This skill does not
 4. Keep `zh-CN` as the official source locale and `en` as a reviewed adaptation. Machine IDs, schema fields, tags, capabilities, rights, maturity, and URI syntax remain stable English.
 5. Build structured catalog and release metadata through Template Registry commands. Human-authored prompt prose and guides may be edited in the content owner.
 6. Route actual execution and acceptance to the consuming domain owner; shared repository layers never infer provider permissions, cost approval, or production acceptance.
+7. For the approved Registry consumption workflow, use `template-registry-agent-operator` when installed. Compilation remains provider-free; only explicit source analysis may call a configured analysis backend. Private session content uses explicit resources/exports, never ordinary output or evidence.
 
 ## Required Handoff
 

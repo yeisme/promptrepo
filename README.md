@@ -1,5 +1,11 @@
 # promptrepo
 
+## Agent 提示包合同（实验）
+
+新增 `RecipeV1`、`RecipeStepV1`、`InputBindingV1` 与 `PromptPackageV1`。`RecipeOrder` 校验静态 DAG 并返回稳定顺序；`ValidatePromptPackage` 和 `VerifyPromptPackageFiles` 校验跨平台路径、步骤状态、inventory 与逐文件 digest。`DecodePromptJSON` 复用已有严格 JSON 解码，拒绝重复 key、过深输入和未知 typed 字段。
+
+这些能力不改变现有 `RenderTemplate`、catalog、TemplateContract 或引用形状。它们没有文件、网络或 Provider 副作用；会话、资料导入、用户确认和文件导出由 Template Registry 消费应用拥有。合同目前使用 `promptrepo.recipe.v0.1` 与 `promptrepo.prompt-package.v0.1`，不得把待前序输出的步骤标为可直接运行。
+
 `promptrepo` 是一个独立、纯 Go 的提示词仓库 SDK。它提供用户级 repository
 profile、不可变 catalog snapshot、确定性搜索、精确 `promptrepo://` 引用、模板
 正文的 digest 校验读取，以及 staged installation receipt。它不执行 Prompt、不调用
