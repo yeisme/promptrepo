@@ -41,6 +41,13 @@ Template Address         -> role/path/selector/digest/snapshot projection
 digest/snapshot 只能是 sha256。source URI 绝不作为 Address 解析，也不从 Address
 取得任何网络或凭据能力。
 
+Git source 直接接受常见 clone address：`https://host/group/repository.git`、
+`ssh://git@host/group/repository.git`、`git@host:group/repository.git`，以及
+`github.com/owner/repository`。GitHub web address 会规范化为 HTTPS Git remote；旧的
+`github://` 与 `git+https://` / `git+ssh://` 保持兼容。source 不允许嵌入 HTTP
+userinfo、SSH password、query 或 fragment；凭据只通过 profile 的 credential ref
+边界处理。
+
 已发布的 `TemplateRole`、`Solution`、catalog 与 state DTO 均不增加字段或 tag。
 输入定义、license、permissions 与可选 contract digest 位于新的 caller-supplied
 `TemplateContract`，随 inspect/validate/preview 的加性请求和结果传递。独立

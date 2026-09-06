@@ -44,13 +44,52 @@ func TestLocalAdapterReadsCatalog(t *testing.T) {
 	}
 }
 
-func TestGitHubURIValidation(t *testing.T) {
-	remote, err := normalizeGitRemote("github://yeisme/prompt-templates")
-	if err != nil {
-		t.Fatal(err)
+func TestGitRemoteNormalization(t *testing.T) {
+	tests := map[string]string{
+		"github://yeisme/prompt-templates":                  "https://github.com/yeisme/prompt-templates.git",
+		"https://github.com/yeisme/prompt-templates":        "https://github.com/yeisme/prompt-templates.git",
+		"https://github.com/yeisme/prompt-templates.git":    "https://github.com/yeisme/prompt-templates.git",
+		"github.com/yeisme/prompt-templates":                "https://github.com/yeisme/prompt-templates.git",
+		"http://git.example.com/group/prompt-templates.git": "http://git.example.com/group/prompt-templates.git",
+		"ssh://git@github.com/yeisme/prompt-templates.git":  "ssh://git@github.com/yeisme/prompt-templates.git",
+		"git@github.com:yeisme/prompt-templates.git":        "git@github.com:yeisme/prompt-templates.git",
+		"git+https://git.example.com/group/repository.git":  "https://git.example.com/group/repository.git",
+		"git+ssh://git@example.com/group/repository.git":    "ssh://git@example.com/group/repository.git",
 	}
-	if remote != "https://github.com/yeisme/prompt-templates.git" {
-		t.Fatalf("remote: %s", remote)
+	for source, want := range tests {
+		t.Run(source, func(t *testing.T) {
+			kind, err := DetectKind(source)
+			if err != nil || kind != "git" {
+				t.Fatalf("kind: %q, error: %v", kind, err)
+			}
+			remote, err := normalizeGitRemote(source)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if remote != want {
+				t.Fatalf("remote: %s, want %s", remote, want)
+			}
+		})
+	}
+}
+
+func TestGitRemoteValidationRejectsUnsafeSources(t *testing.T) {
+	sources := []string{
+		"https://token@github.com/yeisme/prompt-templates",
+		"https://github.com/yeisme/prompt-templates?token=secret",
+		"https://github.com/yeisme/prompt-templates#main",
+		"ssh://git:password@github.com/yeisme/prompt-templates.git",
+		"https://github.com/yeisme/prompt-templates/tree/main",
+		"https://github.com/",
+		"github.com/yeisme/prompt-templates/tree/main",
+		"https://github.com/yeisme/prompt-templates\n",
+	}
+	for _, source := range sources {
+		t.Run(source, func(t *testing.T) {
+			if _, err := DetectKind(source); promptrepo.ErrorCode(err) != promptrepo.CodeInvalidRequest {
+				t.Fatalf("error: %v", err)
+			}
+		})
 	}
 }
 
