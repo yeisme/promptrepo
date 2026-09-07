@@ -42,6 +42,13 @@ func TestRepositorySearchResolveAndStage(t *testing.T) {
 	if len(search.Results) != 1 || !search.Results[0].Compatible {
 		t.Fatalf("search: %+v", search)
 	}
+	crossLocale, err := manager.Search(ctx, promptrepo.SearchRequest{Query: "播客配音", Locale: "en", RequiredCapabilities: []string{"audio", "voice", "tts"}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(crossLocale.Results) != 1 || crossLocale.Results[0].Locale != "en" || crossLocale.Results[0].Title != "Chinese podcast narration" || crossLocale.Results[0].Score != 30 {
+		t.Fatalf("cross-locale search: %+v", crossLocale)
+	}
 	resolved, err := manager.Resolve(ctx, promptrepo.ResolveRequest{Ref: search.Results[0].Ref, RequiredCapabilities: []string{"audio", "voice", "tts"}})
 	if err != nil {
 		t.Fatal(err)

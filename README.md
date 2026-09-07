@@ -17,6 +17,11 @@ search, exact `promptrepo://` references, digest-verified template reads, and
 staged installation receipts. It does not execute prompts, call models, or
 depend on Template Registry server/internal packages.
 
+Search matches localized titles, summaries, and aliases from every locale while
+returning the result card and exact ref in the requested locale. A Chinese
+human query can therefore discover an English Agent template without
+registering a second compilable template.
+
 ## 模板寻址、检查与预览（v0.3.0）
 
 从 v0.3.0 起，旧 solution ref 保持不变：
