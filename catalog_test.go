@@ -159,3 +159,20 @@ func TestRenderTemplateRejectsMalformedBraceRuns(t *testing.T) {
 		t.Fatalf("single braces should remain literal: ready=%t err=%v", result.Ready, err)
 	}
 }
+
+func TestDiscoveryAnnotationsPreserveContentDigest(t *testing.T) {
+	c := promptrepo.Catalog{SchemaVersion: promptrepo.CatalogSchemaVersion, Solutions: []promptrepo.Solution{{ID: "one", Templates: []promptrepo.TemplateRole{{Role: "main", Locale: "en", Path: "main.md", Digest: "sha256:a"}}}}}
+	before, err := promptrepo.CanonicalCatalogDigest(c)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	c.Discovery = []promptrepo.TemplateDiscoveryAnnotation{{PackageID: "test", SolutionID: "one", Role: "main", Locale: "en", Title: "Title", Media: []string{"image"}, Consumers: []string{"eikona"}}}
+	after, err := promptrepo.CanonicalCatalogDigest(c)
+	if err != nil || before != after {
+		t.Fatal("additive discovery metadata changed legacy hash")
+	}
+	if c.Discovery[0].Title != "Title" {
+		t.Fatal("hashing mutated original annotations")
+	}
+}
