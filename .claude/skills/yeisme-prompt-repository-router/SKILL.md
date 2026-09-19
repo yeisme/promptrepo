@@ -42,6 +42,18 @@ Report the selected owner, artifact, input refs, expected digest/revision, provi
 
 ## Validation
 
+For Auctra template consumption, prefer the explicit dry-run and binding health
+checks before any review-gated mutation:
+
+```bash
+auctra prompt-context catalog bind '<template-address>' --target <unit-id> --input-ref name=target.title --dry-run --json
+auctra prompt-context catalog binding check --id '<binding-id>' --json
+```
+
+Never infer that `preview`, `bind`, or `check` executes a provider. `bind`
+without `--dry-run` creates only a refs-only draft; acceptance and text
+generation remain separate owner-gated steps.
+
 Run only the commands for the affected owner:
 
 ```bash
@@ -51,3 +63,13 @@ Run only the commands for the affected owner:
 (cd backend-server/template-registry && task test:integration)
 (cd data/yeisme-prompt-templates && openspec validate --all --strict --no-interactive)
 ```
+
+## If this fails
+
+| Trigger | First fix | Still failing |
+| --- | --- | --- |
+| Prompt body in logs/events/evidence | Inspect/render stay provider-free | Bodies never enter ordinary structured output |
+| Two owners writing the same template | One canonical writer; others consume refs/digests | Do not copy private state |
+| `bind` treated as generation | `--dry-run` then refs-only draft | Acceptance stays with the consuming owner |
+| Chinese file compiled as Agent template | `docs/template-zh-CN.md` is review-only | `en` is the only compilable locale |
+| Registry metadata hand-written | Template Registry CLI | Content owner may edit prose, not catalog JSON |
