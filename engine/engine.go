@@ -20,12 +20,14 @@ import (
 )
 
 type Options struct {
-	ConfigRoot   string
-	CacheRoot    string
-	LockTimeout  time.Duration
-	StaleLockAge time.Duration
-	Now          func() time.Time
-	Sources      *source.Registry
+	// SkipInitialization leaves filesystem creation to explicit mutation callers.
+	SkipInitialization bool
+	ConfigRoot         string
+	CacheRoot          string
+	LockTimeout        time.Duration
+	StaleLockAge       time.Duration
+	Now                func() time.Time
+	Sources            *source.Registry
 }
 
 type Manager struct {
@@ -78,11 +80,13 @@ func New(options Options) (*Manager, error) {
 	if sources == nil {
 		sources = source.DefaultRegistry()
 	}
-	if err := os.MkdirAll(configRoot, 0o700); err != nil {
-		return nil, err
-	}
-	if err := os.MkdirAll(cacheRoot, 0o700); err != nil {
-		return nil, err
+	if !options.SkipInitialization {
+		if err := os.MkdirAll(configRoot, 0o700); err != nil {
+			return nil, err
+		}
+		if err := os.MkdirAll(cacheRoot, 0o700); err != nil {
+			return nil, err
+		}
 	}
 	return &Manager{configRoot: configRoot, cacheRoot: cacheRoot, lockTimeout: lockTimeout, staleLockAge: staleLockAge, now: now, sources: sources}, nil
 }
