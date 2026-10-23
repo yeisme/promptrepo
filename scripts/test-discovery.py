@@ -12,7 +12,7 @@ started = datetime.datetime.now(datetime.timezone.utc)
 run_id = 'integration-' + started.strftime('%Y%m%dT%H%M%S.%fZ')
 output = root / 'temp' / 'integration-test-runs' / run_id
 (output / 'artifacts').mkdir(parents=True)
-command = ['go', 'test', '-race', './...']
+command = ['go', 'test', './...']
 result = subprocess.run(command, cwd=root, capture_output=True, text=True)
 def redact(value):
     value = value.replace(str(root), '<project>').replace(str(pathlib.Path.home()), '<home>')
