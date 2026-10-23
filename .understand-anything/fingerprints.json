@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "caa3c6de6d8b13a167c336844c048b63ac364ab5",
-  "generatedAt": "2026-08-25T16:05:08.533Z",
+  "gitCommitHash": "c5960b98221eec2a80a07e86da8645eb495b6f1a",
+  "generatedAt": "2026-09-26T08:18:39.124Z",
   "files": {
     "address.go": {
       "filePath": "address.go",
@@ -9,6 +9,7 @@
       "functions": [
         {
           "name": "Ref",
+          "owner": "TemplateAddress",
           "params": [],
           "returnType": "Ref",
           "exported": true,
@@ -16,6 +17,7 @@
         },
         {
           "name": "ParseTemplateAddress",
+          "owner": "",
           "params": [
             "raw"
           ],
@@ -25,6 +27,7 @@
         },
         {
           "name": "FormatTemplateAddress",
+          "owner": "",
           "params": [
             "address"
           ],
@@ -34,6 +37,7 @@
         },
         {
           "name": "safeTemplateAddressPath",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -43,6 +47,7 @@
         },
         {
           "name": "validTemplateSelector",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -109,12 +114,407 @@
       "totalLines": 116,
       "hasStructuralAnalysis": true
     },
+    "browse.go": {
+      "filePath": "browse.go",
+      "contentHash": "63e3feb385248110c39625474285c863358c9edff618e0003c80882b9374cc69",
+      "functions": [
+        {
+          "name": "NormalizeBrowseRequest",
+          "owner": "",
+          "params": [
+            "q"
+          ],
+          "returnType": "(BrowseRequest, error)",
+          "exported": true,
+          "lineCount": 51
+        },
+        {
+          "name": "unionBrowse",
+          "owner": "",
+          "params": [
+            "values",
+            "value"
+          ],
+          "returnType": "[]string",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "containsBrowse",
+          "owner": "",
+          "params": [
+            "a",
+            "s"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "unknownBrowse",
+          "owner": "",
+          "params": [
+            "s"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "BrowseValues",
+          "owner": "",
+          "params": [
+            "r",
+            "key"
+          ],
+          "returnType": "[]string",
+          "exported": true,
+          "lineCount": 43
+        },
+        {
+          "name": "BrowseText",
+          "owner": "",
+          "params": [
+            "s"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "MatchBrowseRecord",
+          "owner": "",
+          "params": [
+            "r",
+            "q"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "BrowseContentKey",
+          "owner": "",
+          "params": [
+            "r"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "CountBrowse",
+          "owner": "",
+          "params": [
+            "records"
+          ],
+          "returnType": "BrowseTotals",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "GroupBrowse",
+          "owner": "",
+          "params": [
+            "records",
+            "dimensions"
+          ],
+          "returnType": "([]BrowseGroup, bool)",
+          "exported": true,
+          "lineCount": 37
+        }
+      ],
+      "classes": [
+        {
+          "name": "BrowseRequest",
+          "methods": [],
+          "properties": [
+            "Repositories",
+            "Categories",
+            "MediaTypes",
+            "Consumers",
+            "Capabilities",
+            "Tags",
+            "Roles",
+            "TemplateLocales",
+            "Maturities",
+            "Rights",
+            "CompilerStates",
+            "SourceStates",
+            "Query",
+            "GroupBy",
+            "Sort",
+            "Order",
+            "Dedupe",
+            "Metric"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "BrowseRecord",
+          "methods": [],
+          "properties": [
+            "SearchAliases",
+            "Repository",
+            "Solution",
+            "SolutionTitle",
+            "SolutionSummary",
+            "Version",
+            "Category",
+            "Tags",
+            "Capabilities",
+            "Maturity",
+            "Rights",
+            "SourceState"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "BrowseTotals",
+          "methods": [],
+          "properties": [
+            "Entries",
+            "UniqueContents"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "BrowseGroup",
+          "methods": [],
+          "properties": [
+            "Keys"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "BrowseProjection",
+          "methods": [],
+          "properties": [
+            "Records",
+            "Totals",
+            "Returned",
+            "Groups",
+            "GroupBy",
+            "Sort",
+            "Order",
+            "Dedupe",
+            "Metric",
+            "OverlappingGroups"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "BrowseResult",
+          "methods": [],
+          "properties": [
+            "Browse"
+          ],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "imports": [
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "golang.org/x/text/unicode/norm",
+          "specifiers": [
+            "norm"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "unicode",
+          "specifiers": [
+            "unicode"
+          ]
+        }
+      ],
+      "exports": [
+        "BrowseRequest",
+        "BrowseRecord",
+        "BrowseTotals",
+        "BrowseGroup",
+        "BrowseProjection",
+        "BrowseResult",
+        "NormalizeBrowseRequest",
+        "BrowseValues",
+        "BrowseText",
+        "MatchBrowseRecord",
+        "BrowseContentKey",
+        "CountBrowse",
+        "GroupBrowse"
+      ],
+      "totalLines": 277,
+      "hasStructuralAnalysis": true
+    },
+    "browse_test.go": {
+      "filePath": "browse_test.go",
+      "contentHash": "6dc3fcf6ed3e345651e2b9007d8df6411226465c384d861a1cbe16d9d8696f54",
+      "functions": [
+        {
+          "name": "TestBrowseConformanceCounts",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "TestBrowseValidationAndMissingHashes",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 20
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/conformance",
+          "specifiers": [
+            "conformance"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        }
+      ],
+      "exports": [
+        "TestBrowseConformanceCounts",
+        "TestBrowseValidationAndMissingHashes"
+      ],
+      "totalLines": 48,
+      "hasStructuralAnalysis": true
+    },
+    "catalog.go": {
+      "filePath": "catalog.go",
+      "contentHash": "70326f728b6c2af826ede1edb5b69b4d0d615de5d369eabdfc22860012de1e9d",
+      "functions": [
+        {
+          "name": "ValidateCatalog",
+          "owner": "",
+          "params": [
+            "catalog"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "CanonicalCatalogDigest",
+          "owner": "",
+          "params": [
+            "catalog"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 21
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        }
+      ],
+      "exports": [
+        "ValidateCatalog",
+        "CanonicalCatalogDigest"
+      ],
+      "totalLines": 67,
+      "hasStructuralAnalysis": true
+    },
     "catalog_test.go": {
       "filePath": "catalog_test.go",
-      "contentHash": "5fc970901b3f10d090146d8c82851eac2599a4e701909cdddfe986aa91f22bc6",
+      "contentHash": "c14e7d9b8e9c3ba256b609f8bacaf0283695e08757e32b24751f1a81917f1dd8",
       "functions": [
         {
           "name": "TestCatalogDigestIsFrozenWithoutOptionalFields",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -123,6 +523,7 @@
         },
         {
           "name": "TestTemplateInputDefinitionValidation",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -131,6 +532,7 @@
         },
         {
           "name": "TestTemplateContractDigestValidation",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -139,6 +541,7 @@
         },
         {
           "name": "TestManagerStillImplementsExistingClient",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -147,6 +550,7 @@
         },
         {
           "name": "TestReleasedCatalogStructsKeepUnkeyedCompositeCompatibility",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -155,6 +559,7 @@
         },
         {
           "name": "TestRenderTemplateOmitsBodyFromJSON",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -162,12 +567,40 @@
           "lineCount": 21
         },
         {
+          "name": "TestRenderTemplateRendersMissingOptionalPlaceholderAsEmpty",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "TestRenderTemplateStillRejectsUndeclaredPlaceholder",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
           "name": "TestRenderTemplateRejectsMalformedBraceRuns",
+          "owner": "",
           "params": [
             "t"
           ],
           "exported": true,
           "lineCount": 13
+        },
+        {
+          "name": "TestDiscoveryAnnotationsPreserveContentDigest",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 16
         }
       ],
       "classes": [],
@@ -222,84 +655,12 @@
         "TestManagerStillImplementsExistingClient",
         "TestReleasedCatalogStructsKeepUnkeyedCompositeCompatibility",
         "TestRenderTemplateOmitsBodyFromJSON",
-        "TestRenderTemplateRejectsMalformedBraceRuns"
+        "TestRenderTemplateRendersMissingOptionalPlaceholderAsEmpty",
+        "TestRenderTemplateStillRejectsUndeclaredPlaceholder",
+        "TestRenderTemplateRejectsMalformedBraceRuns",
+        "TestDiscoveryAnnotationsPreserveContentDigest"
       ],
-      "totalLines": 130,
-      "hasStructuralAnalysis": true
-    },
-    "catalog.go": {
-      "filePath": "catalog.go",
-      "contentHash": "ad996f6c582d019d34d3c33acaa21d94d66087f552f9b618f71ae9f77231033b",
-      "functions": [
-        {
-          "name": "ValidateCatalog",
-          "params": [
-            "catalog"
-          ],
-          "returnType": "error",
-          "exported": true,
-          "lineCount": 32
-        },
-        {
-          "name": "CanonicalCatalogDigest",
-          "params": [
-            "catalog"
-          ],
-          "returnType": "(string, error)",
-          "exported": true,
-          "lineCount": 18
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "crypto/sha256",
-          "specifiers": [
-            "sha256"
-          ]
-        },
-        {
-          "source": "encoding/hex",
-          "specifiers": [
-            "hex"
-          ]
-        },
-        {
-          "source": "encoding/json",
-          "specifiers": [
-            "json"
-          ]
-        },
-        {
-          "source": "fmt",
-          "specifiers": [
-            "fmt"
-          ]
-        },
-        {
-          "source": "sort",
-          "specifiers": [
-            "sort"
-          ]
-        },
-        {
-          "source": "strings",
-          "specifiers": [
-            "strings"
-          ]
-        },
-        {
-          "source": "time",
-          "specifiers": [
-            "time"
-          ]
-        }
-      ],
-      "exports": [
-        "ValidateCatalog",
-        "CanonicalCatalogDigest"
-      ],
-      "totalLines": 64,
+      "totalLines": 179,
       "hasStructuralAnalysis": true
     },
     "client.go": {
@@ -340,64 +701,13 @@
       "totalLines": 17,
       "hasStructuralAnalysis": true
     },
-    "companion_test.go": {
-      "filePath": "companion_test.go",
-      "contentHash": "986927c4ad88873a1772931f27e678e3e9edfc608aa6dc7b9a28b96dc4563623",
-      "functions": [
-        {
-          "name": "TestTemplateContractCompanionPath",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 23
-        },
-        {
-          "name": "TestTemplateContractDocumentDigestAndUnknownField",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 21
-        },
-        {
-          "name": "TestTemplateContractDocumentRejectsOversizeAndInvalidUTF8",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 10
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "bytes",
-          "specifiers": [
-            "bytes"
-          ]
-        },
-        {
-          "source": "testing",
-          "specifiers": [
-            "testing"
-          ]
-        }
-      ],
-      "exports": [
-        "TestTemplateContractCompanionPath",
-        "TestTemplateContractDocumentDigestAndUnknownField",
-        "TestTemplateContractDocumentRejectsOversizeAndInvalidUTF8"
-      ],
-      "totalLines": 64,
-      "hasStructuralAnalysis": true
-    },
     "companion.go": {
       "filePath": "companion.go",
       "contentHash": "144f38b16ead46ee373a1e69de3b70028cbf272dd20a3916e6719f3c6910a0de",
       "functions": [
         {
           "name": "DecodeTemplateContractDocument",
+          "owner": "",
           "params": [
             "payload"
           ],
@@ -407,6 +717,7 @@
         },
         {
           "name": "ValidateTemplateContractDocument",
+          "owner": "",
           "params": [
             "document"
           ],
@@ -416,6 +727,7 @@
         },
         {
           "name": "CanonicalTemplateContractDigest",
+          "owner": "",
           "params": [
             "document"
           ],
@@ -425,6 +737,7 @@
         },
         {
           "name": "TemplateContractCompanionPath",
+          "owner": "",
           "params": [
             "template"
           ],
@@ -434,6 +747,7 @@
         },
         {
           "name": "TemplateContract",
+          "owner": "TemplateContractDocument",
           "params": [],
           "returnType": "TemplateContract",
           "exported": true,
@@ -441,6 +755,7 @@
         },
         {
           "name": "safeCompanionPath",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -450,6 +765,7 @@
         },
         {
           "name": "canonicalStrings",
+          "owner": "",
           "params": [
             "values"
           ],
@@ -459,6 +775,7 @@
         },
         {
           "name": "equalStringSlices",
+          "owner": "",
           "params": [
             "left",
             "right"
@@ -601,12 +918,68 @@
       "totalLines": 212,
       "hasStructuralAnalysis": true
     },
+    "companion_test.go": {
+      "filePath": "companion_test.go",
+      "contentHash": "986927c4ad88873a1772931f27e678e3e9edfc608aa6dc7b9a28b96dc4563623",
+      "functions": [
+        {
+          "name": "TestTemplateContractCompanionPath",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "TestTemplateContractDocumentDigestAndUnknownField",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "TestTemplateContractDocumentRejectsOversizeAndInvalidUTF8",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        }
+      ],
+      "exports": [
+        "TestTemplateContractCompanionPath",
+        "TestTemplateContractDocumentDigestAndUnknownField",
+        "TestTemplateContractDocumentRejectsOversizeAndInvalidUTF8"
+      ],
+      "totalLines": 64,
+      "hasStructuralAnalysis": true
+    },
     "compatibility_v010_test.go": {
       "filePath": "compatibility_v010_test.go",
       "contentHash": "ac1cb98e862ec025f2a09e5fd9c6fe87a90de83cbb4363b638fdee1e42155f51",
       "functions": [
         {
           "name": "TestPrivateV010FixtureCompatibility",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -671,12 +1044,65 @@
       "totalLines": 92,
       "hasStructuralAnalysis": true
     },
+    "conformance/browse.go": {
+      "filePath": "conformance/browse.go",
+      "contentHash": "838a4ad8f6d7339feed6f5ab87c2418a3abfced4db63ea4cda57bc29051ebaa3",
+      "functions": [
+        {
+          "name": "BrowseCases",
+          "owner": "",
+          "params": [],
+          "returnType": "[]BrowseCase",
+          "exported": true,
+          "lineCount": 36
+        }
+      ],
+      "classes": [
+        {
+          "name": "BrowseCase",
+          "methods": [],
+          "properties": [
+            "Name",
+            "Records",
+            "Filters",
+            "Query",
+            "Dimensions",
+            "ExpectedRefs",
+            "ExpectedTotals",
+            "ExpectedGroups"
+          ],
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "imports": [
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "BrowseCase",
+        "BrowseCases"
+      ],
+      "totalLines": 55,
+      "hasStructuralAnalysis": true
+    },
     "conformance/conformance.go": {
       "filePath": "conformance/conformance.go",
       "contentHash": "5fe744347013e848fee90e55a53d553d35aa3e65742b073d986887a20c3133c0",
       "functions": [
         {
           "name": "MinimalCatalog",
+          "owner": "",
           "params": [],
           "returnType": "promptrepo.Catalog",
           "exported": true,
@@ -684,6 +1110,7 @@
         },
         {
           "name": "WriteCatalog",
+          "owner": "",
           "params": [
             "t",
             "root",
@@ -758,6 +1185,7 @@
       "functions": [
         {
           "name": "MinimalRepositorySetRequest",
+          "owner": "",
           "params": [],
           "returnType": "promptrepo.EffectiveRepositorySetRequest",
           "exported": true,
@@ -765,6 +1193,7 @@
         },
         {
           "name": "MinimalPolicyRequest",
+          "owner": "",
           "params": [
             "repository"
           ],
@@ -791,7 +1220,7 @@
     },
     "contract.go": {
       "filePath": "contract.go",
-      "contentHash": "f8ddd9cddb9a54f98b90cfb516bc6d477336f666ec4c959527b52838c22f0ce4",
+      "contentHash": "db2fdfd60266820ace3f57148bb43ce67d5f2c2cf2e78f8c6d8e906b0d706f20",
       "functions": [],
       "classes": [
         {
@@ -898,6 +1327,7 @@
           "name": "Catalog",
           "methods": [],
           "properties": [
+            "Discovery",
             "SchemaVersion",
             "Repository",
             "GeneratedAt",
@@ -905,7 +1335,7 @@
             "Solutions"
           ],
           "exported": true,
-          "lineCount": 7
+          "lineCount": 8
         },
         {
           "name": "Snapshot",
@@ -1342,435 +1772,226 @@
         "RenderRequest",
         "RenderResult"
       ],
-      "totalLines": 329,
+      "totalLines": 330,
       "hasStructuralAnalysis": true
     },
-    "document_parse.go": {
-      "filePath": "document_parse.go",
-      "contentHash": "91e24e42fb9513dfcc728f5098de9225b643efa92110b3294ab163971463f6cc",
+    "discovery.go": {
+      "filePath": "discovery.go",
+      "contentHash": "4ffb36123db8da0bfb14ffdddac43d39a20c2d044f916b6f5d0d888515c793ab",
       "functions": [
         {
-          "name": "DecodeDocument",
+          "name": "DiscoveryAnnotation",
+          "owner": "",
           "params": [
-            "document",
-            "payload"
+            "c",
+            "pkg",
+            "id",
+            "role",
+            "locale"
           ],
-          "returnType": "(LoadedDocument, error)",
+          "returnType": "TemplateDiscoveryAnnotation",
           "exported": true,
-          "lineCount": 65
-        },
-        {
-          "name": "decodeStrictJSON",
-          "params": [
-            "payload",
-            "maxDepth"
-          ],
-          "returnType": "(any, error)",
-          "exported": false,
-          "lineCount": 14
-        },
-        {
-          "name": "readJSONValue",
-          "params": [
-            "decoder",
-            "depth",
-            "maxDepth"
-          ],
-          "returnType": "(any, error)",
-          "exported": false,
-          "lineCount": 59
-        },
-        {
-          "name": "decodeStrictYAML",
-          "params": [
-            "payload",
-            "maxDepth"
-          ],
-          "returnType": "(any, error)",
-          "exported": false,
-          "lineCount": 15
-        },
-        {
-          "name": "yamlNodeToJSON",
-          "params": [
-            "node",
-            "depth",
-            "maxDepth"
-          ],
-          "returnType": "(any, error)",
-          "exported": false,
-          "lineCount": 65
-        },
-        {
-          "name": "decodeStrictJSONL",
-          "params": [
-            "payload",
-            "document"
-          ],
-          "returnType": "(map[string]jsonlRecord, string, int, int, error)",
-          "exported": false,
-          "lineCount": 56
-        },
-        {
-          "name": "canonicalizeValue",
-          "params": [
-            "value"
-          ],
-          "returnType": "([]byte, error)",
-          "exported": false,
-          "lineCount": 7
-        },
-        {
-          "name": "canonicalJSON",
-          "params": [
-            "payload"
-          ],
-          "returnType": "([]byte, error)",
-          "exported": false,
-          "lineCount": 7
+          "lineCount": 8
         }
       ],
       "classes": [
         {
-          "name": "jsonlRecord",
+          "name": "DiscoveryRequest",
           "methods": [],
           "properties": [
-            "id",
-            "start",
-            "end"
-          ],
-          "exported": false,
-          "lineCount": 5
-        }
-      ],
-      "imports": [
-        {
-          "source": "bufio",
-          "specifiers": [
-            "bufio"
-          ]
-        },
-        {
-          "source": "bytes",
-          "specifiers": [
-            "bytes"
-          ]
-        },
-        {
-          "source": "crypto/sha256",
-          "specifiers": [
-            "sha256"
-          ]
-        },
-        {
-          "source": "encoding/json",
-          "specifiers": [
-            "json"
-          ]
-        },
-        {
-          "source": "errors",
-          "specifiers": [
-            "errors"
-          ]
-        },
-        {
-          "source": "fmt",
-          "specifiers": [
-            "fmt"
-          ]
-        },
-        {
-          "source": "io",
-          "specifiers": [
-            "io"
-          ]
-        },
-        {
-          "source": "math",
-          "specifiers": [
-            "math"
-          ]
-        },
-        {
-          "source": "regexp",
-          "specifiers": [
-            "regexp"
-          ]
-        },
-        {
-          "source": "strconv",
-          "specifiers": [
-            "strconv"
-          ]
-        },
-        {
-          "source": "unicode/utf8",
-          "specifiers": [
-            "utf8"
-          ]
-        },
-        {
-          "source": "github.com/gowebpki/jcs",
-          "specifiers": [
-            "jcs"
-          ]
-        },
-        {
-          "source": "gopkg.in/yaml.v3",
-          "specifiers": [
-            "yaml.v3"
-          ]
-        }
-      ],
-      "exports": [
-        "DecodeDocument"
-      ],
-      "totalLines": 326,
-      "hasStructuralAnalysis": true
-    },
-    "document_selector.go": {
-      "filePath": "document_selector.go",
-      "contentHash": "d1b2378582ec4a8c16783b88f88647d01e39531b5a92403594e87901f1c175ee",
-      "functions": [
-        {
-          "name": "SelectLoadedDocument",
-          "params": [
-            "document",
-            "selector"
-          ],
-          "returnType": "(SelectedDocument, error)",
-          "exported": true,
-          "lineCount": 83
-        },
-        {
-          "name": "validateLoadedDocumentForSelection",
-          "params": [
-            "document"
-          ],
-          "returnType": "error",
-          "exported": false,
-          "lineCount": 21
-        },
-        {
-          "name": "parseDocumentSelector",
-          "params": [
-            "selector"
-          ],
-          "returnType": "(string, string, error)",
-          "exported": false,
-          "lineCount": 17
-        },
-        {
-          "name": "selectJSONPointer",
-          "params": [
-            "root",
-            "pointer"
-          ],
-          "returnType": "(any, error)",
-          "exported": false,
-          "lineCount": 29
-        },
-        {
-          "name": "decodeJSONPointerToken",
-          "params": [
-            "value"
-          ],
-          "returnType": "(string, bool)",
-          "exported": false,
-          "lineCount": 22
-        },
-        {
-          "name": "selectMarkdownHeading",
-          "params": [
-            "payload",
-            "heading"
-          ],
-          "returnType": "([]byte, error)",
-          "exported": false,
-          "lineCount": 42
-        },
-        {
-          "name": "parseMarkdownHeading",
-          "params": [
-            "line"
-          ],
-          "returnType": "(int, string, bool)",
-          "exported": false,
-          "lineCount": 23
-        },
-        {
-          "name": "containsStringValue",
-          "params": [
-            "values",
-            "expected"
-          ],
-          "returnType": "bool",
-          "exported": false,
-          "lineCount": 8
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "bytes",
-          "specifiers": [
-            "bytes"
-          ]
-        },
-        {
-          "source": "strconv",
-          "specifiers": [
-            "strconv"
-          ]
-        },
-        {
-          "source": "strings",
-          "specifiers": [
-            "strings"
-          ]
-        }
-      ],
-      "exports": [
-        "SelectLoadedDocument"
-      ],
-      "totalLines": 261,
-      "hasStructuralAnalysis": true
-    },
-    "document_test.go": {
-      "filePath": "document_test.go",
-      "contentHash": "d988c364defb94b3e6d2a160e5c4b5556fc60739d7fe631b787d7ca0ee8b62d4",
-      "functions": [
-        {
-          "name": "TestTemplateDocumentDescriptorPathAndBinding",
-          "params": [
-            "t"
+            "Repository",
+            "Category",
+            "Media",
+            "Consumer",
+            "Capability",
+            "Locale",
+            "Refresh",
+            "Offline",
+            "Limit",
+            "Offset"
           ],
           "exported": true,
-          "lineCount": 18
+          "lineCount": 12
         },
         {
-          "name": "TestDecodeTemplateDocumentDescriptorRejectsUnknownAndDuplicateFields",
-          "params": [
-            "t"
+          "name": "DiscoveryCounts",
+          "methods": [],
+          "properties": [
+            "Repositories",
+            "Solutions",
+            "Roles",
+            "Documents"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "DiscoverySource",
+          "methods": [],
+          "properties": [
+            "Reason",
+            "ID",
+            "SourceKind",
+            "Enabled",
+            "State",
+            "ErrorCode",
+            "Revision",
+            "PinnedRevision",
+            "FetchedAt",
+            "Stale",
+            "Counts",
+            "Matched",
+            "FilteredDocuments"
           ],
           "exported": true,
           "lineCount": 15
         },
         {
-          "name": "TestStructuredDocumentJSONAndYAMLCanonicalDigestMatch",
-          "params": [
-            "t"
+          "name": "DiscoveryTemplate",
+          "methods": [],
+          "properties": [
+            "Role",
+            "Locale",
+            "Title",
+            "Summary",
+            "Ref",
+            "OwnerRef",
+            "Digest",
+            "Media",
+            "Consumers",
+            "CompilerStatus",
+            "DuplicateOf"
           ],
           "exported": true,
-          "lineCount": 18
+          "lineCount": 13
         },
         {
-          "name": "TestStructuredDocumentRejectsDuplicateKeysAndUnsafeYAML",
-          "params": [
-            "t"
+          "name": "DiscoverySolution",
+          "methods": [],
+          "properties": [
+            "RepositoryID",
+            "PackageID",
+            "ID",
+            "Version",
+            "Title",
+            "Summary",
+            "Category",
+            "Capabilities",
+            "Templates"
           ],
           "exported": true,
-          "lineCount": 21
+          "lineCount": 11
         },
         {
-          "name": "TestDocumentFormatMismatchDepthAndUnicodeViolations",
-          "params": [
-            "t"
+          "name": "DiscoveryFacet",
+          "methods": [],
+          "properties": [
+            "Value",
+            "Documents"
           ],
           "exported": true,
-          "lineCount": 21
+          "lineCount": 4
         },
         {
-          "name": "TestJSONLLoadAndSelectors",
-          "params": [
-            "t"
+          "name": "DiscoveryResult",
+          "methods": [],
+          "properties": [
+            "Status",
+            "Sources",
+            "Counts",
+            "Matched",
+            "Returned",
+            "Remaining",
+            "Offset",
+            "Solutions",
+            "Categories",
+            "Capabilities",
+            "Consumers"
           ],
           "exported": true,
-          "lineCount": 35
+          "lineCount": 13
         },
         {
-          "name": "TestDocumentSelectorPointerHeadingAndDocumentProjectionBodyLeak",
-          "params": [
-            "t"
+          "name": "RepositoryPatch",
+          "methods": [],
+          "properties": [
+            "Source",
+            "Revision",
+            "Trust",
+            "CredentialRef"
           ],
           "exported": true,
-          "lineCount": 61
+          "lineCount": 6
         },
         {
-          "name": "TestTemplateAddressAcceptsJSONLIDSelector",
-          "params": [
-            "t"
+          "name": "EikonaCatalog",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Entries"
           ],
           "exported": true,
-          "lineCount": 10
+          "lineCount": 4
         },
         {
-          "name": "testDocumentDescriptor",
-          "params": [
-            "t",
-            "format",
-            "templatePath",
-            "body"
+          "name": "EikonaTemplate",
+          "methods": [],
+          "properties": [
+            "ID",
+            "Title",
+            "Summary",
+            "Kind",
+            "Category",
+            "Version",
+            "Digest",
+            "Media",
+            "OwnerRef"
           ],
-          "returnType": "TemplateDocumentDescriptor",
-          "exported": false,
-          "lineCount": 26
+          "exported": true,
+          "lineCount": 11
         },
         {
-          "name": "resignDocumentDescriptor",
-          "params": [
-            "t",
-            "document"
+          "name": "TemplateDiscoveryAnnotation",
+          "methods": [],
+          "properties": [
+            "PackageID",
+            "SolutionID",
+            "Role",
+            "Locale",
+            "Title",
+            "Summary",
+            "Media",
+            "Consumers",
+            "OwnerRef",
+            "CompilerStatus"
           ],
-          "exported": false,
-          "lineCount": 8
+          "exported": true,
+          "lineCount": 12
         }
       ],
-      "classes": [],
       "imports": [
         {
-          "source": "bytes",
+          "source": "time",
           "specifiers": [
-            "bytes"
-          ]
-        },
-        {
-          "source": "encoding/json",
-          "specifiers": [
-            "json"
-          ]
-        },
-        {
-          "source": "strings",
-          "specifiers": [
-            "strings"
-          ]
-        },
-        {
-          "source": "testing",
-          "specifiers": [
-            "testing"
-          ]
-        },
-        {
-          "source": "gopkg.in/yaml.v3",
-          "specifiers": [
-            "yaml.v3"
+            "time"
           ]
         }
       ],
       "exports": [
-        "TestTemplateDocumentDescriptorPathAndBinding",
-        "TestDecodeTemplateDocumentDescriptorRejectsUnknownAndDuplicateFields",
-        "TestStructuredDocumentJSONAndYAMLCanonicalDigestMatch",
-        "TestStructuredDocumentRejectsDuplicateKeysAndUnsafeYAML",
-        "TestDocumentFormatMismatchDepthAndUnicodeViolations",
-        "TestJSONLLoadAndSelectors",
-        "TestDocumentSelectorPointerHeadingAndDocumentProjectionBodyLeak",
-        "TestTemplateAddressAcceptsJSONLIDSelector"
+        "DiscoveryRequest",
+        "DiscoveryCounts",
+        "DiscoverySource",
+        "DiscoveryTemplate",
+        "DiscoverySolution",
+        "DiscoveryFacet",
+        "DiscoveryResult",
+        "RepositoryPatch",
+        "EikonaCatalog",
+        "EikonaTemplate",
+        "TemplateDiscoveryAnnotation",
+        "DiscoveryAnnotation"
       ],
-      "totalLines": 254,
+      "totalLines": 138,
       "hasStructuralAnalysis": true
     },
     "document.go": {
@@ -1779,6 +2000,7 @@
       "functions": [
         {
           "name": "DecodeTemplateDocumentDescriptor",
+          "owner": "",
           "params": [
             "payload"
           ],
@@ -1788,6 +2010,7 @@
         },
         {
           "name": "ValidateTemplateDocumentDescriptor",
+          "owner": "",
           "params": [
             "document"
           ],
@@ -1797,6 +2020,7 @@
         },
         {
           "name": "CanonicalTemplateDocumentDescriptorDigest",
+          "owner": "",
           "params": [
             "document"
           ],
@@ -1806,6 +2030,7 @@
         },
         {
           "name": "ValidateTemplateDocumentDescriptorBinding",
+          "owner": "",
           "params": [
             "document",
             "solution",
@@ -1817,6 +2042,7 @@
         },
         {
           "name": "TemplateDocumentDescriptorPath",
+          "owner": "",
           "params": [
             "template"
           ],
@@ -1826,6 +2052,7 @@
         },
         {
           "name": "validateDocumentArtifactRef",
+          "owner": "",
           "params": [
             "reference"
           ],
@@ -1835,6 +2062,7 @@
         },
         {
           "name": "documentFormatContract",
+          "owner": "",
           "params": [
             "format"
           ],
@@ -1844,6 +2072,7 @@
         },
         {
           "name": "pathHasAnyExtension",
+          "owner": "",
           "params": [
             "value",
             "extensions"
@@ -1854,6 +2083,7 @@
         },
         {
           "name": "digestBytes",
+          "owner": "",
           "params": [
             "payload"
           ],
@@ -2116,12 +2346,1060 @@
       "totalLines": 331,
       "hasStructuralAnalysis": true
     },
+    "document_parse.go": {
+      "filePath": "document_parse.go",
+      "contentHash": "91e24e42fb9513dfcc728f5098de9225b643efa92110b3294ab163971463f6cc",
+      "functions": [
+        {
+          "name": "DecodeDocument",
+          "owner": "",
+          "params": [
+            "document",
+            "payload"
+          ],
+          "returnType": "(LoadedDocument, error)",
+          "exported": true,
+          "lineCount": 65
+        },
+        {
+          "name": "decodeStrictJSON",
+          "owner": "",
+          "params": [
+            "payload",
+            "maxDepth"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "readJSONValue",
+          "owner": "",
+          "params": [
+            "decoder",
+            "depth",
+            "maxDepth"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 59
+        },
+        {
+          "name": "decodeStrictYAML",
+          "owner": "",
+          "params": [
+            "payload",
+            "maxDepth"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "yamlNodeToJSON",
+          "owner": "",
+          "params": [
+            "node",
+            "depth",
+            "maxDepth"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 65
+        },
+        {
+          "name": "decodeStrictJSONL",
+          "owner": "",
+          "params": [
+            "payload",
+            "document"
+          ],
+          "returnType": "(map[string]jsonlRecord, string, int, int, error)",
+          "exported": false,
+          "lineCount": 56
+        },
+        {
+          "name": "canonicalizeValue",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "canonicalJSON",
+          "owner": "",
+          "params": [
+            "payload"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "classes": [
+        {
+          "name": "jsonlRecord",
+          "methods": [],
+          "properties": [
+            "id",
+            "start",
+            "end"
+          ],
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "bufio",
+          "specifiers": [
+            "bufio"
+          ]
+        },
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "errors",
+          "specifiers": [
+            "errors"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "math",
+          "specifiers": [
+            "math"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strconv",
+          "specifiers": [
+            "strconv"
+          ]
+        },
+        {
+          "source": "unicode/utf8",
+          "specifiers": [
+            "utf8"
+          ]
+        },
+        {
+          "source": "github.com/gowebpki/jcs",
+          "specifiers": [
+            "jcs"
+          ]
+        },
+        {
+          "source": "gopkg.in/yaml.v3",
+          "specifiers": [
+            "yaml.v3"
+          ]
+        }
+      ],
+      "exports": [
+        "DecodeDocument"
+      ],
+      "totalLines": 326,
+      "hasStructuralAnalysis": true
+    },
+    "document_selector.go": {
+      "filePath": "document_selector.go",
+      "contentHash": "d1b2378582ec4a8c16783b88f88647d01e39531b5a92403594e87901f1c175ee",
+      "functions": [
+        {
+          "name": "SelectLoadedDocument",
+          "owner": "",
+          "params": [
+            "document",
+            "selector"
+          ],
+          "returnType": "(SelectedDocument, error)",
+          "exported": true,
+          "lineCount": 83
+        },
+        {
+          "name": "validateLoadedDocumentForSelection",
+          "owner": "",
+          "params": [
+            "document"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "parseDocumentSelector",
+          "owner": "",
+          "params": [
+            "selector"
+          ],
+          "returnType": "(string, string, error)",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "selectJSONPointer",
+          "owner": "",
+          "params": [
+            "root",
+            "pointer"
+          ],
+          "returnType": "(any, error)",
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "decodeJSONPointerToken",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "(string, bool)",
+          "exported": false,
+          "lineCount": 22
+        },
+        {
+          "name": "selectMarkdownHeading",
+          "owner": "",
+          "params": [
+            "payload",
+            "heading"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": false,
+          "lineCount": 42
+        },
+        {
+          "name": "parseMarkdownHeading",
+          "owner": "",
+          "params": [
+            "line"
+          ],
+          "returnType": "(int, string, bool)",
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "containsStringValue",
+          "owner": "",
+          "params": [
+            "values",
+            "expected"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "strconv",
+          "specifiers": [
+            "strconv"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "SelectLoadedDocument"
+      ],
+      "totalLines": 261,
+      "hasStructuralAnalysis": true
+    },
+    "document_test.go": {
+      "filePath": "document_test.go",
+      "contentHash": "d988c364defb94b3e6d2a160e5c4b5556fc60739d7fe631b787d7ca0ee8b62d4",
+      "functions": [
+        {
+          "name": "TestTemplateDocumentDescriptorPathAndBinding",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "TestDecodeTemplateDocumentDescriptorRejectsUnknownAndDuplicateFields",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "TestStructuredDocumentJSONAndYAMLCanonicalDigestMatch",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "TestStructuredDocumentRejectsDuplicateKeysAndUnsafeYAML",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "TestDocumentFormatMismatchDepthAndUnicodeViolations",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "TestJSONLLoadAndSelectors",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "TestDocumentSelectorPointerHeadingAndDocumentProjectionBodyLeak",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 61
+        },
+        {
+          "name": "TestTemplateAddressAcceptsJSONLIDSelector",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "testDocumentDescriptor",
+          "owner": "",
+          "params": [
+            "t",
+            "format",
+            "templatePath",
+            "body"
+          ],
+          "returnType": "TemplateDocumentDescriptor",
+          "exported": false,
+          "lineCount": 26
+        },
+        {
+          "name": "resignDocumentDescriptor",
+          "owner": "",
+          "params": [
+            "t",
+            "document"
+          ],
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "gopkg.in/yaml.v3",
+          "specifiers": [
+            "yaml.v3"
+          ]
+        }
+      ],
+      "exports": [
+        "TestTemplateDocumentDescriptorPathAndBinding",
+        "TestDecodeTemplateDocumentDescriptorRejectsUnknownAndDuplicateFields",
+        "TestStructuredDocumentJSONAndYAMLCanonicalDigestMatch",
+        "TestStructuredDocumentRejectsDuplicateKeysAndUnsafeYAML",
+        "TestDocumentFormatMismatchDepthAndUnicodeViolations",
+        "TestJSONLLoadAndSelectors",
+        "TestDocumentSelectorPointerHeadingAndDocumentProjectionBodyLeak",
+        "TestTemplateAddressAcceptsJSONLIDSelector"
+      ],
+      "totalLines": 254,
+      "hasStructuralAnalysis": true
+    },
+    "engine/browse.go": {
+      "filePath": "engine/browse.go",
+      "contentHash": "81370b5eccd3436c2c8def3470beabb696da2560f5715eca4129dcd5f47e2013",
+      "functions": [
+        {
+          "name": "Browse",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.BrowseResult, error)",
+          "exported": true,
+          "lineCount": 119
+        },
+        {
+          "name": "browseSolutionKey",
+          "owner": "",
+          "params": [
+            "s"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "browseSortValue",
+          "owner": "",
+          "params": [
+            "s",
+            "key"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 11
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "Browse"
+      ],
+      "totalLines": 143,
+      "hasStructuralAnalysis": true
+    },
+    "engine/browse_test.go": {
+      "filePath": "engine/browse_test.go",
+      "contentHash": "d76a9cb3945b56ab0ccf4e8d34ddf983939a4c5dc2fdd23c4b8c15acc27a98de",
+      "functions": [
+        {
+          "name": "TestBrowseFiltersStatsAndPagination",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 24
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        }
+      ],
+      "exports": [
+        "TestBrowseFiltersStatsAndPagination"
+      ],
+      "totalLines": 34,
+      "hasStructuralAnalysis": true
+    },
+    "engine/discovery.go": {
+      "filePath": "engine/discovery.go",
+      "contentHash": "91cfd3ce449efbe8dffb82ca3f7a35a8ff6dd1bcf95010ef2bc343a6e4744825",
+      "functions": [
+        {
+          "name": "SetRepository",
+          "owner": "Manager",
+          "params": [
+            "_",
+            "id",
+            "patch"
+          ],
+          "returnType": "(promptrepo.RepositoryView, error)",
+          "exported": true,
+          "lineCount": 36
+        },
+        {
+          "name": "refreshDiscovery",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "profiles",
+            "before"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 57
+        },
+        {
+          "name": "Discover",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "req"
+          ],
+          "returnType": "(promptrepo.DiscoveryResult, error)",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "discoveryState",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "req",
+            "selected"
+          ],
+          "returnType": "(*stateFile, error)",
+          "exported": false,
+          "lineCount": 40
+        },
+        {
+          "name": "projectDiscovery",
+          "owner": "Manager",
+          "params": [
+            "state",
+            "req"
+          ],
+          "returnType": "(promptrepo.DiscoveryResult, error)",
+          "exported": false,
+          "lineCount": 154
+        },
+        {
+          "name": "roleMetadata",
+          "owner": "",
+          "params": [
+            "s",
+            "t"
+          ],
+          "returnType": "([]string, []string)",
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "has",
+          "owner": "",
+          "params": [
+            "a",
+            "s"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "unique",
+          "owner": "",
+          "params": [
+            "a"
+          ],
+          "returnType": "[]string",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "addCounts",
+          "owner": "",
+          "params": [
+            "a",
+            "b"
+          ],
+          "returnType": "promptrepo.DiscoveryCounts",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "countSolutions",
+          "owner": "",
+          "params": [
+            "ss"
+          ],
+          "returnType": "promptrepo.DiscoveryCounts",
+          "exported": false,
+          "lineCount": 12
+        },
+        {
+          "name": "countRows",
+          "owner": "",
+          "params": [
+            "ss"
+          ],
+          "returnType": "promptrepo.DiscoveryCounts",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "facets",
+          "owner": "",
+          "params": [
+            "m"
+          ],
+          "returnType": "[]promptrepo.DiscoveryFacet",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "discoveryReason",
+          "owner": "",
+          "params": [
+            "h"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 29
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "errors",
+          "specifiers": [
+            "errors"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "reflect",
+          "specifiers": [
+            "reflect"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "sync",
+          "specifiers": [
+            "sync"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/source",
+          "specifiers": [
+            "source"
+          ]
+        }
+      ],
+      "exports": [
+        "SetRepository",
+        "Discover"
+      ],
+      "totalLines": 436,
+      "hasStructuralAnalysis": true
+    },
+    "engine/discovery_test.go": {
+      "filePath": "engine/discovery_test.go",
+      "contentHash": "074e009705d5555e7e41d05d41a07d0ac1c4b5bf1d2133bca1e72800c6867cd0",
+      "functions": [
+        {
+          "name": "Kind",
+          "owner": "discoveryAdapter",
+          "params": [],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Sync",
+          "owner": "discoveryAdapter",
+          "params": [
+            "ctx",
+            "p",
+            "_"
+          ],
+          "returnType": "(source.SyncResult, error)",
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "ReadTemplate",
+          "owner": "discoveryAdapter",
+          "params": [],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "discoveryManager",
+          "owner": "",
+          "params": [
+            "t",
+            "a",
+            "now"
+          ],
+          "returnType": "*Manager",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "addDiscoverySource",
+          "owner": "",
+          "params": [
+            "t",
+            "m",
+            "id"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "TestDiscoverCountsFiltersPaginationAndCache",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "TestDiscoverMissingDisabledAndSet",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "TestDiscoverConcurrencyAndRemovedSource",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 29
+        }
+      ],
+      "classes": [
+        {
+          "name": "discoveryAdapter",
+          "methods": [
+            "Kind",
+            "Sync",
+            "ReadTemplate"
+          ],
+          "properties": [
+            "mu",
+            "calls",
+            "active",
+            "peak",
+            "fail",
+            "entered",
+            "release"
+          ],
+          "exported": false,
+          "lineCount": 7
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "sync",
+          "specifiers": [
+            "sync"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/source",
+          "specifiers": [
+            "source"
+          ]
+        }
+      ],
+      "exports": [
+        "Kind",
+        "Sync",
+        "ReadTemplate",
+        "TestDiscoverCountsFiltersPaginationAndCache",
+        "TestDiscoverMissingDisabledAndSet",
+        "TestDiscoverConcurrencyAndRemovedSource"
+      ],
+      "totalLines": 161,
+      "hasStructuralAnalysis": true
+    },
+    "engine/document.go": {
+      "filePath": "engine/document.go",
+      "contentHash": "355830ae923e1e84c58c896b7bdc6cb4e3372ee04ed1b75220642202635fcc54",
+      "functions": [
+        {
+          "name": "ResolveDocumentDescriptor",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.ResolvedDocumentDescriptor, error)",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "LoadDocument",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.LoadedDocument, error)",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "SelectDocument",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.SelectedDocument, error)",
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "resolveDocumentDescriptorForDetails",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "details"
+          ],
+          "returnType": "(promptrepo.ResolvedDocumentDescriptor, error)",
+          "exported": false,
+          "lineCount": 31
+        },
+        {
+          "name": "loadDocumentForDetails",
+          "owner": "Manager",
+          "params": [
+            "ctx",
+            "details"
+          ],
+          "returnType": "(promptrepo.LoadedDocument, error)",
+          "exported": false,
+          "lineCount": 26
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/source",
+          "specifiers": [
+            "source"
+          ]
+        }
+      ],
+      "exports": [
+        "ResolveDocumentDescriptor",
+        "LoadDocument",
+        "SelectDocument"
+      ],
+      "totalLines": 116,
+      "hasStructuralAnalysis": true
+    },
     "engine/document_test.go": {
       "filePath": "engine/document_test.go",
       "contentHash": "9054b30d9e68a469ced76cbee335516241e637c67c1ad721870ecada3c104deb",
       "functions": [
         {
           "name": "TestManagerLoadsAndSelectsStructuredDocument",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -2130,6 +3408,7 @@
         },
         {
           "name": "TestManagerRejectsMissingAndStaleDocumentDescriptor",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -2138,6 +3417,7 @@
         },
         {
           "name": "newStructuredDocumentManager",
+          "owner": "",
           "params": [
             "t",
             "repositoryRoot"
@@ -2148,6 +3428,7 @@
         },
         {
           "name": "writeStructuredDocumentRepository",
+          "owner": "",
           "params": [
             "t",
             "root",
@@ -2160,6 +3441,7 @@
         },
         {
           "name": "digestForTest",
+          "owner": "",
           "params": [
             "payload"
           ],
@@ -2244,398 +3526,13 @@
       "totalLines": 177,
       "hasStructuralAnalysis": true
     },
-    "engine/document.go": {
-      "filePath": "engine/document.go",
-      "contentHash": "355830ae923e1e84c58c896b7bdc6cb4e3372ee04ed1b75220642202635fcc54",
-      "functions": [
-        {
-          "name": "ResolveDocumentDescriptor",
-          "params": [
-            "ctx",
-            "request"
-          ],
-          "returnType": "(promptrepo.ResolvedDocumentDescriptor, error)",
-          "exported": true,
-          "lineCount": 7
-        },
-        {
-          "name": "LoadDocument",
-          "params": [
-            "ctx",
-            "request"
-          ],
-          "returnType": "(promptrepo.LoadedDocument, error)",
-          "exported": true,
-          "lineCount": 10
-        },
-        {
-          "name": "SelectDocument",
-          "params": [
-            "ctx",
-            "request"
-          ],
-          "returnType": "(promptrepo.SelectedDocument, error)",
-          "exported": true,
-          "lineCount": 21
-        },
-        {
-          "name": "resolveDocumentDescriptorForDetails",
-          "params": [
-            "ctx",
-            "details"
-          ],
-          "returnType": "(promptrepo.ResolvedDocumentDescriptor, error)",
-          "exported": false,
-          "lineCount": 31
-        },
-        {
-          "name": "loadDocumentForDetails",
-          "params": [
-            "ctx",
-            "details"
-          ],
-          "returnType": "(promptrepo.LoadedDocument, error)",
-          "exported": false,
-          "lineCount": 26
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "context",
-          "specifiers": [
-            "context"
-          ]
-        },
-        {
-          "source": "strings",
-          "specifiers": [
-            "strings"
-          ]
-        },
-        {
-          "source": "github.com/yeisme/promptrepo",
-          "specifiers": [
-            "promptrepo"
-          ]
-        },
-        {
-          "source": "github.com/yeisme/promptrepo/source",
-          "specifiers": [
-            "source"
-          ]
-        }
-      ],
-      "exports": [
-        "ResolveDocumentDescriptor",
-        "LoadDocument",
-        "SelectDocument"
-      ],
-      "totalLines": 116,
-      "hasStructuralAnalysis": true
-    },
-    "engine/engine_test.go": {
-      "filePath": "engine/engine_test.go",
-      "contentHash": "8182e034f6cef5bd7746e677986e981488e7413acf0dd624bda83dcacf4388e2",
-      "functions": [
-        {
-          "name": "TestRepositorySearchResolveAndStage",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 48
-        },
-        {
-          "name": "TestFutureStateSchemaFailsClosed",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 14
-        },
-        {
-          "name": "TestStaleWriterLockIsRecovered",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 19
-        },
-        {
-          "name": "TestInspectAndPreviewAreSafeAndNonExecuting",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 64
-        },
-        {
-          "name": "TestResolveTemplateContractCompanion",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 30
-        },
-        {
-          "name": "TestContractConsistencyMatchesSourceGuarantee",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 11
-        },
-        {
-          "name": "TestPreviewRejectsUndeclaredPlaceholders",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 23
-        },
-        {
-          "name": "TestInspectDoesNotReadTemplateBody",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 23
-        },
-        {
-          "name": "TestInspectRightsBlockedDoesNotSuggestSupplyingInputs",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 24
-        },
-        {
-          "name": "TestAddressQualifiersAndSelectorsFailClosed",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 35
-        },
-        {
-          "name": "TestAddressPathOnlyAndRolePathMismatch",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 25
-        },
-        {
-          "name": "TestAddressDuplicateMatchesFailClosed",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 20
-        },
-        {
-          "name": "TestSyncStateRemainsV020Shaped",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 25
-        },
-        {
-          "name": "TestManagerRejectsMalformedTemplateContractDigest",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 27
-        },
-        {
-          "name": "TestNormalizeSearchHandlesInvalidUTF8",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 6
-        },
-        {
-          "name": "writeFixtureCatalog",
-          "params": [
-            "t",
-            "root"
-          ],
-          "exported": false,
-          "lineCount": 25
-        },
-        {
-          "name": "writePreviewCatalog",
-          "params": [
-            "t",
-            "root",
-            "body"
-          ],
-          "exported": false,
-          "lineCount": 3
-        },
-        {
-          "name": "writePreviewCatalogWithRights",
-          "params": [
-            "t",
-            "root",
-            "body",
-            "rights"
-          ],
-          "exported": false,
-          "lineCount": 23
-        },
-        {
-          "name": "previewContract",
-          "params": [],
-          "returnType": "promptrepo.TemplateContract",
-          "exported": false,
-          "lineCount": 4
-        },
-        {
-          "name": "writePreviewContractCompanion",
-          "params": [
-            "t",
-            "root",
-            "body"
-          ],
-          "exported": false,
-          "lineCount": 28
-        },
-        {
-          "name": "writeDuplicateTemplateCatalog",
-          "params": [
-            "t",
-            "root"
-          ],
-          "exported": false,
-          "lineCount": 25
-        },
-        {
-          "name": "containsString",
-          "params": [
-            "value",
-            "part"
-          ],
-          "returnType": "bool",
-          "exported": false,
-          "lineCount": 3
-        },
-        {
-          "name": "stringContains",
-          "params": [
-            "value",
-            "part"
-          ],
-          "returnType": "bool",
-          "exported": false,
-          "lineCount": 8
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "context",
-          "specifiers": [
-            "context"
-          ]
-        },
-        {
-          "source": "crypto/sha256",
-          "specifiers": [
-            "sha256"
-          ]
-        },
-        {
-          "source": "encoding/hex",
-          "specifiers": [
-            "hex"
-          ]
-        },
-        {
-          "source": "encoding/json",
-          "specifiers": [
-            "json"
-          ]
-        },
-        {
-          "source": "net/url",
-          "specifiers": [
-            "url"
-          ]
-        },
-        {
-          "source": "os",
-          "specifiers": [
-            "os"
-          ]
-        },
-        {
-          "source": "path/filepath",
-          "specifiers": [
-            "filepath"
-          ]
-        },
-        {
-          "source": "sort",
-          "specifiers": [
-            "sort"
-          ]
-        },
-        {
-          "source": "strings",
-          "specifiers": [
-            "strings"
-          ]
-        },
-        {
-          "source": "testing",
-          "specifiers": [
-            "testing"
-          ]
-        },
-        {
-          "source": "time",
-          "specifiers": [
-            "time"
-          ]
-        },
-        {
-          "source": "github.com/yeisme/promptrepo",
-          "specifiers": [
-            "promptrepo"
-          ]
-        }
-      ],
-      "exports": [
-        "TestRepositorySearchResolveAndStage",
-        "TestFutureStateSchemaFailsClosed",
-        "TestStaleWriterLockIsRecovered",
-        "TestInspectAndPreviewAreSafeAndNonExecuting",
-        "TestResolveTemplateContractCompanion",
-        "TestContractConsistencyMatchesSourceGuarantee",
-        "TestPreviewRejectsUndeclaredPlaceholders",
-        "TestInspectDoesNotReadTemplateBody",
-        "TestInspectRightsBlockedDoesNotSuggestSupplyingInputs",
-        "TestAddressQualifiersAndSelectorsFailClosed",
-        "TestAddressPathOnlyAndRolePathMismatch",
-        "TestAddressDuplicateMatchesFailClosed",
-        "TestSyncStateRemainsV020Shaped",
-        "TestManagerRejectsMalformedTemplateContractDigest",
-        "TestNormalizeSearchHandlesInvalidUTF8"
-      ],
-      "totalLines": 556,
-      "hasStructuralAnalysis": true
-    },
     "engine/engine.go": {
       "filePath": "engine/engine.go",
-      "contentHash": "06f9ba54509dc7d7a741502bc51a205eeffd6e476d598fe064e0a2a24c8b7cca",
+      "contentHash": "b127060716ca0f129a2ffa17a065dad55ea8fafb0058197f83a6f1ed7ec4c365",
       "functions": [
         {
           "name": "New",
+          "owner": "",
           "params": [
             "options"
           ],
@@ -2645,6 +3542,7 @@
         },
         {
           "name": "AddRepository",
+          "owner": "Manager",
           "params": [
             "_",
             "request"
@@ -2655,6 +3553,7 @@
         },
         {
           "name": "ListRepositories",
+          "owner": "Manager",
           "params": [
             "_",
             "_"
@@ -2665,6 +3564,7 @@
         },
         {
           "name": "ShowRepository",
+          "owner": "Manager",
           "params": [
             "_",
             "id"
@@ -2675,6 +3575,7 @@
         },
         {
           "name": "RemoveRepository",
+          "owner": "Manager",
           "params": [
             "_",
             "id"
@@ -2685,6 +3586,7 @@
         },
         {
           "name": "SetRepositoryEnabled",
+          "owner": "Manager",
           "params": [
             "_",
             "id",
@@ -2696,6 +3598,7 @@
         },
         {
           "name": "SyncRepositories",
+          "owner": "Manager",
           "params": [
             "ctx",
             "request"
@@ -2706,6 +3609,7 @@
         },
         {
           "name": "Search",
+          "owner": "Manager",
           "params": [
             "_",
             "request"
@@ -2716,6 +3620,7 @@
         },
         {
           "name": "Resolve",
+          "owner": "Manager",
           "params": [
             "_",
             "request"
@@ -2726,6 +3631,7 @@
         },
         {
           "name": "ReadTemplate",
+          "owner": "Manager",
           "params": [
             "ctx",
             "request"
@@ -2736,6 +3642,7 @@
         },
         {
           "name": "Stage",
+          "owner": "Manager",
           "params": [
             "ctx",
             "request"
@@ -2746,6 +3653,7 @@
         },
         {
           "name": "recordSyncFailure",
+          "owner": "Manager",
           "params": [
             "state",
             "id",
@@ -2757,6 +3665,7 @@
         },
         {
           "name": "statePath",
+          "owner": "Manager",
           "params": [],
           "returnType": "string",
           "exported": false,
@@ -2764,6 +3673,7 @@
         },
         {
           "name": "lockPath",
+          "owner": "Manager",
           "params": [],
           "returnType": "string",
           "exported": false,
@@ -2771,6 +3681,7 @@
         },
         {
           "name": "readState",
+          "owner": "Manager",
           "params": [],
           "returnType": "(*stateFile, error)",
           "exported": false,
@@ -2778,6 +3689,7 @@
         },
         {
           "name": "withWriteState",
+          "owner": "Manager",
           "params": [
             "update"
           ],
@@ -2787,6 +3699,7 @@
         },
         {
           "name": "acquireLock",
+          "owner": "Manager",
           "params": [],
           "returnType": "(func(), error)",
           "exported": false,
@@ -2794,6 +3707,7 @@
         },
         {
           "name": "writeState",
+          "owner": "Manager",
           "params": [
             "state"
           ],
@@ -2803,6 +3717,7 @@
         },
         {
           "name": "newState",
+          "owner": "",
           "params": [],
           "returnType": "*stateFile",
           "exported": false,
@@ -2810,6 +3725,7 @@
         },
         {
           "name": "ensureStateMaps",
+          "owner": "",
           "params": [
             "state"
           ],
@@ -2818,6 +3734,7 @@
         },
         {
           "name": "viewFor",
+          "owner": "",
           "params": [
             "state",
             "id"
@@ -2828,6 +3745,7 @@
         },
         {
           "name": "snapshotMetadata",
+          "owner": "",
           "params": [
             "snapshot"
           ],
@@ -2837,6 +3755,7 @@
         },
         {
           "name": "hasTemplateFor",
+          "owner": "",
           "params": [
             "templates",
             "role",
@@ -2848,6 +3767,7 @@
         },
         {
           "name": "selectedRepositories",
+          "owner": "",
           "params": [
             "state",
             "request"
@@ -2858,6 +3778,7 @@
         },
         {
           "name": "chooseLocale",
+          "owner": "",
           "params": [
             "solution",
             "requested",
@@ -2869,6 +3790,7 @@
         },
         {
           "name": "missingCapabilities",
+          "owner": "",
           "params": [
             "actual",
             "required"
@@ -2879,6 +3801,7 @@
         },
         {
           "name": "containsAll",
+          "owner": "",
           "params": [
             "actual",
             "required"
@@ -2889,6 +3812,7 @@
         },
         {
           "name": "searchScore",
+          "owner": "",
           "params": [
             "query",
             "display",
@@ -2899,7 +3823,21 @@
           "lineCount": 30
         },
         {
+          "name": "searchScoreAcrossLocales",
+          "owner": "",
+          "params": [
+            "query",
+            "selectedLocale",
+            "display",
+            "solution"
+          ],
+          "returnType": "(int, []string)",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
           "name": "normalizeSearch",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -2909,6 +3847,7 @@
         },
         {
           "name": "trustRank",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -2918,6 +3857,7 @@
         },
         {
           "name": "safeID",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -2927,6 +3867,7 @@
         },
         {
           "name": "safeErrorMessage",
+          "owner": "",
           "params": [
             "err"
           ],
@@ -3103,7 +4044,588 @@
         "ReadTemplate",
         "Stage"
       ],
-      "totalLines": 692,
+      "totalLines": 710,
+      "hasStructuralAnalysis": true
+    },
+    "engine/engine_test.go": {
+      "filePath": "engine/engine_test.go",
+      "contentHash": "cd8ce6f57fc2cf76afbc6ec1b7266da6b771e0bb2d0fa1d431f513ffb62fddd5",
+      "functions": [
+        {
+          "name": "TestRepositorySearchResolveAndStage",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 55
+        },
+        {
+          "name": "TestFutureStateSchemaFailsClosed",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "TestStaleWriterLockIsRecovered",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "TestInspectAndPreviewAreSafeAndNonExecuting",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 64
+        },
+        {
+          "name": "TestResolveTemplateContractCompanion",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "TestContractConsistencyMatchesSourceGuarantee",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "TestPreviewRejectsUndeclaredPlaceholders",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "TestInspectDoesNotReadTemplateBody",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "TestInspectRightsBlockedDoesNotSuggestSupplyingInputs",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "TestAddressQualifiersAndSelectorsFailClosed",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "TestAddressPathOnlyAndRolePathMismatch",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "TestAddressDuplicateMatchesFailClosed",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "TestSyncStateRemainsV020Shaped",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "TestManagerRejectsMalformedTemplateContractDigest",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "TestNormalizeSearchHandlesInvalidUTF8",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "writeFixtureCatalog",
+          "owner": "",
+          "params": [
+            "t",
+            "root"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "writePreviewCatalog",
+          "owner": "",
+          "params": [
+            "t",
+            "root",
+            "body"
+          ],
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "writePreviewCatalogWithRights",
+          "owner": "",
+          "params": [
+            "t",
+            "root",
+            "body",
+            "rights"
+          ],
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "previewContract",
+          "owner": "",
+          "params": [],
+          "returnType": "promptrepo.TemplateContract",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "writePreviewContractCompanion",
+          "owner": "",
+          "params": [
+            "t",
+            "root",
+            "body"
+          ],
+          "exported": false,
+          "lineCount": 28
+        },
+        {
+          "name": "writeDuplicateTemplateCatalog",
+          "owner": "",
+          "params": [
+            "t",
+            "root"
+          ],
+          "exported": false,
+          "lineCount": 25
+        },
+        {
+          "name": "containsString",
+          "owner": "",
+          "params": [
+            "value",
+            "part"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "stringContains",
+          "owner": "",
+          "params": [
+            "value",
+            "part"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "TestRepositorySearchResolveAndStage",
+        "TestFutureStateSchemaFailsClosed",
+        "TestStaleWriterLockIsRecovered",
+        "TestInspectAndPreviewAreSafeAndNonExecuting",
+        "TestResolveTemplateContractCompanion",
+        "TestContractConsistencyMatchesSourceGuarantee",
+        "TestPreviewRejectsUndeclaredPlaceholders",
+        "TestInspectDoesNotReadTemplateBody",
+        "TestInspectRightsBlockedDoesNotSuggestSupplyingInputs",
+        "TestAddressQualifiersAndSelectorsFailClosed",
+        "TestAddressPathOnlyAndRolePathMismatch",
+        "TestAddressDuplicateMatchesFailClosed",
+        "TestSyncStateRemainsV020Shaped",
+        "TestManagerRejectsMalformedTemplateContractDigest",
+        "TestNormalizeSearchHandlesInvalidUTF8"
+      ],
+      "totalLines": 563,
+      "hasStructuralAnalysis": true
+    },
+    "engine/graphkit_conformance_test.go": {
+      "filePath": "engine/graphkit_conformance_test.go",
+      "contentHash": "faea946431286fcbbc288acc500d40bed8d8bdc83939d35f047554dc0b61a472",
+      "functions": [
+        {
+          "name": "TestGraphKitConformancePinsClosureToOneGitSnapshot",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 72
+        },
+        {
+          "name": "TestGraphKitConformanceFailsClosed",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 37
+        },
+        {
+          "name": "newGraphKitGitManager",
+          "owner": "",
+          "params": [
+            "t",
+            "repositoryRoot"
+          ],
+          "returnType": "*Manager",
+          "exported": false,
+          "lineCount": 21
+        },
+        {
+          "name": "writeGraphKitRepository",
+          "owner": "",
+          "params": [
+            "t",
+            "root",
+            "extraChildRole",
+            "driftLens"
+          ],
+          "exported": false,
+          "lineCount": 80
+        },
+        {
+          "name": "writeGraphKitDescriptor",
+          "owner": "",
+          "params": [
+            "t",
+            "root",
+            "template"
+          ],
+          "exported": false,
+          "lineCount": 29
+        },
+        {
+          "name": "commitGraphKitRepository",
+          "owner": "",
+          "params": [
+            "t",
+            "root"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "runGraphKitGit",
+          "owner": "",
+          "params": [
+            "t",
+            "root"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "graphKitDigest",
+          "owner": "",
+          "params": [
+            "payload"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [
+        {
+          "name": "graphKitFixtureChild",
+          "methods": [],
+          "properties": [
+            "Role",
+            "Path",
+            "Digest",
+            "Selector",
+            "Expected"
+          ],
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "graphKitFixtureManifest",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Children"
+          ],
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "os/exec",
+          "specifiers": [
+            "exec"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "TestGraphKitConformancePinsClosureToOneGitSnapshot",
+        "TestGraphKitConformanceFailsClosed"
+      ],
+      "totalLines": 304,
+      "hasStructuralAnalysis": true
+    },
+    "engine/management.go": {
+      "filePath": "engine/management.go",
+      "contentHash": "5a174b7a2c14127cfd2e84620f86fb2a141dc2e81fd1e2947f07593cd995657a",
+      "functions": [
+        {
+          "name": "EffectiveRepositorySet",
+          "owner": "Manager",
+          "params": [
+            "_",
+            "request"
+          ],
+          "returnType": "(promptrepo.RepositorySet, error)",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
+          "name": "EvaluatePolicy",
+          "owner": "Manager",
+          "params": [
+            "_",
+            "request"
+          ],
+          "returnType": "(promptrepo.PolicyDecision, error)",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "EffectiveRepositorySet",
+        "EvaluatePolicy"
+      ],
+      "totalLines": 66,
       "hasStructuralAnalysis": true
     },
     "engine/management_test.go": {
@@ -3112,6 +4634,7 @@
       "functions": [
         {
           "name": "TestEffectiveRepositorySetUsesCanonicalUserStateWithoutWrites",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -3120,6 +4643,7 @@
         },
         {
           "name": "TestEvaluatePolicyAdapterIsSideEffectFree",
+          "owner": "",
           "params": [
             "t"
           ],
@@ -3185,71 +4709,13 @@
       "totalLines": 93,
       "hasStructuralAnalysis": true
     },
-    "engine/management.go": {
-      "filePath": "engine/management.go",
-      "contentHash": "5a174b7a2c14127cfd2e84620f86fb2a141dc2e81fd1e2947f07593cd995657a",
-      "functions": [
-        {
-          "name": "EffectiveRepositorySet",
-          "params": [
-            "_",
-            "request"
-          ],
-          "returnType": "(promptrepo.RepositorySet, error)",
-          "exported": true,
-          "lineCount": 45
-        },
-        {
-          "name": "EvaluatePolicy",
-          "params": [
-            "_",
-            "request"
-          ],
-          "returnType": "(promptrepo.PolicyDecision, error)",
-          "exported": true,
-          "lineCount": 3
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "context",
-          "specifiers": [
-            "context"
-          ]
-        },
-        {
-          "source": "sort",
-          "specifiers": [
-            "sort"
-          ]
-        },
-        {
-          "source": "strings",
-          "specifiers": [
-            "strings"
-          ]
-        },
-        {
-          "source": "github.com/yeisme/promptrepo",
-          "specifiers": [
-            "promptrepo"
-          ]
-        }
-      ],
-      "exports": [
-        "EffectiveRepositorySet",
-        "EvaluatePolicy"
-      ],
-      "totalLines": 66,
-      "hasStructuralAnalysis": true
-    },
     "engine/preview.go": {
       "filePath": "engine/preview.go",
       "contentHash": "d73058995ecb04716f4f145439c15d6ba56fa4feaa8ed734232d7a8ec8c3078c",
       "functions": [
         {
           "name": "ResolveTemplateContract",
+          "owner": "Manager",
           "params": [
             "ctx",
             "request"
@@ -3260,6 +4726,7 @@
         },
         {
           "name": "contractConsistency",
+          "owner": "",
           "params": [
             "sourceKind"
           ],
@@ -3269,6 +4736,7 @@
         },
         {
           "name": "Validate",
+          "owner": "Manager",
           "params": [
             "ctx",
             "request"
@@ -3279,6 +4747,7 @@
         },
         {
           "name": "Render",
+          "owner": "Manager",
           "params": [
             "_",
             "request"
@@ -3289,6 +4758,7 @@
         },
         {
           "name": "Inspect",
+          "owner": "Manager",
           "params": [
             "ctx",
             "request"
@@ -3299,6 +4769,7 @@
         },
         {
           "name": "Preview",
+          "owner": "Manager",
           "params": [
             "ctx",
             "request"
@@ -3309,6 +4780,7 @@
         },
         {
           "name": "resolveTemplateDetails",
+          "owner": "Manager",
           "params": [
             "ctx",
             "rawRef",
@@ -3321,6 +4793,7 @@
         },
         {
           "name": "parseAddressIfPresent",
+          "owner": "",
           "params": [
             "raw"
           ],
@@ -3330,6 +4803,7 @@
         },
         {
           "name": "inspectResult",
+          "owner": "",
           "params": [
             "details",
             "contract",
@@ -3341,6 +4815,7 @@
         },
         {
           "name": "nextAction",
+          "owner": "",
           "params": [
             "inputs",
             "issues",
@@ -3409,10 +4884,11 @@
     },
     "errors.go": {
       "filePath": "errors.go",
-      "contentHash": "82e2a089993f7199aefbee8de3c16e682480b45889fe987decfc874a27dc2c5f",
+      "contentHash": "08e8fac8369e5a10bf07e140f84df0df05fdf00e267de3e0f13c8c100ae41bf5",
       "functions": [
         {
           "name": "Error",
+          "owner": "Error",
           "params": [],
           "returnType": "string",
           "exported": true,
@@ -3420,6 +4896,7 @@
         },
         {
           "name": "Unwrap",
+          "owner": "Error",
           "params": [],
           "returnType": "error",
           "exported": true,
@@ -3427,6 +4904,7 @@
         },
         {
           "name": "NewError",
+          "owner": "",
           "params": [
             "code",
             "message",
@@ -3439,6 +4917,7 @@
         },
         {
           "name": "ErrorCode",
+          "owner": "",
           "params": [
             "err"
           ],
@@ -3479,7 +4958,7 @@
         "NewError",
         "ErrorCode"
       ],
-      "totalLines": 70,
+      "totalLines": 77,
       "hasStructuralAnalysis": true
     },
     "input.go": {
@@ -3488,6 +4967,7 @@
       "functions": [
         {
           "name": "ValidateTemplateContract",
+          "owner": "",
           "params": [
             "contract"
           ],
@@ -3497,6 +4977,7 @@
         },
         {
           "name": "Value",
+          "owner": "InputValidation",
           "params": [
             "name"
           ],
@@ -3506,6 +4987,7 @@
         },
         {
           "name": "validTemplateLicense",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -3515,6 +4997,7 @@
         },
         {
           "name": "ValidateTemplateInputs",
+          "owner": "",
           "params": [
             "inputs"
           ],
@@ -3524,6 +5007,7 @@
         },
         {
           "name": "ValidateInputValues",
+          "owner": "",
           "params": [
             "inputs",
             "supplied"
@@ -3534,6 +5018,7 @@
         },
         {
           "name": "addIssue",
+          "owner": "InputValidation",
           "params": [
             "issue"
           ],
@@ -3542,6 +5027,7 @@
         },
         {
           "name": "validateInputDefinitionConstraints",
+          "owner": "",
           "params": [
             "input"
           ],
@@ -3551,6 +5037,7 @@
         },
         {
           "name": "validateInputValue",
+          "owner": "",
           "params": [
             "input",
             "value"
@@ -3561,6 +5048,7 @@
         },
         {
           "name": "validInputType",
+          "owner": "",
           "params": [
             "inputType"
           ],
@@ -3570,6 +5058,7 @@
         },
         {
           "name": "integerValue",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -3579,6 +5068,7 @@
         },
         {
           "name": "numberValue",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -3588,6 +5078,7 @@
         },
         {
           "name": "containsValue",
+          "owner": "",
           "params": [
             "values",
             "want"
@@ -3598,6 +5089,7 @@
         },
         {
           "name": "validLocale",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -3607,6 +5099,7 @@
         },
         {
           "name": "invalidInputDefinition",
+          "owner": "",
           "params": [
             "name",
             "message"
@@ -3734,140 +5227,13 @@
       "totalLines": 325,
       "hasStructuralAnalysis": true
     },
-    "management_test.go": {
-      "filePath": "management_test.go",
-      "contentHash": "94887c2459578a9cc2af02f5ef2db2ece08480e1a10adc904c5f778266ee5e5d",
-      "functions": [
-        {
-          "name": "TestManagementContractOperationIDs",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 21
-        },
-        {
-          "name": "TestManagementConformanceFixtureHasEmbeddedServiceParity",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 28
-        },
-        {
-          "name": "TestRepositorySetPreferenceOrderAndDeterminism",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 57
-        },
-        {
-          "name": "TestPolicyDenyWinsOverExactAndProjectAllow",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 27
-        },
-        {
-          "name": "TestExactQuarantinedRepositoryRemainsBlocked",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 22
-        },
-        {
-          "name": "TestPolicyEvaluatesTrustRightsCapabilityAndOperation",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 34
-        },
-        {
-          "name": "TestManagementProjectionIsBodyAndCredentialFree",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 39
-        },
-        {
-          "name": "contains",
-          "params": [
-            "values",
-            "target"
-          ],
-          "returnType": "bool",
-          "exported": false,
-          "lineCount": 8
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "encoding/json",
-          "specifiers": [
-            "json"
-          ]
-        },
-        {
-          "source": "reflect",
-          "specifiers": [
-            "reflect"
-          ]
-        },
-        {
-          "source": "strings",
-          "specifiers": [
-            "strings"
-          ]
-        },
-        {
-          "source": "testing",
-          "specifiers": [
-            "testing"
-          ]
-        },
-        {
-          "source": "github.com/yeisme/promptrepo",
-          "specifiers": [
-            "promptrepo"
-          ]
-        },
-        {
-          "source": "github.com/yeisme/promptrepo/conformance",
-          "specifiers": [
-            "conformance"
-          ]
-        },
-        {
-          "source": "gopkg.in/yaml.v3",
-          "specifiers": [
-            "yaml.v3"
-          ]
-        }
-      ],
-      "exports": [
-        "TestManagementContractOperationIDs",
-        "TestManagementConformanceFixtureHasEmbeddedServiceParity",
-        "TestRepositorySetPreferenceOrderAndDeterminism",
-        "TestPolicyDenyWinsOverExactAndProjectAllow",
-        "TestExactQuarantinedRepositoryRemainsBlocked",
-        "TestPolicyEvaluatesTrustRightsCapabilityAndOperation",
-        "TestManagementProjectionIsBodyAndCredentialFree"
-      ],
-      "totalLines": 257,
-      "hasStructuralAnalysis": true
-    },
     "management.go": {
       "filePath": "management.go",
       "contentHash": "0a34338b60cb66803c7de0b96538d356897ad1775590c3ad42dade5a3f0e2b45",
       "functions": [
         {
           "name": "ComposeRepositorySet",
+          "owner": "",
           "params": [
             "request"
           ],
@@ -3877,6 +5243,7 @@
         },
         {
           "name": "EvaluateRepositoryPolicy",
+          "owner": "",
           "params": [
             "request"
           ],
@@ -3886,6 +5253,7 @@
         },
         {
           "name": "BuildManagementProjection",
+          "owner": "",
           "params": [
             "request"
           ],
@@ -3895,6 +5263,7 @@
         },
         {
           "name": "validRepositoryScope",
+          "owner": "",
           "params": [
             "scope"
           ],
@@ -3904,6 +5273,7 @@
         },
         {
           "name": "repositoryScopeRank",
+          "owner": "",
           "params": [
             "scope"
           ],
@@ -3913,6 +5283,7 @@
         },
         {
           "name": "selectionSourceForScope",
+          "owner": "",
           "params": [
             "scope"
           ],
@@ -3922,6 +5293,7 @@
         },
         {
           "name": "digestScopeRef",
+          "owner": "",
           "params": [
             "scope",
             "ref"
@@ -3932,6 +5304,7 @@
         },
         {
           "name": "combinedDigest",
+          "owner": "",
           "params": [
             "values"
           ],
@@ -3941,6 +5314,7 @@
         },
         {
           "name": "summarizeRepositoryHealth",
+          "owner": "",
           "params": [
             "entries"
           ],
@@ -3950,6 +5324,7 @@
         },
         {
           "name": "missingManagementCapabilities",
+          "owner": "",
           "params": [
             "actual",
             "required"
@@ -3960,6 +5335,7 @@
         },
         {
           "name": "managementTrustRank",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -3969,6 +5345,7 @@
         },
         {
           "name": "normalizeOrDefault",
+          "owner": "",
           "params": [
             "value",
             "fallback"
@@ -3979,6 +5356,7 @@
         },
         {
           "name": "firstNonEmpty",
+          "owner": "",
           "params": [],
           "returnType": "string",
           "exported": false,
@@ -3986,6 +5364,7 @@
         },
         {
           "name": "compactStrings",
+          "owner": "",
           "params": [
             "values"
           ],
@@ -3995,6 +5374,7 @@
         },
         {
           "name": "uniqueStrings",
+          "owner": "",
           "params": [
             "values"
           ],
@@ -4004,6 +5384,7 @@
         },
         {
           "name": "containsFold",
+          "owner": "",
           "params": [
             "values",
             "target"
@@ -4014,6 +5395,7 @@
         },
         {
           "name": "sortedKeys",
+          "owner": "",
           "params": [
             "values"
           ],
@@ -4333,41 +5715,414 @@
       "totalLines": 667,
       "hasStructuralAnalysis": true
     },
-    "ref_test.go": {
-      "filePath": "ref_test.go",
-      "contentHash": "16af21aaf61ee83963ee5981a12ed157315a58edc938c37c6ccf0b84dc9973b8",
+    "management_test.go": {
+      "filePath": "management_test.go",
+      "contentHash": "94887c2459578a9cc2af02f5ef2db2ece08480e1a10adc904c5f778266ee5e5d",
       "functions": [
         {
-          "name": "TestRefRoundTrip",
+          "name": "TestManagementContractOperationIDs",
+          "owner": "",
           "params": [
             "t"
           ],
           "exported": true,
-          "lineCount": 10
+          "lineCount": 21
         },
         {
-          "name": "TestRefRequiresExactVersion",
+          "name": "TestManagementConformanceFixtureHasEmbeddedServiceParity",
+          "owner": "",
           "params": [
             "t"
+          ],
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "TestRepositorySetPreferenceOrderAndDeterminism",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 57
+        },
+        {
+          "name": "TestPolicyDenyWinsOverExactAndProjectAllow",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "TestExactQuarantinedRepositoryRemainsBlocked",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "TestPolicyEvaluatesTrustRightsCapabilityAndOperation",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "TestManagementProjectionIsBodyAndCredentialFree",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 39
+        },
+        {
+          "name": "contains",
+          "owner": "",
+          "params": [
+            "values",
+            "target"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "reflect",
+          "specifiers": [
+            "reflect"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/conformance",
+          "specifiers": [
+            "conformance"
+          ]
+        },
+        {
+          "source": "gopkg.in/yaml.v3",
+          "specifiers": [
+            "yaml.v3"
+          ]
+        }
+      ],
+      "exports": [
+        "TestManagementContractOperationIDs",
+        "TestManagementConformanceFixtureHasEmbeddedServiceParity",
+        "TestRepositorySetPreferenceOrderAndDeterminism",
+        "TestPolicyDenyWinsOverExactAndProjectAllow",
+        "TestExactQuarantinedRepositoryRemainsBlocked",
+        "TestPolicyEvaluatesTrustRightsCapabilityAndOperation",
+        "TestManagementProjectionIsBodyAndCredentialFree"
+      ],
+      "totalLines": 257,
+      "hasStructuralAnalysis": true
+    },
+    "prompt_package.go": {
+      "filePath": "prompt_package.go",
+      "contentHash": "4d26010307a18ee2d736c4fd512f8d6eae3ef8d557afa7ef97208523c5d3529f",
+      "functions": [
+        {
+          "name": "RecipeOrder",
+          "owner": "",
+          "params": [
+            "recipe"
+          ],
+          "returnType": "([]string, error)",
+          "exported": true,
+          "lineCount": 75
+        },
+        {
+          "name": "PromptBytesDigest",
+          "owner": "",
+          "params": [
+            "body"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "CanonicalPromptJSON",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "DecodePromptJSON",
+          "owner": "",
+          "params": [
+            "body",
+            "target"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "PromptPackageDigest",
+          "owner": "",
+          "params": [
+            "manifest"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "SafePackagePath",
+          "owner": "",
+          "params": [
+            "name"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "ValidatePromptPackage",
+          "owner": "",
+          "params": [
+            "manifest"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 53
+        },
+        {
+          "name": "VerifyPromptPackageFiles",
+          "owner": "",
+          "params": [
+            "manifest",
+            "files"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [
+        {
+          "name": "RecipeV1",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "ID",
+            "Steps",
+            "Presets"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "RecipeStepV1",
+          "methods": [],
+          "properties": [
+            "ID",
+            "Ref",
+            "Role",
+            "Locale",
+            "DependsOn",
+            "Bindings",
+            "Output"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "InputBindingV1",
+          "methods": [],
+          "properties": [
+            "Kind",
+            "Ref"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "PackageFileV1",
+          "methods": [],
+          "properties": [
+            "Digest",
+            "Bytes",
+            "Kind"
           ],
           "exported": true,
           "lineCount": 5
         },
         {
-          "name": "TestTemplateAddressRoundTripUsesCanonicalOrder",
-          "params": [
-            "t"
+          "name": "PackageStepV1",
+          "methods": [],
+          "properties": [
+            "ID",
+            "Status",
+            "Path",
+            "Missing"
           ],
           "exported": true,
-          "lineCount": 10
+          "lineCount": 6
         },
         {
-          "name": "TestTemplateAddressRejectsInvalidFields",
+          "name": "PromptPackageV1",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Compiler",
+            "Recipe",
+            "Steps",
+            "Files",
+            "External",
+            "Digest"
+          ],
+          "exported": true,
+          "lineCount": 9
+        }
+      ],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "path",
+          "specifiers": [
+            "path"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/gowebpki/jcs",
+          "specifiers": [
+            "jcs"
+          ]
+        },
+        {
+          "source": "golang.org/x/text/unicode/norm",
+          "specifiers": [
+            "norm"
+          ]
+        }
+      ],
+      "exports": [
+        "RecipeV1",
+        "RecipeStepV1",
+        "InputBindingV1",
+        "RecipeOrder",
+        "PackageFileV1",
+        "PackageStepV1",
+        "PromptPackageV1",
+        "PromptBytesDigest",
+        "CanonicalPromptJSON",
+        "DecodePromptJSON",
+        "PromptPackageDigest",
+        "SafePackagePath",
+        "ValidatePromptPackage",
+        "VerifyPromptPackageFiles"
+      ],
+      "totalLines": 275,
+      "hasStructuralAnalysis": true
+    },
+    "prompt_package_test.go": {
+      "filePath": "prompt_package_test.go",
+      "contentHash": "275998c5e488b8f6126437bfd229fe6d4d946b3a174d2e00536baba08cd7e94e",
+      "functions": [
+        {
+          "name": "TestRecipeDependencyOrderAndCycle",
+          "owner": "",
           "params": [
             "t"
           ],
           "exported": true,
-          "lineCount": 25
+          "lineCount": 14
+        },
+        {
+          "name": "TestPackagePortablePathsAndTampering",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 21
         }
       ],
       "classes": [],
@@ -4380,12 +6135,10 @@
         }
       ],
       "exports": [
-        "TestRefRoundTrip",
-        "TestRefRequiresExactVersion",
-        "TestTemplateAddressRoundTripUsesCanonicalOrder",
-        "TestTemplateAddressRejectsInvalidFields"
+        "TestRecipeDependencyOrderAndCycle",
+        "TestPackagePortablePathsAndTampering"
       ],
-      "totalLines": 58,
+      "totalLines": 41,
       "hasStructuralAnalysis": true
     },
     "ref.go": {
@@ -4394,6 +6147,7 @@
       "functions": [
         {
           "name": "ParseRef",
+          "owner": "",
           "params": [
             "raw"
           ],
@@ -4403,6 +6157,7 @@
         },
         {
           "name": "FormatRef",
+          "owner": "",
           "params": [
             "ref"
           ],
@@ -4460,21 +6215,82 @@
       "totalLines": 52,
       "hasStructuralAnalysis": true
     },
+    "ref_test.go": {
+      "filePath": "ref_test.go",
+      "contentHash": "16af21aaf61ee83963ee5981a12ed157315a58edc938c37c6ccf0b84dc9973b8",
+      "functions": [
+        {
+          "name": "TestRefRoundTrip",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "TestRefRequiresExactVersion",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "TestTemplateAddressRoundTripUsesCanonicalOrder",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "TestTemplateAddressRejectsInvalidFields",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        }
+      ],
+      "exports": [
+        "TestRefRoundTrip",
+        "TestRefRequiresExactVersion",
+        "TestTemplateAddressRoundTripUsesCanonicalOrder",
+        "TestTemplateAddressRejectsInvalidFields"
+      ],
+      "totalLines": 58,
+      "hasStructuralAnalysis": true
+    },
     "render.go": {
       "filePath": "render.go",
-      "contentHash": "e198c5dd7721dfb536995feb36d8801b197190b41f5e9d80082e1062879e2d3a",
+      "contentHash": "4cc3a80674015c21246db1a8dc52d9a882f222d9e071d0cf7b7cdd7b237c9bc8",
       "functions": [
         {
           "name": "RenderTemplate",
+          "owner": "",
           "params": [
             "request"
           ],
           "returnType": "(RenderResult, error)",
           "exported": true,
-          "lineCount": 48
+          "lineCount": 56
         },
         {
           "name": "scanTemplatePlaceholders",
+          "owner": "",
           "params": [
             "body"
           ],
@@ -4484,6 +6300,7 @@
         },
         {
           "name": "isPlaceholderNameStart",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -4493,6 +6310,7 @@
         },
         {
           "name": "isPlaceholderNamePart",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -4549,15 +6367,383 @@
       "exports": [
         "RenderTemplate"
       ],
-      "totalLines": 109,
+      "totalLines": 117,
       "hasStructuralAnalysis": true
     },
-    "source/git.go": {
-      "filePath": "source/git.go",
-      "contentHash": "d7a431f1111326aa32d67cb5f50cc3a7e98c3efea22472c8f3e37264b0a3f87b",
+    "scripts/test-discovery.py": {
+      "filePath": "scripts/test-discovery.py",
+      "contentHash": "7a8979cac062d846ce36fba865cb79d467bf23e251ab22878343a00f95a246b5",
+      "functions": [
+        {
+          "name": "redact",
+          "params": [
+            "value"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "pathlib"
+          ]
+        },
+        {
+          "source": "re",
+          "specifiers": [
+            "re"
+          ]
+        },
+        {
+          "source": "subprocess",
+          "specifiers": [
+            "subprocess"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        }
+      ],
+      "exports": [
+        "redact"
+      ],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "source/credential.go": {
+      "filePath": "source/credential.go",
+      "contentHash": "bbaa3ac24041bd9c8dac878a30499aa799eaadc30ea633c4422f68658ecbf28b",
+      "functions": [
+        {
+          "name": "Sync",
+          "owner": "S3CredentialAdapter",
+          "params": [
+            "ctx",
+            "profile",
+            "cache"
+          ],
+          "returnType": "(SyncResult, error)",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "ReadTemplate",
+          "owner": "S3CredentialAdapter",
+          "params": [
+            "ctx",
+            "profile",
+            "snapshot",
+            "template",
+            "cache"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "ReadCompanion",
+          "owner": "S3CredentialAdapter",
+          "params": [
+            "ctx",
+            "profile",
+            "snapshot",
+            "companionPath",
+            "cache"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "fetchAuthorized",
+          "owner": "S3CredentialAdapter",
+          "params": [
+            "ctx",
+            "profile",
+            "objectPath",
+            "maxBytes",
+            "operation",
+            "failContext"
+          ],
+          "returnType": "([]byte, string, error)",
+          "exported": false,
+          "lineCount": 55
+        }
+      ],
+      "classes": [
+        {
+          "name": "CredentialGrant",
+          "methods": [],
+          "properties": [
+            "Consumer",
+            "Capability",
+            "Operation"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "CredentialResolution",
+          "methods": [],
+          "properties": [
+            "Secret"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "CredentialResolver",
+          "methods": [
+            "ResolveCredential"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "S3CredentialAdapter",
+          "methods": [
+            "Sync",
+            "ReadTemplate",
+            "ReadCompanion",
+            "fetchAuthorized"
+          ],
+          "properties": [
+            "Resolver",
+            "Consumer",
+            "Capability"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "net/http",
+          "specifiers": [
+            "http"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "CredentialGrant",
+        "CredentialResolution",
+        "CredentialResolver",
+        "S3CredentialAdapter",
+        "Sync",
+        "ReadTemplate",
+        "ReadCompanion"
+      ],
+      "totalLines": 155,
+      "hasStructuralAnalysis": true
+    },
+    "source/credential_test.go": {
+      "filePath": "source/credential_test.go",
+      "contentHash": "aeb9ddf45658d29900e163c646bcd6989016ef67390a3784afff3a32fc982d7a",
+      "functions": [
+        {
+          "name": "ResolveCredential",
+          "owner": "fakeResolver",
+          "params": [
+            "_",
+            "ref",
+            "grant"
+          ],
+          "returnType": "(CredentialResolution, error)",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "newCredentialTestServer",
+          "owner": "",
+          "params": [
+            "t",
+            "requireAuth",
+            "hits"
+          ],
+          "returnType": "*httptest.Server",
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "TestS3CredentialAdapterResolvesAtUsePoint",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 47
+        },
+        {
+          "name": "TestS3CredentialAdapterDenialFailsClosedWithoutRequest",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "TestS3CredentialAdapterRevocationIsImmediate",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 27
+        },
+        {
+          "name": "TestS3CredentialAdapterWithoutRefStaysUnsigned",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 20
+        }
+      ],
+      "classes": [
+        {
+          "name": "fakeResolver",
+          "methods": [
+            "ResolveCredential"
+          ],
+          "properties": [
+            "calls",
+            "deny",
+            "got"
+          ],
+          "exported": false,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "errors",
+          "specifiers": [
+            "errors"
+          ]
+        },
+        {
+          "source": "net/http",
+          "specifiers": [
+            "http"
+          ]
+        },
+        {
+          "source": "net/http/httptest",
+          "specifiers": [
+            "httptest"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "sync/atomic",
+          "specifiers": [
+            "atomic"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "ResolveCredential",
+        "TestS3CredentialAdapterResolvesAtUsePoint",
+        "TestS3CredentialAdapterDenialFailsClosedWithoutRequest",
+        "TestS3CredentialAdapterRevocationIsImmediate",
+        "TestS3CredentialAdapterWithoutRefStaysUnsigned"
+      ],
+      "totalLines": 185,
+      "hasStructuralAnalysis": true
+    },
+    "source/eikona.go": {
+      "filePath": "source/eikona.go",
+      "contentHash": "265f7ee19fc56f5a40822d9798a24ed60fd42a1145f9f35074bc7170f9e715e7",
       "functions": [
         {
           "name": "Kind",
+          "owner": "EikonaAdapter",
           "params": [],
           "returnType": "string",
           "exported": true,
@@ -4565,6 +6751,284 @@
         },
         {
           "name": "Sync",
+          "owner": "EikonaAdapter",
+          "params": [
+            "ctx",
+            "p",
+            "_"
+          ],
+          "returnType": "(SyncResult, error)",
+          "exported": true,
+          "lineCount": 75
+        },
+        {
+          "name": "eikonaSnapshot",
+          "owner": "",
+          "params": [
+            "p",
+            "c"
+          ],
+          "returnType": "(SyncResult, error)",
+          "exported": false,
+          "lineCount": 35
+        },
+        {
+          "name": "request",
+          "owner": "EikonaAdapter",
+          "params": [
+            "ctx",
+            "p",
+            "base",
+            "method",
+            "path",
+            "body",
+            "out"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 48
+        },
+        {
+          "name": "ReadTemplate",
+          "owner": "EikonaAdapter",
+          "params": [],
+          "returnType": "([]byte, error)",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "eikonaError",
+          "owner": "",
+          "params": [
+            "code"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "Write",
+          "owner": "boundedBuffer",
+          "params": [
+            "p"
+          ],
+          "returnType": "(int, error)",
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "classes": [
+        {
+          "name": "EikonaAdapter",
+          "methods": [
+            "Kind",
+            "Sync",
+            "request",
+            "ReadTemplate"
+          ],
+          "properties": [
+            "HTTPClient",
+            "Resolver"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "boundedBuffer",
+          "methods": [
+            "Write"
+          ],
+          "properties": [],
+          "exported": false,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "net/http",
+          "specifiers": [
+            "http"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "os/exec",
+          "specifiers": [
+            "exec"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "EikonaAdapter",
+        "Kind",
+        "Sync",
+        "ReadTemplate",
+        "Write"
+      ],
+      "totalLines": 203,
+      "hasStructuralAnalysis": true
+    },
+    "source/eikona_test.go": {
+      "filePath": "source/eikona_test.go",
+      "contentHash": "b758a8ae6b813cfb3cacb886569c35a74d56717e03f6efc11eb28703e9850bf0",
+      "functions": [
+        {
+          "name": "TestEikonaRemoteDiscoveryAndFailureModes",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 56
+        },
+        {
+          "name": "TestEikonaRejectsUnsafeSourceAndBodies",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "net/http",
+          "specifiers": [
+            "http"
+          ]
+        },
+        {
+          "source": "net/http/httptest",
+          "specifiers": [
+            "httptest"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "TestEikonaRemoteDiscoveryAndFailureModes",
+        "TestEikonaRejectsUnsafeSourceAndBodies"
+      ],
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "source/git.go": {
+      "filePath": "source/git.go",
+      "contentHash": "cacb724c0c069e17bb609f6a1dcb590ab047db2c3d253e3b1cead5ee38e38bbf",
+      "functions": [
+        {
+          "name": "Kind",
+          "owner": "GitAdapter",
+          "params": [],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Sync",
+          "owner": "GitAdapter",
           "params": [
             "ctx",
             "profile",
@@ -4572,10 +7036,11 @@
           ],
           "returnType": "(SyncResult, error)",
           "exported": true,
-          "lineCount": 58
+          "lineCount": 63
         },
         {
           "name": "ReadTemplate",
+          "owner": "GitAdapter",
           "params": [
             "ctx",
             "profile",
@@ -4589,6 +7054,7 @@
         },
         {
           "name": "ReadCompanion",
+          "owner": "GitAdapter",
           "params": [
             "ctx",
             "profile",
@@ -4602,15 +7068,78 @@
         },
         {
           "name": "normalizeGitRemote",
+          "owner": "",
           "params": [
             "raw"
           ],
           "returnType": "(string, error)",
           "exported": false,
-          "lineCount": 19
+          "lineCount": 35
+        },
+        {
+          "name": "normalizeGitFileURL",
+          "owner": "",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "isBareGitHubRemote",
+          "owner": "",
+          "params": [
+            "raw"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "normalizeBareGitHubRemote",
+          "owner": "",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "normalizeLegacyGitHubRemote",
+          "owner": "",
+          "params": [
+            "parsed"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "normalizeNativeGitURL",
+          "owner": "",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 31
+        },
+        {
+          "name": "formatGitHubRemote",
+          "owner": "",
+          "params": [
+            "owner",
+            "repository"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 7
         },
         {
           "name": "runGit",
+          "owner": "",
           "params": [
             "ctx"
           ],
@@ -4620,6 +7149,7 @@
         },
         {
           "name": "gitObjectSize",
+          "owner": "",
           "params": [
             "ctx",
             "repositoryPath",
@@ -4631,6 +7161,7 @@
         },
         {
           "name": "classifyGitError",
+          "owner": "",
           "params": [
             "profile",
             "output",
@@ -4639,6 +7170,17 @@
           "returnType": "error",
           "exported": false,
           "lineCount": 11
+        },
+        {
+          "name": "lockGitMirror",
+          "owner": "",
+          "params": [
+            "ctx",
+            "path"
+          ],
+          "returnType": "(func(), error)",
+          "exported": false,
+          "lineCount": 16
         }
       ],
       "classes": [
@@ -4723,6 +7265,12 @@
           ]
         },
         {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
           "source": "github.com/yeisme/promptrepo",
           "specifiers": [
             "promptrepo"
@@ -4736,7 +7284,7 @@
         "ReadTemplate",
         "ReadCompanion"
       ],
-      "totalLines": 189,
+      "totalLines": 296,
       "hasStructuralAnalysis": true
     },
     "source/local.go": {
@@ -4745,6 +7293,7 @@
       "functions": [
         {
           "name": "Kind",
+          "owner": "LocalAdapter",
           "params": [],
           "returnType": "string",
           "exported": true,
@@ -4752,6 +7301,7 @@
         },
         {
           "name": "Sync",
+          "owner": "LocalAdapter",
           "params": [
             "_",
             "profile",
@@ -4763,6 +7313,7 @@
         },
         {
           "name": "ReadTemplate",
+          "owner": "LocalAdapter",
           "params": [
             "_",
             "profile",
@@ -4776,6 +7327,7 @@
         },
         {
           "name": "ReadCompanion",
+          "owner": "LocalAdapter",
           "params": [
             "_",
             "profile",
@@ -4789,6 +7341,7 @@
         },
         {
           "name": "decodeCatalog",
+          "owner": "",
           "params": [
             "payload"
           ],
@@ -4798,6 +7351,7 @@
         },
         {
           "name": "withinRoot",
+          "owner": "",
           "params": [
             "root",
             "path"
@@ -4808,6 +7362,7 @@
         },
         {
           "name": "sourceError",
+          "owner": "",
           "params": [
             "kind",
             "err"
@@ -4818,6 +7373,7 @@
         },
         {
           "name": "verifyTemplateDigest",
+          "owner": "",
           "params": [
             "payload",
             "expected"
@@ -4925,6 +7481,7 @@
       "functions": [
         {
           "name": "Kind",
+          "owner": "S3Adapter",
           "params": [],
           "returnType": "string",
           "exported": true,
@@ -4932,6 +7489,7 @@
         },
         {
           "name": "Sync",
+          "owner": "S3Adapter",
           "params": [
             "ctx",
             "profile",
@@ -4943,6 +7501,7 @@
         },
         {
           "name": "ReadTemplate",
+          "owner": "S3Adapter",
           "params": [
             "ctx",
             "profile",
@@ -4956,6 +7515,7 @@
         },
         {
           "name": "ReadCompanion",
+          "owner": "S3Adapter",
           "params": [
             "ctx",
             "profile",
@@ -4969,6 +7529,7 @@
         },
         {
           "name": "s3ObjectURL",
+          "owner": "",
           "params": [
             "raw",
             "objectPath"
@@ -4979,6 +7540,7 @@
         },
         {
           "name": "safeObjectPath",
+          "owner": "",
           "params": [
             "value"
           ],
@@ -4988,6 +7550,7 @@
         },
         {
           "name": "defaultString",
+          "owner": "",
           "params": [
             "value",
             "fallback"
@@ -5079,190 +7642,13 @@
       "totalLines": 221,
       "hasStructuralAnalysis": true
     },
-    "source/source_test.go": {
-      "filePath": "source/source_test.go",
-      "contentHash": "2f71fb01b11a5f6953677d0c85d2dbe1540e774d99b64e3678a57188081dbc7a",
-      "functions": [
-        {
-          "name": "TestLocalAdapterReadsCatalog",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 25
-        },
-        {
-          "name": "TestGitHubURIValidation",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 9
-        },
-        {
-          "name": "TestGitAdapterPinsExactCommit",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 29
-        },
-        {
-          "name": "TestS3AdapterReadsPathStyleCatalog",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 34
-        },
-        {
-          "name": "TestCompanionReadersFailClosed",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 30
-        },
-        {
-          "name": "TestGitCompanionChecksBlobSizeBeforeRead",
-          "params": [
-            "t"
-          ],
-          "exported": true,
-          "lineCount": 24
-        },
-        {
-          "name": "writeTestCatalog",
-          "params": [
-            "t",
-            "root"
-          ],
-          "exported": false,
-          "lineCount": 20
-        },
-        {
-          "name": "testCatalog",
-          "params": [
-            "t"
-          ],
-          "returnType": "promptrepo.Catalog",
-          "exported": false,
-          "lineCount": 16
-        },
-        {
-          "name": "runTestGit",
-          "params": [
-            "t",
-            "directory"
-          ],
-          "exported": false,
-          "lineCount": 8
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "bytes",
-          "specifiers": [
-            "bytes"
-          ]
-        },
-        {
-          "source": "context",
-          "specifiers": [
-            "context"
-          ]
-        },
-        {
-          "source": "crypto/sha256",
-          "specifiers": [
-            "sha256"
-          ]
-        },
-        {
-          "source": "encoding/hex",
-          "specifiers": [
-            "hex"
-          ]
-        },
-        {
-          "source": "encoding/json",
-          "specifiers": [
-            "json"
-          ]
-        },
-        {
-          "source": "net/http",
-          "specifiers": [
-            "http"
-          ]
-        },
-        {
-          "source": "net/http/httptest",
-          "specifiers": [
-            "httptest"
-          ]
-        },
-        {
-          "source": "net/url",
-          "specifiers": [
-            "url"
-          ]
-        },
-        {
-          "source": "os",
-          "specifiers": [
-            "os"
-          ]
-        },
-        {
-          "source": "os/exec",
-          "specifiers": [
-            "exec"
-          ]
-        },
-        {
-          "source": "path/filepath",
-          "specifiers": [
-            "filepath"
-          ]
-        },
-        {
-          "source": "testing",
-          "specifiers": [
-            "testing"
-          ]
-        },
-        {
-          "source": "time",
-          "specifiers": [
-            "time"
-          ]
-        },
-        {
-          "source": "github.com/yeisme/promptrepo",
-          "specifiers": [
-            "promptrepo"
-          ]
-        }
-      ],
-      "exports": [
-        "TestLocalAdapterReadsCatalog",
-        "TestGitHubURIValidation",
-        "TestGitAdapterPinsExactCommit",
-        "TestS3AdapterReadsPathStyleCatalog",
-        "TestCompanionReadersFailClosed",
-        "TestGitCompanionChecksBlobSizeBeforeRead"
-      ],
-      "totalLines": 226,
-      "hasStructuralAnalysis": true
-    },
     "source/source.go": {
       "filePath": "source/source.go",
-      "contentHash": "b736f0f14e7eb5782b664a334e228cb707a01b17740c0f718494918247cc31ea",
+      "contentHash": "66aa3c6402ad93ca2af9ec6ae89e8c4df8ab78c583598b535d7fb18bd670fad0",
       "functions": [
         {
           "name": "NewRegistry",
+          "owner": "",
           "params": [],
           "returnType": "*Registry",
           "exported": true,
@@ -5270,6 +7656,7 @@
         },
         {
           "name": "DefaultRegistry",
+          "owner": "",
           "params": [],
           "returnType": "*Registry",
           "exported": true,
@@ -5277,15 +7664,17 @@
         },
         {
           "name": "DetectKind",
+          "owner": "",
           "params": [
             "raw"
           ],
           "returnType": "(string, error)",
           "exported": true,
-          "lineCount": 16
+          "lineCount": 38
         },
         {
           "name": "Resolve",
+          "owner": "Registry",
           "params": [
             "raw"
           ],
@@ -5385,7 +7774,1441 @@
         "DetectKind",
         "Resolve"
       ],
-      "totalLines": 75,
+      "totalLines": 97,
+      "hasStructuralAnalysis": true
+    },
+    "source/source_test.go": {
+      "filePath": "source/source_test.go",
+      "contentHash": "82f30ae9570e817adee6186cccb337ad06b375629df8769ac6b457de2ec37f61",
+      "functions": [
+        {
+          "name": "TestLocalAdapterReadsCatalog",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 25
+        },
+        {
+          "name": "TestGitRemoteNormalization",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 28
+        },
+        {
+          "name": "TestGitRemoteValidationRejectsUnsafeSources",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "TestGitAdapterPinsExactCommit",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "TestS3AdapterReadsPathStyleCatalog",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "TestCompanionReadersFailClosed",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "TestGitCompanionChecksBlobSizeBeforeRead",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "writeTestCatalog",
+          "owner": "",
+          "params": [
+            "t",
+            "root"
+          ],
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "testCatalog",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "returnType": "promptrepo.Catalog",
+          "exported": false,
+          "lineCount": 16
+        },
+        {
+          "name": "runTestGit",
+          "owner": "",
+          "params": [
+            "t",
+            "directory"
+          ],
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "net/http",
+          "specifiers": [
+            "http"
+          ]
+        },
+        {
+          "source": "net/http/httptest",
+          "specifiers": [
+            "httptest"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "os/exec",
+          "specifiers": [
+            "exec"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "time",
+          "specifiers": [
+            "time"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "TestLocalAdapterReadsCatalog",
+        "TestGitRemoteNormalization",
+        "TestGitRemoteValidationRejectsUnsafeSources",
+        "TestGitAdapterPinsExactCommit",
+        "TestS3AdapterReadsPathStyleCatalog",
+        "TestCompanionReadersFailClosed",
+        "TestGitCompanionChecksBlobSizeBeforeRead"
+      ],
+      "totalLines": 265,
+      "hasStructuralAnalysis": true
+    },
+    "ui_template.go": {
+      "filePath": "ui_template.go",
+      "contentHash": "63736765b3b618b8610792f89d7742f99e6bbbdadb22a047100d062821fb1ba9",
+      "functions": [
+        {
+          "name": "DefaultUITemplateLimitsV1",
+          "owner": "",
+          "params": [],
+          "returnType": "UITemplateLimitsV1",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "CheckUITemplateBundle",
+          "owner": "",
+          "params": [
+            "bundle"
+          ],
+          "returnType": "UITemplateValidationV1",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "NewUITemplateInspection",
+          "owner": "",
+          "params": [
+            "bundle"
+          ],
+          "returnType": "UITemplateInspectionV1",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "CanonicalUITemplateDigest",
+          "owner": "",
+          "params": [
+            "bundle"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "canonicalUITemplateSlots",
+          "owner": "",
+          "params": [
+            "slots"
+          ],
+          "returnType": "[]UITemplateSlotV1",
+          "exported": false,
+          "lineCount": 5
+        },
+        {
+          "name": "writeUITemplateDigestField",
+          "owner": "",
+          "params": [
+            "destination",
+            "name",
+            "value"
+          ],
+          "exported": false,
+          "lineCount": 9
+        }
+      ],
+      "classes": [
+        {
+          "name": "UITemplateSlotV1",
+          "methods": [],
+          "properties": [
+            "Name",
+            "Kind",
+            "Required",
+            "Cardinality"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "UITemplateLimitsV1",
+          "methods": [],
+          "properties": [
+            "MaxHTMLBytes",
+            "MaxCSSBytes",
+            "MaxBodyBytes",
+            "MaxSlots",
+            "MaxSlotNameBytes"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "UITemplateBundleV1",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Address",
+            "HTMLFragment",
+            "CSS",
+            "Slots",
+            "Security",
+            "Limits",
+            "ContentDigest",
+            "Snapshot"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "UITemplateViolationV1",
+          "methods": [],
+          "properties": [
+            "Code",
+            "Field",
+            "Message"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "UITemplateValidationV1",
+          "methods": [],
+          "properties": [
+            "Valid",
+            "Violations"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "InspectUITemplateRequest",
+          "methods": [],
+          "properties": [
+            "Address"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "LoadUITemplateRequest",
+          "methods": [],
+          "properties": [
+            "Address"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "UITemplateInspectionV1",
+          "methods": [],
+          "properties": [
+            "SchemaVersion",
+            "Address",
+            "Slots",
+            "Security",
+            "Limits",
+            "ContentDigest",
+            "Snapshot",
+            "HTMLBytes",
+            "CSSBytes",
+            "BodyBytes",
+            "Validation"
+          ],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "UITemplateInspector",
+          "methods": [
+            "InspectUITemplate"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "UITemplateLoader",
+          "methods": [
+            "LoadUITemplate"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/binary",
+          "specifiers": [
+            "binary"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "hash",
+          "specifiers": [
+            "hash"
+          ]
+        },
+        {
+          "source": "sort",
+          "specifiers": [
+            "sort"
+          ]
+        },
+        {
+          "source": "strconv",
+          "specifiers": [
+            "strconv"
+          ]
+        }
+      ],
+      "exports": [
+        "UITemplateSlotV1",
+        "UITemplateLimitsV1",
+        "DefaultUITemplateLimitsV1",
+        "UITemplateBundleV1",
+        "UITemplateViolationV1",
+        "UITemplateValidationV1",
+        "InspectUITemplateRequest",
+        "LoadUITemplateRequest",
+        "UITemplateInspectionV1",
+        "UITemplateInspector",
+        "UITemplateLoader",
+        "CheckUITemplateBundle",
+        "NewUITemplateInspection",
+        "CanonicalUITemplateDigest"
+      ],
+      "totalLines": 205,
+      "hasStructuralAnalysis": true
+    },
+    "ui_template_address.go": {
+      "filePath": "ui_template_address.go",
+      "contentHash": "d67e47770a8805e7515e64893d833b896973659e457f279513b3c05ba754e9f6",
+      "functions": [
+        {
+          "name": "Ref",
+          "owner": "UITemplateAddress",
+          "params": [],
+          "returnType": "Ref",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "ParseUITemplateAddress",
+          "owner": "",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(UITemplateAddress, error)",
+          "exported": true,
+          "lineCount": 50
+        },
+        {
+          "name": "FormatUITemplateAddress",
+          "owner": "",
+          "params": [
+            "address"
+          ],
+          "returnType": "string",
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "ValidateUITemplateAddress",
+          "owner": "",
+          "params": [
+            "address"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "safeUITemplatePath",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "uiTemplateAddressError",
+          "owner": "",
+          "params": [
+            "message",
+            "cause"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [
+        {
+          "name": "UITemplateAddress",
+          "methods": [
+            "Ref"
+          ],
+          "properties": [
+            "RepositoryID",
+            "PackageID",
+            "SolutionID",
+            "Version",
+            "Locale",
+            "Role",
+            "Path",
+            "Digest",
+            "Snapshot"
+          ],
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "imports": [
+        {
+          "source": "fmt",
+          "specifiers": [
+            "fmt"
+          ]
+        },
+        {
+          "source": "net/url",
+          "specifiers": [
+            "url"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        "UITemplateAddress",
+        "Ref",
+        "ParseUITemplateAddress",
+        "FormatUITemplateAddress",
+        "ValidateUITemplateAddress"
+      ],
+      "totalLines": 152,
+      "hasStructuralAnalysis": true
+    },
+    "ui_template_file.go": {
+      "filePath": "ui_template_file.go",
+      "contentHash": "9f327a0533ad14d845b9131aed81cc6f88db897def3d177f6de9cd0a76fd714d",
+      "functions": [
+        {
+          "name": "DecodeUITemplateFileDescriptorV1",
+          "owner": "",
+          "params": [
+            "payload"
+          ],
+          "returnType": "(UITemplateFileDescriptorV1, error)",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "ValidateUITemplateFileDescriptorV1",
+          "owner": "",
+          "params": [
+            "descriptor"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "UITemplateFileDescriptorPath",
+          "owner": "",
+          "params": [
+            "address"
+          ],
+          "returnType": "(string, error)",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "Bundle",
+          "owner": "UITemplateFileDescriptorV1",
+          "params": [
+            "htmlFragment",
+            "css"
+          ],
+          "returnType": "UITemplateBundleV1",
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [
+        {
+          "name": "UITemplateFileDescriptorV1",
+          "methods": [
+            "Bundle"
+          ],
+          "properties": [
+            "SchemaVersion",
+            "Address",
+            "HTMLPath",
+            "CSSPath",
+            "Slots",
+            "Security",
+            "Limits",
+            "HTMLBytes",
+            "CSSBytes",
+            "BodyBytes",
+            "ContentDigest",
+            "Snapshot"
+          ],
+          "exported": true,
+          "lineCount": 14
+        }
+      ],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "path",
+          "specifiers": [
+            "path"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "unicode/utf8",
+          "specifiers": [
+            "utf8"
+          ]
+        }
+      ],
+      "exports": [
+        "UITemplateFileDescriptorV1",
+        "DecodeUITemplateFileDescriptorV1",
+        "ValidateUITemplateFileDescriptorV1",
+        "UITemplateFileDescriptorPath",
+        "Bundle"
+      ],
+      "totalLines": 115,
+      "hasStructuralAnalysis": true
+    },
+    "ui_template_test.go": {
+      "filePath": "ui_template_test.go",
+      "contentHash": "9c10f30939ae3844987c83667dcf185c0b83dc203e78e09fb7dba90e24c98916",
+      "functions": [
+        {
+          "name": "TestUITemplateAddressRoundTripUsesIndependentCanonicalOrder",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "TestUITemplateAddressRejectsUnsafeOrAmbiguousInputs",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "TestUITemplateBundleLimitsAndSlots",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "TestUITemplateErrorCodesAreStable",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "TestUITemplateHTMLValidatorFailsClosed",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 51
+        },
+        {
+          "name": "TestUITemplateHTMLStaticReviewAllowlistIsStable",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "TestUITemplateCSSValidatorRejectsBypassesAndParserErrors",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "TestUITemplateDigestCoversMetadataAndBodiesButNotSnapshot",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "TestUITemplateExactDigestAndSnapshotBindings",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "TestUITemplateMachineProjectionOmitsBodiesAndPrivatePaths",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "TestUITemplateFileDescriptorIsStrictAndBodyFree",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 38
+        },
+        {
+          "name": "TestUITemplateAdditiveContractPreservesReleasedAddressBehavior",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "validUITemplateBundle",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "returnType": "UITemplateBundleV1",
+          "exported": false,
+          "lineCount": 33
+        },
+        {
+          "name": "testUITemplateDigest",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        },
+        {
+          "name": "assertUITemplateDigestChanges",
+          "owner": "",
+          "params": [
+            "t",
+            "base",
+            "bundle"
+          ],
+          "exported": false,
+          "lineCount": 10
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "reflect",
+          "specifiers": [
+            "reflect"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        }
+      ],
+      "exports": [
+        "TestUITemplateAddressRoundTripUsesIndependentCanonicalOrder",
+        "TestUITemplateAddressRejectsUnsafeOrAmbiguousInputs",
+        "TestUITemplateBundleLimitsAndSlots",
+        "TestUITemplateErrorCodesAreStable",
+        "TestUITemplateHTMLValidatorFailsClosed",
+        "TestUITemplateHTMLStaticReviewAllowlistIsStable",
+        "TestUITemplateCSSValidatorRejectsBypassesAndParserErrors",
+        "TestUITemplateDigestCoversMetadataAndBodiesButNotSnapshot",
+        "TestUITemplateExactDigestAndSnapshotBindings",
+        "TestUITemplateMachineProjectionOmitsBodiesAndPrivatePaths",
+        "TestUITemplateFileDescriptorIsStrictAndBodyFree",
+        "TestUITemplateAdditiveContractPreservesReleasedAddressBehavior"
+      ],
+      "totalLines": 405,
+      "hasStructuralAnalysis": true
+    },
+    "ui_template_validate.go": {
+      "filePath": "ui_template_validate.go",
+      "contentHash": "d5bbbef68058826fbdba045e401c4f721c48951a7def35e64b32d612bf9efe5a",
+      "functions": [
+        {
+          "name": "ValidateUITemplateBundle",
+          "owner": "",
+          "params": [
+            "bundle"
+          ],
+          "returnType": "error",
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "validateUITemplateBundleStructure",
+          "owner": "",
+          "params": [
+            "bundle"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 36
+        },
+        {
+          "name": "validateUITemplateLimits",
+          "owner": "",
+          "params": [
+            "limits",
+            "htmlBytes",
+            "cssBytes",
+            "slotCount"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 13
+        },
+        {
+          "name": "validateUITemplateSlots",
+          "owner": "",
+          "params": [
+            "slots",
+            "limits"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "validUITemplateSlotName",
+          "owner": "",
+          "params": [
+            "name",
+            "maxBytes"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "validateUITemplateHTML",
+          "owner": "",
+          "params": [
+            "fragment",
+            "slots",
+            "limits"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 114
+        },
+        {
+          "name": "validUITemplateHTMLTag",
+          "owner": "",
+          "params": [
+            "tag"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "validUITemplateHTMLAttributeName",
+          "owner": "",
+          "params": [
+            "name"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 14
+        },
+        {
+          "name": "parseUITemplateHTMLAttributeValue",
+          "owner": "",
+          "params": [
+            "raw"
+          ],
+          "returnType": "(string, bool)",
+          "exported": false,
+          "lineCount": 15
+        },
+        {
+          "name": "validateUITemplateCSS",
+          "owner": "",
+          "params": [
+            "stylesheet"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 72
+        },
+        {
+          "name": "updateUITemplateCSSDelimiters",
+          "owner": "",
+          "params": [
+            "stack",
+            "tokenType"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "rejectUITemplateCSSToken",
+          "owner": "",
+          "params": [
+            "tokenType",
+            "data"
+          ],
+          "returnType": "error",
+          "exported": false,
+          "lineCount": 23
+        },
+        {
+          "name": "allowedUITemplateAtRule",
+          "owner": "",
+          "params": [
+            "name"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "normalizedCSSName",
+          "owner": "",
+          "params": [
+            "data",
+            "prefix",
+            "suffix"
+          ],
+          "returnType": "(string, bool)",
+          "exported": false,
+          "lineCount": 20
+        },
+        {
+          "name": "normalizeCSSForSafetyScan",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 11
+        },
+        {
+          "name": "stripCSSComments",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 17
+        },
+        {
+          "name": "decodeCSSEscapes",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "(string, error)",
+          "exported": false,
+          "lineCount": 36
+        },
+        {
+          "name": "isCSSHex",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "isCSSWhitespace",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "bytes",
+          "specifiers": [
+            "bytes"
+          ]
+        },
+        {
+          "source": "errors",
+          "specifiers": [
+            "errors"
+          ]
+        },
+        {
+          "source": "html",
+          "specifiers": [
+            "stdhtml"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "regexp",
+          "specifiers": [
+            "regexp"
+          ]
+        },
+        {
+          "source": "strconv",
+          "specifiers": [
+            "strconv"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "unicode/utf8",
+          "specifiers": [
+            "utf8"
+          ]
+        },
+        {
+          "source": "github.com/tdewolff/parse/v2",
+          "specifiers": [
+            "parse"
+          ]
+        },
+        {
+          "source": "github.com/tdewolff/parse/v2/css",
+          "specifiers": [
+            "css"
+          ]
+        },
+        {
+          "source": "github.com/tdewolff/parse/v2/html",
+          "specifiers": [
+            "parsehtml"
+          ]
+        }
+      ],
+      "exports": [
+        "ValidateUITemplateBundle"
+      ],
+      "totalLines": 547,
+      "hasStructuralAnalysis": true
+    },
+    "uitemplatefs/loader.go": {
+      "filePath": "uitemplatefs/loader.go",
+      "contentHash": "cf71fd394155ac6d097e4e5d8125c63e7bd8f68383292153743fc5ce01a64b39",
+      "functions": [
+        {
+          "name": "New",
+          "owner": "",
+          "params": [
+            "rootPath"
+          ],
+          "returnType": "(*Loader, error)",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "InspectUITemplate",
+          "owner": "Loader",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.UITemplateInspectionV1, error)",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "LoadUITemplate",
+          "owner": "Loader",
+          "params": [
+            "ctx",
+            "request"
+          ],
+          "returnType": "(promptrepo.UITemplateBundleV1, error)",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "readBundle",
+          "owner": "Loader",
+          "params": [
+            "ctx",
+            "address"
+          ],
+          "returnType": "(promptrepo.UITemplateBundleV1, error)",
+          "exported": false,
+          "lineCount": 38
+        },
+        {
+          "name": "readBounded",
+          "owner": "Loader",
+          "params": [
+            "relativePath",
+            "maxBytes",
+            "code",
+            "message"
+          ],
+          "returnType": "([]byte, error)",
+          "exported": false,
+          "lineCount": 27
+        },
+        {
+          "name": "withinRoot",
+          "owner": "",
+          "params": [
+            "root",
+            "candidate"
+          ],
+          "returnType": "bool",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [
+        {
+          "name": "Loader",
+          "methods": [
+            "InspectUITemplate",
+            "LoadUITemplate",
+            "readBundle",
+            "readBounded"
+          ],
+          "properties": [
+            "root"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "io",
+          "specifiers": [
+            "io"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        }
+      ],
+      "exports": [
+        "Loader",
+        "New",
+        "InspectUITemplate",
+        "LoadUITemplate"
+      ],
+      "totalLines": 133,
+      "hasStructuralAnalysis": true
+    },
+    "uitemplatefs/loader_test.go": {
+      "filePath": "uitemplatefs/loader_test.go",
+      "contentHash": "1e9ac0ed1645b8b48263f6bf38a61ddd6107c36e94a47b61e542442ce2940435",
+      "functions": [
+        {
+          "name": "TestLoadUITemplateAndInspectUITemplateBodySafeBundle",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "TestLoadUITemplateRejectsTamperingAndSymlinkEscape",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 29
+        },
+        {
+          "name": "TestUITemplateRedactionLoaderErrorsDoNotExposePrivateRootOrBody",
+          "owner": "",
+          "params": [
+            "t"
+          ],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "filesystemBundle",
+          "owner": "",
+          "params": [
+            "t",
+            "sentinel"
+          ],
+          "returnType": "promptrepo.UITemplateBundleV1",
+          "exported": false,
+          "lineCount": 32
+        },
+        {
+          "name": "writeFilesystemBundle",
+          "owner": "",
+          "params": [
+            "t",
+            "bundle"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 39
+        },
+        {
+          "name": "filesystemDigest",
+          "owner": "",
+          "params": [
+            "value"
+          ],
+          "returnType": "string",
+          "exported": false,
+          "lineCount": 4
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "context",
+          "specifiers": [
+            "context"
+          ]
+        },
+        {
+          "source": "crypto/sha256",
+          "specifiers": [
+            "sha256"
+          ]
+        },
+        {
+          "source": "encoding/hex",
+          "specifiers": [
+            "hex"
+          ]
+        },
+        {
+          "source": "encoding/json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "path/filepath",
+          "specifiers": [
+            "filepath"
+          ]
+        },
+        {
+          "source": "strings",
+          "specifiers": [
+            "strings"
+          ]
+        },
+        {
+          "source": "testing",
+          "specifiers": [
+            "testing"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo",
+          "specifiers": [
+            "promptrepo"
+          ]
+        },
+        {
+          "source": "github.com/yeisme/promptrepo/uitemplatefs",
+          "specifiers": [
+            "uitemplatefs"
+          ]
+        }
+      ],
+      "exports": [
+        "TestLoadUITemplateAndInspectUITemplateBodySafeBundle",
+        "TestLoadUITemplateRejectsTamperingAndSymlinkEscape",
+        "TestUITemplateRedactionLoaderErrorsDoNotExposePrivateRootOrBody"
+      ],
+      "totalLines": 174,
       "hasStructuralAnalysis": true
     }
   }
